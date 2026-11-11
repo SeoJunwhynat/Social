@@ -1,0 +1,12 @@
+SOCIAL STUDIES v18 - GITHUB/VERCEL DEPLOY PACKAGE
+
+1. Download EVERY ZIP file (01 + all 02.. sound ZIPs).
+2. Extract each ZIP INTO THE SAME EMPTY FOLDER. Keep folders as-is.
+3. The root directory should contain index.html, vercel.json and assets/audio/.
+4. Upload the CONTENTS of that folder to the root of your GitHub Social repository (main).
+5. Vercel automatically redeploys on push. Do not upload ZIP files directly.
+
+If some sounds do not play, verify that assets/audio/track_001.mp3 etc are in the repository.
+If browser blocks automatic music, interact with the page once to permit playback.
+
+All required audio tracks are preserved with their ORIGINAL FILE NAMES.

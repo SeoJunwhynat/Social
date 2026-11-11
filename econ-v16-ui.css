@@ -1,0 +1,102 @@
+/* 사회범 v16 — 가독성을 높인 경제 그래프/모바일 그래프 학습 UI */
+#page-guide #sb-v12-workshop .sb12-shell{background:#211e2d;color:#fff8e6;border:4px solid #f0ba6c;box-shadow:5px 6px 0 #100f19;padding:clamp(14px,2vw,24px)}
+#page-guide #sb-v12-workshop .sb12-shell>h3{font-size:clamp(21px,2.5vw,30px);line-height:1.3;color:#ffe19b;margin-bottom:8px}
+#page-guide #sb-v12-workshop .sb12-shell>p{font-size:14px;line-height:1.65;color:#f1e2cf}
+#page-guide #sb-v12-workshop .sb12-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:16px 0 20px}
+#page-guide #sb-v12-workshop .sb12-tabs button{min-height:56px;min-width:0;padding:9px 7px;border:3px solid #916a64;border-bottom:5px solid #674d51;background:#f5ddbb;color:#45293b;font-size:clamp(12px,1.3vw,15px);line-height:1.25;text-align:center;font-weight:950}
+#page-guide #sb-v12-workshop .sb12-tabs button[aria-selected="true"]{background:#ffcf6a;border-color:#ffc65e;box-shadow:inset 0 -3px 0 #d48b43,0 0 0 2px #fff0b9;color:#402539}
+#page-guide #sb-v12-workshop .sb12-plotbox{border:4px solid #dda969;background:#192235;padding:9px}
+#page-guide #sb-v12-workshop .sb12-plotbox svg{max-height:none}
+#page-guide #sb-v12-workshop .sb12-plotbox .curve-visual{stroke-width:4.5}
+#page-guide #sb-v12-workshop .sb12-market-layout{grid-template-columns:minmax(235px,280px) minmax(0,1fr);gap:19px}
+#page-guide #sb-v12-workshop .sb12-controls{background:#ffedce;border-color:#b78762;color:#392631}
+#page-guide #sb-v12-workshop .sb12-controls label{font-size:14px}
+#page-guide #sb-v12-workshop .sb12-plotmodes button{font-size:13px;min-height:45px}
+#page-quiz .graph-question-wrap{max-width:min(100%,930px);margin:16px auto 18px}
+#page-quiz .graph-question-wrap .sb-graph-figure{border:4px solid #e0ae65;background:#192235;padding:clamp(6px,1vw,13px)}
+#page-quiz .graph-question-wrap .sb-graph-top{padding:8px 9px 11px;gap:8px}
+#page-quiz .graph-question-wrap .sb-graph-top strong{font-size:clamp(14px,1.6vw,19px);line-height:1.4;color:#fff5d9}
+#page-quiz .graph-question-wrap .sb-graph-svg{max-height:460px;min-height:210px;width:100%}
+#page-quiz .graph-question-wrap .sb-graph-figure figcaption{font-size:clamp(11px,1.2vw,14px);color:#ffebca;padding:9px 5px;line-height:1.7}
+.econ16-figure .econ16-graph-surface{padding:2px 0}
+.econ16-legend{display:flex;flex-wrap:wrap;gap:8px 16px;justify-content:center;padding:10px 5px 4px;border-top:1px solid #657085}
+.econ16-legenditem{display:inline-flex;align-items:center;gap:6px;color:#f6f1e7;font-size:12px;font-weight:800}
+.econ16-legenditem i{width:16px;height:5px;border-radius:2px;display:inline-block;flex:none}
+.econ16-fast-nav{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:8px auto 20px;padding:12px;background:#2b2234;border:3px solid #926e57;box-shadow:3px 3px 0 #171420}
+.econ16-fast-nav span{font-weight:950;color:#ffe0a3;font-size:15px;margin-right:4px}
+.econ16-fast-nav button{background:#f8d9a6;color:#4d2839;border:3px solid #9d674a;border-bottom-width:5px;font-weight:900;padding:10px 13px;min-height:45px;cursor:pointer;touch-action:manipulation}
+.econ16-fast-nav button:hover{background:#ffeabc;filter:brightness(1.04)}
+.econ16-fast-nav button:active{transform:translateY(2px)}
+.econ16-fast-nav small{font-size:11px;color:#eacda5}
+#sb-v12-workshop .econ16-topline{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:13px 0 20px}
+#sb-v12-workshop .econ16-topline div{min-width:0;background:#4a3144;border-left:5px solid #ffcd72;padding:9px 12px;color:#fff2d7}
+#sb-v12-workshop .econ16-topline b{font-size:13px;display:block;color:#ffe2a2}
+#sb-v12-workshop .econ16-topline span{font-size:12px;display:block;margin-top:4px}
+#sb-v12-workshop .econ16-pane{padding-top:4px;min-width:0}
+#sb-v12-workshop .econ16-title{font-size:clamp(20px,2vw,25px);margin:0 0 10px;color:#ffe7ae;font-weight:950}
+#sb-v12-workshop .econ16-lead{font-size:13px!important;line-height:1.72!important;color:#f5daba!important}
+#sb-v12-workshop .econ16-layout{display:grid;grid-template-columns:minmax(205px,255px) minmax(0,1fr);gap:16px;align-items:start}
+#sb-v12-workshop .econ16-control{display:grid;gap:12px;background:#f7e2c5;border:3px solid #c39b74;color:#432b3a;padding:14px;box-shadow:inset 0 0 0 2px #fff3de}
+#sb-v12-workshop .econ16-control label{font-size:14px;font-weight:900;color:#44293a;display:grid;gap:9px}
+#sb-v12-workshop .econ16-control input[type=range]{display:block;width:100%;min-height:38px;accent-color:#b56a47}
+#sb-v12-workshop .econ16-control output{font-weight:950;font-size:clamp(20px,2vw,26px);color:#673647}
+#sb-v12-workshop .econ16-control small{line-height:1.5;color:#71545e}
+#sb-v12-workshop .econ16-preset{display:flex;gap:7px;flex-wrap:wrap}
+#sb-v12-workshop .econ16-preset button{min-height:43px;border:2px solid #76515b;background:#ffe4b5;color:#472739;padding:7px 10px;font-size:12px;font-weight:900;flex:1}
+#sb-v12-workshop .econ16-preset button:hover{background:#ffd17c}
+#sb-v12-workshop .econ16-chart{min-width:0;background:#171f2e;border:4px solid #d6a668;padding:9px;box-shadow:3px 3px 0 #14121e}
+#sb-v12-workshop .econ16-chart svg{display:block;width:100%;height:auto;max-height:400px}
+#sb-v12-workshop .econ16-chart-title{color:#f8e0ad;font-size:15px;font-weight:950;margin-bottom:5px}
+#sb-v12-workshop .econ16-kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:16px 0}
+#sb-v12-workshop .econ16-kpi{background:#f8e9cc;border:3px solid #b18a64;min-width:0;padding:12px 11px;display:grid;gap:5px;color:#422636}
+#sb-v12-workshop .econ16-kpi b{font-size:12px;color:#694353}
+#sb-v12-workshop .econ16-kpi strong{font-size:clamp(18px,2vw,23px);color:#4d2a3b;line-height:1.3}
+#sb-v12-workshop .econ16-kpi span{font-size:11px;color:#7b5960;line-height:1.4}
+#sb-v12-workshop .econ16-compare{overflow-x:auto;margin-top:12px;border:2px solid #c59675;background:#ffeed2}
+#sb-v12-workshop .econ16-compare table{border-collapse:collapse;width:100%;min-width:450px;color:#432838;font-size:14px}
+#sb-v12-workshop .econ16-compare th{background:#5d384b;color:#fff2d2;font-size:13px;white-space:nowrap;text-align:center}
+#sb-v12-workshop .econ16-compare th,#sb-v12-workshop .econ16-compare td{border:1px solid #c5a082;padding:10px 12px}
+#sb-v12-workshop .econ16-compare td:first-child{font-weight:900}
+#sb-v12-workshop .econ16-compare td{text-align:right;font-variant-numeric:tabular-nums}
+#sb-v12-workshop .econ16-compare td:first-child{text-align:left}
+#sb-v12-workshop .econ16-insight{margin:12px 0 0;padding:14px 16px;background:#414058;border-left:5px solid #ffd277;color:#fff0d2;line-height:1.8;font-size:13px}
+#sb-v12-workshop .econ16-note{color:#eedac2!important;font-size:12px!important;line-height:1.6!important;margin:12px 0!important}
+#sb-v12-workshop .econ16-ext-types{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:12px 0}
+#sb-v12-workshop .econ16-ext-types button{font-size:12px;border:3px solid #9b765e;background:#f6dfbd;color:#4b2c39;padding:10px 5px;font-weight:900;line-height:1.5}
+#sb-v12-workshop .econ16-ext-types button[aria-pressed=true]{background:#f7c773;border-color:#efaa57;box-shadow:inset 0 -3px 0 #ca854d}
+#sb-v12-workshop [data-econ16-pane][hidden]{display:none!important}
+@media(max-width:850px){
+ #page-guide #sb-v12-workshop .sb12-market-layout{grid-template-columns:1fr}
+ #sb-v12-workshop .econ16-layout{grid-template-columns:1fr}
+ #sb-v12-workshop .econ16-topline{grid-template-columns:1fr 1fr 1fr}
+}
+@media(max-width:600px){
+ #page-guide #sb-v12-workshop .sb12-tabs{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+ #page-guide #sb-v12-workshop .sb12-tabs button{font-size:12px;min-height:52px;line-height:1.32;padding:5px}
+ #page-guide #sb-v12-workshop .sb12-shell{padding:9px}
+ #sb-v12-workshop .econ16-topline{grid-template-columns:1fr;gap:6px}
+ #sb-v12-workshop .econ16-kpis{grid-template-columns:1fr;gap:7px}
+ #sb-v12-workshop .econ16-kpi{padding:9px 12px}
+ #sb-v12-workshop .econ16-chart{padding:3px;border-width:2px}
+ #sb-v12-workshop .econ16-compare table{font-size:12px}
+ #sb-v12-workshop .econ16-compare th,#sb-v12-workshop .econ16-compare td{padding:8px}
+ .econ16-fast-nav button{width:100%}
+ #page-quiz .graph-question-wrap .sb-graph-svg{min-height:185px}
+ #page-quiz .graph-question-wrap .sb-graph-figure{padding:3px}
+ .econ16-legend{gap:6px 10px}
+ .econ16-legenditem{font-size:10px}
+}
+@media(prefers-reduced-motion:reduce){#sb-v12-workshop .econ16-pane *,#page-quiz .econ16-figure *{transition:none!important;animation:none!important}}
+/* Optional large-graph inspection for small screens */
+#sb-v12-workshop .econ16-chart,#sb-v12-workshop .sb12-plotbox{position:relative}
+#sb-v12-workshop .econ16-zoom-action{display:inline-flex;align-items:center;justify-content:center;min-height:39px;background:#ffe7bd;color:#4c2a3a;border:2px solid #986b57;padding:7px 12px;font-size:12px;font-weight:950;cursor:pointer;margin:0 0 7px;box-shadow:2px 2px 0 #181521}
+#sb-v12-workshop .econ16-zoom-action:hover{background:#ffe094}
+.econ16-zoom-modal[hidden]{display:none!important}
+.econ16-zoom-modal{position:fixed;inset:0;z-index:10010;display:grid;place-items:center;background:#090a10ed;padding:12px}
+.econ16-zoom-dialog{width:min(100%,1120px);max-height:96dvh;background:#1b2434;border:4px solid #f3bd6e;box-shadow:0 15px 65px #000d;display:flex;flex-direction:column;color:#fff0d7}
+.econ16-zoom-bar{padding:10px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;background:#402b3c;font-weight:900}
+.econ16-zoom-close{min-height:42px;padding:8px 13px;border:2px solid #dfbd8c;background:#ffe4b5;color:#392535;font-weight:950;cursor:pointer}
+.econ16-zoom-scroll{overflow:auto;padding:14px;min-width:0;min-height:160px}
+.econ16-zoom-scroll svg{display:block;width:max(100%,720px);height:auto;max-height:none}
+.econ16-zoom-dialog small{padding:9px 13px;color:#e2c5a4;line-height:1.5}
+@media(max-width:620px){.econ16-zoom-scroll{padding:8px}.econ16-zoom-scroll svg{width:720px;max-width:none!important}.econ16-zoom-bar{font-size:12px}}
