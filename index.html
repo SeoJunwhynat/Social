@@ -3,7 +3,9 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#49323b"><meta name="description" content="맛춘범 스타일 통합사회2 경제~미래 학습 게임">
-<title>사회범 | 통합사회2 학습 게임 v26 · 정심</title><script data-source="embedded-browser-bootstrap-v23.js">
+<title>사회범 | 통합사회2 학습 게임 v27 · 정심</title>
+<meta name="social-build" content="social-v27-20261113" />
+<meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" /><script data-source="embedded-browser-bootstrap-v23.js">
 (function(){
   'use strict';
   var agent=navigator.userAgent||'';
@@ -1172,7 +1174,57 @@ body[data-page="home"] #js26-hero-anchor #js24-judge-dock,body[data-page="quiz"]
 }
 @media(max-width:360px){#page-home #js26-hero-anchor #js24-judge-dock{right:-1px!important;width:77px}}
 @media(prefers-reduced-motion:reduce){#js24-judge-chat{animation:none!important}}
-</style></head>
+</style>
+<style id="js27-judge-size-cache-ui">
+/* v27 — scale the independently positioned mascot, never a flex child of the centered title. */
+#page-home #js26-hero-anchor {overflow:visible!important;isolation:isolate}
+#page-home #js26-hero-anchor>.pixel-logo {left:auto!important;right:auto!important;transform:none!important;margin:0 auto!important;z-index:3!important;pointer-events:none!important}
+#page-home #js26-hero-anchor #js24-judge-dock {
+  position:absolute!important;
+  left:calc(50% + clamp(100px,14vw,178px) + 4px)!important;
+  right:auto!important;
+  width:clamp(190px,21vw,285px)!important;
+  max-width:none!important;
+  top:50%!important;
+  transform:translateY(-50%)!important;
+  z-index:2!important;
+}
+#page-home #js26-hero-anchor #js24-judge-launcher {width:100%!important;aspect-ratio:1/1!important}
+#page-quiz #js26-quiz-side-desktop #js24-judge-dock{width:min(100%,235px)!important}
+#sb27-build-stamp{display:inline-block;margin-inline-start:.55em;padding:2px 6px;font-size:10px;letter-spacing:.02em;background:#594051;color:#ffdfb0;border:1px solid #aa815e;vertical-align:middle;font-weight:800}
+@media(min-width:1081px){
+  #page-quiz .play-layout{grid-template-columns:minmax(155px,205px) minmax(0,1fr) minmax(180px,240px)!important}
+  #page-quiz #js26-quiz-side-desktop{min-height:240px!important}
+}
+@media(min-width:641px) and (max-width:1080px){
+  #page-home #js26-hero-anchor #js24-judge-dock{
+    width:clamp(200px,27vw,270px)!important;
+    left:calc(50% + clamp(100px,14vw,178px) + 1px)!important;
+  }
+  #page-quiz #js26-quiz-side-mobile{height:155px!important}
+  #page-quiz #js26-quiz-side-mobile #js24-judge-dock{width:150px!important;max-width:26vw!important}
+}
+@media(max-width:640px){
+  #page-home #js26-hero-anchor {min-height:clamp(198px,51vw,235px)!important}
+  #page-home #js26-hero-anchor>.pixel-logo {position:relative!important;z-index:4!important}
+  #page-home #js26-hero-anchor #js24-judge-dock{
+    left:auto!important;
+    right:-5px!important;
+    width:clamp(112px,33vw,154px)!important;
+    max-width:none!important;
+    top:64%!important;
+    transform:translateY(-35%)!important;
+    z-index:2!important;
+  }
+  #page-quiz #js26-quiz-side-mobile{height:143px!important}
+  #page-quiz #js26-quiz-side-mobile #js24-judge-dock{width:140px!important;max-width:37vw!important}
+  #sb27-build-stamp{margin-top:4px}
+}
+@media(max-width:360px){
+  #page-home #js26-hero-anchor #js24-judge-dock{right:-3px!important;width:110px!important;top:65%!important}
+}
+</style>
+</head>
 <style data-source="embedded-browser-ui-v23.css">
 html.sb23-inapp{scroll-behavior:auto}
 html.sb23-inapp body{min-height:calc(var(--sb23-vh,1vh)*100);-webkit-text-size-adjust:100%;overscroll-behavior-y:contain}
@@ -1255,7 +1307,7 @@ html.sb23-inapp .br-controls button{touch-action:none;user-select:none;-webkit-u
         </div>
       </section>
     </div>
-    <div class="offline-home-shortcuts"><button data-page-target="stats" class="btn-outline">📊 내 학습 기록 / 백업</button><button data-page-target="awards" class="btn-outline">🏅 업적 · 칭호</button><button data-page-target="mistakes" class="btn-outline">☆ 저장 문제 복습</button></div><footer class="foot"><span>사회범 · SOCIAL STUDIES LAB</span><span>학습용 독립 시제품 | 저장 정보는 현재 브라우저에만 보관</span></footer>
+    <div class="offline-home-shortcuts"><button data-page-target="stats" class="btn-outline">📊 내 학습 기록 / 백업</button><button data-page-target="awards" class="btn-outline">🏅 업적 · 칭호</button><button data-page-target="mistakes" class="btn-outline">☆ 저장 문제 복습</button></div><footer class="foot"><span>사회범 · SOCIAL STUDIES LAB <small id="sb27-build-stamp" title="배포된 HTML의 빌드 버전">v27 · build 20261113</small></span><span>학습용 독립 시제품 | 저장 정보는 현재 브라우저에만 보관</span></footer>
   </section>
   <section id="page-quiz" class="page play-page"><div class="playtop"><button class="btn-back" id="exitQuiz">← 모드 선택</button><div class="playtop-title"><span id="playType">STANDARD MODE</span><strong id="playTitle">기본 학습</strong></div><button class="tiny-btn" id="playSettings">⚙ 설정</button></div><div class="play-layout"><aside class="play-sidebar frame"><div class="sidebar-head"><span>QUEST LOG</span><strong id="sessionStage">01 / 15</strong></div><div class="board-score" id="boardScore">0000</div><div class="side-stat"><span>정답</span><strong id="correctCount">0</strong></div><div class="side-stat"><span>연속 정답</span><strong id="comboCount">0</strong></div><div class="side-stat"><span>진행</span><strong id="questionProgress">0%</strong></div><div class="timer-box" id="timerBox" hidden><span>REMAINING TIME</span><strong id="timeText">100<small>s</small></strong><div class="timer-track"><i id="timeBar"></i></div></div><div class="chapter-stack"><span>현재 선택 범위</span><strong id="sideUnit">전체 범위</strong><small id="sideDiff">전체 난이도</small></div></aside><div class="play-main"><div class="quiz-panel frame"><div class="quiz-tagline"><span id="quizChapter">CHAPTER 03</span><span id="quizDifficulty">LEVEL ★★</span></div><div class="quiz-header-actions"><div id="quizStatus" role="status" aria-live="polite"><span class="status-dot"></span> 답을 선택해 주세요</div><button id="bookmarkBtn" class="bookmark-btn" type="button" aria-pressed="false" title="나중에 다시 볼 문제로 저장">☆ <span>저장</span></button></div><div class="progress-track"><i id="progressFill"></i></div><p class="quiz-kicker" id="quizTopic">경제생활 · 개념 확인</p><div id="graphQuestionFigure" class="graph-question-wrap" hidden></div><h2 id="questionText" tabindex="-1">퀴즈가 시작됩니다.</h2><div id="answerArea" class="answer-area"></div><div id="feedback" class="feedback" role="status" aria-live="polite" hidden></div><div class="quiz-footer"><span id="quizHint">숫자 1~4 또는 선택지를 눌러 답하세요.</span><button id="nextBtn" class="btn-primary" hidden>다음 문제 →</button></div><div class="score-float" id="scoreFloat" aria-hidden="true">+10</div></div><div class="quiz-decor" aria-hidden="true"><span>✧</span> KNOWLEDGE IS POWER <span>✧</span></div></div></div></section>
   <section id="page-result" class="page"><div class="result-panel frame"><span class="small-overline">CHALLENGE COMPLETE</span><div class="result-crown">✦</div><h2 id="resultTitle">학습 완료!</h2><p id="resultSubtitle">수고했어! 결과를 확인해 보자.</p><div class="result-big" id="resultScore">0 <small>점</small></div><div id="resultGrid" class="result-grid"></div><div class="result-actions"><button class="btn-primary" id="resultAgain">↻ 다시 도전</button><button class="btn-outline" data-page-target="mistakes">오답 확인</button><button class="btn-outline" data-page-target="home">홈으로</button></div></div></section>
@@ -11335,4 +11387,13 @@ function draw(t){
 requestAnimationFrame(draw);
 window.JEONGSIM_DEBUG={getMotion:()=>lastActive,getFrame:()=>lastFrame,getLine:()=>line.textContent,getClicks:()=>count};
 })();
-</script></body></html>
+</script>
+<script id="sb27-build-identity">
+(()=>{
+  'use strict';
+  window.SOCIAL_BUILD_VERSION='v27-20261113';
+  document.documentElement.dataset.socialBuild='v27-20261113';
+  document.title='사회범 | 통합사회2 학습 게임 v27 · 정심';
+})();
+</script>
+</body></html>
