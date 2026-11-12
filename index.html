@@ -3,7 +3,31 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#49323b"><meta name="description" content="맛춘범 스타일 통합사회2 경제~미래 학습 게임">
-<title>사회범 | 통합사회2 학습 게임 v20 · OFFLINE</title><style data-source="style.css">
+<title>사회범 | 통합사회2 학습 게임 v23 · IN-APP</title><script data-source="embedded-browser-bootstrap-v23.js">
+(function(){
+  'use strict';
+  var agent=navigator.userAgent||'';
+  var app=/KAKAOTALK/i.test(agent)?'카카오톡':/Instagram/i.test(agent)?'인스타그램':/(FBAN|FBAV|FB_IAB|FBIOS)/i.test(agent)?'페이스북':/Line\//i.test(agent)?'LINE':null;
+  var isIOS=/iPad|iPhone|iPod/i.test(agent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+  var backend=null,kind='memory',writable=false;
+  try{
+    var first=window.localStorage;var k='__social_storage_check_23__';
+    first.setItem(k,'ok');first.removeItem(k);backend=first;kind='local';writable=true;
+  }catch(e){
+    try{var second=window.sessionStorage;var k2='__social_session_check_23__';second.setItem(k2,'ok');second.removeItem(k2);backend=second;kind='session';writable=true;}catch(e2){}
+  }
+  var volatile={};
+  window.SB_SAFE_STORAGE={
+    getItem:function(key){key=String(key);try{if(backend){var v=backend.getItem(key);if(v!==null)return v;}}catch(e){}return Object.prototype.hasOwnProperty.call(volatile,key)?volatile[key]:null;},
+    setItem:function(key,value){key=String(key);value=String(value);volatile[key]=value;try{if(backend)backend.setItem(key,value);}catch(e){writable=false;}},
+    removeItem:function(key){key=String(key);delete volatile[key];try{if(backend)backend.removeItem(key);}catch(e){writable=false;}},
+    get persistence(){return writable?kind:'memory';}
+  };
+  window.SB_EMBED_INFO={inApp:!!app,app:app||'',isIOS:!!isIOS,get storageMode(){return window.SB_SAFE_STORAGE.persistence;}};
+  if(app) document.documentElement.classList.add('sb23-inapp');
+  if(!writable)document.documentElement.classList.add('sb23-volatile-storage');
+})();
+</script><style data-source="style.css">
 :root{--bg:#17121f;--bg2:#281c2a;--gold:#e3b877;--light:#ffecd0;--muted:#baa9a2;--ink:#4c322d;--brown:#402b2c;--red:#883b49;--border:#937153;--cream:#fff0d6;--forest:#2b5c4e;--shadow:0 20px 55px #08060a65; font-family:Pretendard,'Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif;color:var(--light); color-scheme:dark}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% -20%,#4d2e43 0%,transparent 55%),linear-gradient(120deg,#181420,#281b2b 45%,#17121c);font-size:15px;overflow-x:hidden}button,input,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #ffd37c;outline-offset:3px}button:disabled{opacity:.55;cursor:default}button:active{transform:translateY(1px)}.ambient{position:fixed;z-index:-1;pointer-events:none;border-radius:50%;filter:blur(90px);opacity:.15}.glow-one{width:500px;height:500px;top:170px;left:-300px;background:#b5707b}.glow-two{width:500px;height:500px;bottom:20px;right:-250px;background:#9186df}
 .topbar{height:82px;position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:26px;padding:0 max(24px,calc((100vw - 1390px)/2));background:#1b1421ec;backdrop-filter:blur(18px);border-bottom:1px solid #8d654d73;box-shadow:0 9px 30px #0003}.brand{display:flex;align-items:center;gap:12px;flex:none;color:var(--cream);border:0;background:transparent;text-align:left;padding:0}.brand-seal{display:grid;place-items:center;width:45px;height:45px;border-radius:11px;background:linear-gradient(145deg,#c89155,#704337);color:#fff5cc;border:3px double #f1ce91;font:800 29px Georgia,serif;box-shadow:0 4px 15px #b7784833}.brand strong{display:block;font-size:25px;line-height:1.1;letter-spacing:.1em;color:#f9d99e}.brand small{display:block;font-size:8px;letter-spacing:.13em;color:#a18b85;margin-top:5px}.topnav{display:flex;align-items:center;gap:7px;flex-wrap:nowrap}.topnav button{border:0;color:#c2ada8;background:transparent;border-radius:7px;padding:11px 13px;font-weight:750;font-size:13px;white-space:nowrap}.topnav button:hover,.topnav button.active{color:#f9daae;background:#6f463839}.account{display:flex;align-items:center;gap:13px;flex:none}.online-tag{font-size:9px;letter-spacing:.08em;font-weight:800;color:#b7a8a2;white-space:nowrap}.online-tag i{display:inline-block;width:6px;height:6px;border-radius:50%;background:#65ae82;margin-right:4px;box-shadow:0 0 8px #6fb988}.profile-btn{background:#302333;color:#ffe3b3;border:1px solid #715342;padding:11px 13px;border-radius:11px;font-weight:800;min-width:105px}
@@ -1094,6 +1118,24 @@ html.low-effects .sb-touch-particle{display:none!important}html.low-effects #pag
 @media(max-width:600px){#sb21-selection{padding:13px 11px;margin:12px 0 19px}#sb21-selection .sb21-fields{grid-template-columns:1fr}#sb21-selection .sb21-cta{display:grid;grid-template-columns:1fr}#sb21-selection .sb21-play{width:100%;font-size:14px}#sb21-selection .sb21-head{gap:8px}#sb21-selection .sb21-chips{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}#sb21-selection .sb21-concept-chip{font-size:11px;min-height:46px}}
 </style>
 </head>
+<style data-source="embedded-browser-ui-v23.css">
+html.sb23-inapp{scroll-behavior:auto}
+html.sb23-inapp body{min-height:calc(var(--sb23-vh,1vh)*100);-webkit-text-size-adjust:100%;overscroll-behavior-y:contain}
+html.sb23-inapp button,html.sb23-inapp select,html.sb23-inapp input,html.sb23-inapp textarea{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+html.sb23-inapp input,html.sb23-inapp textarea,html.sb23-inapp select{font-size:max(16px,1rem)}
+html.sb23-inapp .dock,html.sb23-inapp .bottom-dock,html.sb23-inapp .mobile-dock{padding-bottom:max(8px,env(safe-area-inset-bottom))}
+html.sb23-inapp .br-controls button{touch-action:none;user-select:none;-webkit-user-select:none}
+#sb23-bridge[hidden]{display:none!important}
+#sb23-bridge{display:flex;flex-wrap:wrap;align-items:center;gap:9px;justify-content:space-between;margin:8px auto 14px;padding:12px 14px;width:min(1370px,calc(100% - 24px));border:3px solid #ae7d60;background:#fff0d5;color:#462c39;box-shadow:3px 4px 0 #211923;font-family:system-ui,'Apple SD Gothic Neo',sans-serif}
+#sb23-bridge .sb23-title{font-weight:900;font-size:13px;line-height:1.5}
+#sb23-bridge .sb23-copy{flex:1 1 340px;min-width:180px}
+#sb23-bridge p{font-size:11.5px;line-height:1.6;margin:4px 0 0;color:#694c50}
+#sb23-bridge .sb23-actions{display:flex;flex-wrap:wrap;gap:6px}
+#sb23-bridge button,#sb23-bridge a{display:inline-flex;align-items:center;justify-content:center;min-height:41px;padding:9px 12px;font-size:12px;font-weight:900;border:2px solid #6e4355;background:#704051;color:#fff2d9;text-decoration:none;cursor:pointer}
+#sb23-bridge .sb23-close{background:#f9e1bd;color:#4d3039}
+@media(max-width:600px){#sb23-bridge{margin:7px auto 11px;padding:10px}#sb23-bridge .sb23-actions{width:100%}#sb23-bridge button,#sb23-bridge a{flex:1 1 auto}html.sb23-inapp .topbar{position:sticky;top:0;padding-top:max(6px,env(safe-area-inset-top))}}
+@media(max-width:750px){html.sb23-inapp body[data-page="home"] .mobile-dock,html.sb23-inapp body[data-page="result"] .mobile-dock{display:grid!important}html.sb23-inapp body[data-page="home"] main,html.sb23-inapp body[data-page="result"] main{padding-bottom:calc(82px + env(safe-area-inset-bottom))}}
+</style>
 <body>
 <div class="ambient glow-one"></div><div class="ambient glow-two"></div>
 <header class="topbar">
@@ -1111,6 +1153,11 @@ html.low-effects .sb-touch-particle{display:none!important}html.low-effects #pag
  <button data-page-target="mistakes" class="dock-item" aria-label="오답노트"><span class="dock-icon">✎</span><span>오답</span></button>
  <button data-page-target="awards" class="dock-item" aria-label="업적"><span class="dock-icon">✧</span><span>업적</span></button>
 </nav><button id="toTopBtn" class="to-top" type="button" aria-label="맨 위로 이동" title="맨 위로">↑</button>
+<div id="sb23-bridge" hidden role="region" aria-label="앱 내 브라우저 호환성 안내">
+<div class="sb23-copy"><div class="sb23-title" id="sb23BridgeTitle">앱 내 브라우저에서도 사회범을 이용할 수 있어요.</div>
+<p id="sb23BridgeHelp">음악이 자동으로 시작되지 않으면 화면을 누르거나 ♫ 음악 버튼을 이용해 주세요. 학습 기록은 앱과 외부 브라우저 사이에 공유되지 않을 수 있어요. 외부 브라우저를 쓰려면 앱의 ⋯ 또는 공유 메뉴에서 브라우저로 열기를 선택해 주세요.</p></div>
+<div class="sb23-actions"><button type="button" id="sb23CopyLink">🔗 주소 복사</button><a href="https://social-fiun.vercel.app/" target="_blank" rel="noopener noreferrer" id="sb23OpenNew">↗ 새 창 열기</a><button type="button" id="sb23Dismiss" class="sb23-close" aria-label="안내 닫기">✕</button></div>
+</div>
 <main id="main">
   <section id="page-home" class="page active">
     <div class="hero frame"><div class="hero-text"><span class="chapter-label">📜 2022 개정 교육과정 · 통합사회2</span><p class="eyebrow">LEARN · CHALLENGE · MASTER</p><h1><span class="heading-gold">사회</span><span class="heading-white">범</span><small>세상을 푸는 또 하나의 모험</small></h1><p class="hero-desc">시장의 선택에서 세계의 연결, 지속가능한 미래까지.<br>문제를 풀고, 실력을 높이고, 나만의 기록을 남겨 봐.</p><div class="hero-actions"><button class="btn-primary" id="quickStart">▶ 학습 시작</button><button class="btn-outline" data-page-target="guide">▤ 개념 정리</button></div><div class="hero-bottom"><span>✦ 3개 단원</span><span>✦ <b id="questionCount">144</b>개 문제</span><span>✦ PC · 모바일</span></div></div><div class="hero-art" aria-hidden="true"><div class="orbit orbit-1"></div><div class="orbit orbit-2"></div><div class="paper paper-back"><span>WORLD</span><strong>IV</strong></div><div class="paper paper-front"><div class="paper-symbol">◈</div><small>INTEGRATED SOCIAL STUDIES</small><strong>통합사회 Ⅱ</strong><i>市場 · 世界 · 未來</i><div class="paper-line"></div><span>YOUR NEXT CHAPTER</span></div><div class="floating-coin c1">₩</div><div class="floating-coin c2">🌐</div><div class="floating-coin c3">♻</div><div class="floor-light"></div></div></div>
@@ -9670,20 +9717,20 @@ const $=id=>document.getElementById(id);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const rand=arr=>{const a=arr.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
 const defaults=()=>({name:'탐험가',unit:'all',difficulty:'all',focus:'all',graphType:'all',sfx:true,bgm:false,volume:.25,played:0,answered:0,correct:0,maxCombo:0,mistakes:{},records:[],lastMode:'basic',haptic:true,largeText:false,reduceEffects:false,screenTouch:true,touchStrength:2,touchStyle:'pixel',bookmarks:{},resumeSession:null,equippedTitle:'',backroomRun:null,topicPerformance:{}});
-let state=defaults();try{const saved=JSON.parse(localStorage.getItem(K)||'null');if(saved&&typeof saved==='object')state={...defaults(),...saved,mistakes:saved.mistakes||{},records:Array.isArray(saved.records)?saved.records:[],bookmarks:saved.bookmarks&&typeof saved.bookmarks==='object'?saved.bookmarks:{},topicPerformance:saved.topicPerformance&&typeof saved.topicPerformance==='object'?saved.topicPerformance:{},equippedTitle:typeof saved.equippedTitle==='string'?saved.equippedTitle:'',backroomRun:saved.backroomRun&&typeof saved.backroomRun==='object'?saved.backroomRun:null,resumeSession:saved.resumeSession&&typeof saved.resumeSession==='object'?saved.resumeSession:null};}catch(e){}
+let state=defaults();try{const saved=JSON.parse(window.SB_SAFE_STORAGE.getItem(K)||'null');if(saved&&typeof saved==='object')state={...defaults(),...saved,mistakes:saved.mistakes||{},records:Array.isArray(saved.records)?saved.records:[],bookmarks:saved.bookmarks&&typeof saved.bookmarks==='object'?saved.bookmarks:{},topicPerformance:saved.topicPerformance&&typeof saved.topicPerformance==='object'?saved.topicPerformance:{},equippedTitle:typeof saved.equippedTitle==='string'?saved.equippedTitle:'',backroomRun:saved.backroomRun&&typeof saved.backroomRun==='object'?saved.backroomRun:null,resumeSession:saved.resumeSession&&typeof saved.resumeSession==='object'?saved.resumeSession:null};}catch(e){}
 // v20: turn on general-area BGM for existing installs once; later OFF choices are respected.
 try{
- if(localStorage.getItem('sahoebeom.v20.audioDefaultMigrated')!=='1'){
+ if(window.SB_SAFE_STORAGE.getItem('sahoebeom.v20.audioDefaultMigrated')!=='1'){
    state.bgm=true;
-   localStorage.setItem('sahoebeom.v20.audioDefaultMigrated','1');
-   localStorage.setItem(K,JSON.stringify(state));
+   window.SB_SAFE_STORAGE.setItem('sahoebeom.v20.audioDefaultMigrated','1');
+   window.SB_SAFE_STORAGE.setItem(K,JSON.stringify(state));
  }
 }catch(_){state.bgm=true;}
 let session=null,timerId=null,toastId=null,modalCallback=null,audioCtx=null,musicId=null,musicTick=0,guideUnit='경제';
 const MODES={graph:['그래프 집중 학습','GRAPH READING',15],basic:['기본 학습','STANDARD QUIZ',15],apply:['응용문제','APPLICATION',12],write:['서술형','SHORT ANSWER',10],infinite:['무한모드','ENDLESS MODE',Infinity],hard:['하드코어','ONE LIFE',30],time:['시간제한','TIME ATTACK',30], 'rank-time':['시간제한 랭킹전','RANKED TIME',30],'rank-hard':['하드코어 랭킹전','RANKED HARD',30],'rank-infinite':['무한 랭킹전','RANKED INFINITE',30],duel:['1:1 대전','LOCAL DUEL',5],backrooms:['사회 백룸','SOLO ESCAPE',8],review:['오답 복습','REVIEW',15],bookmarks:['저장한 문제','SAVED QUESTIONS',15]};
 const labelUnit=u=>({all:'전체 범위',경제:'Ⅲ. 시장경제와 지속가능발전',세계화:'Ⅳ. 세계화와 평화',미래:'Ⅴ. 미래와 지속가능한 삶'}[u]||u);
 const labelDifficulty=d=>({all:'전체 난이도','1':'입문 ★','2':'기본 ★★','3':'심화 ★★★','4':'도전 ★★★★'}[d]||'전체 난이도');
-function save(){try{localStorage.setItem(K,JSON.stringify(state))}catch(e){}}
+function save(){try{window.SB_SAFE_STORAGE.setItem(K,JSON.stringify(state))}catch(e){}}
 function canResume(){return !!(state.resumeSession&&state.resumeSession.mode&&MODES[state.resumeSession.mode]);}
 function clearResume(saveNow=true){state.resumeSession=null;if(saveNow)save();}
 function persistResume(opts={}){const s=session;if(!s||s.ended||s.mode==='duel'||s.mode==='public'){clearResume();return;}const data={mode:s.mode,index:s.index,correct:s.correct,wrong:s.wrong,score:s.score,combo:s.combo,limit:s.limit,timeLeft:s.timeLeft,totalTime:s.totalTime,used:Array.isArray(s.used)?s.used.slice():[],lastQ:s.lastQ||'',correctByRound:s.correctByRound||0,unit:state.unit,difficulty:state.difficulty,focus:state.focus||'all',currentId:opts.advance?null:(s.current?s.current.id:null),queueIds:Array.isArray(s.queue)?s.queue.map(q=>q.id):[]};state.resumeSession=data;save();}
@@ -9824,7 +9871,21 @@ function renderAwards(){const owned=AWARDS.filter(a=>a[3](state));if(state.equip
 function renderStats(){const done=state.records.length;const total=state.answered;const right=state.correct;const overall=total?Math.round(right/total*100):0;const unitParts=['경제','세계화','미래'].map(u=>{const rec=state.records.filter(x=>x.unit===u),answers=rec.reduce((sum,x)=>sum+(x.attempts||0),0),correct=rec.reduce((sum,x)=>sum+(x.correct||0),0);const t=state.topicPerformance?.[u];const liveAnswers=t?.total||answers;const liveCorrect=t?.correct||correct;const pct=liveAnswers?Math.round(liveCorrect/liveAnswers*100):0;return `<article class="stat-detail frame"><h3>${esc(labelUnit(u))}</h3><div class="stat-numbers"><strong>${rec.length}</strong>판 · ${liveAnswers}문제 · 정답률 ${pct}%</div><div class="stat-track"><i style="width:${pct}%"></i></div></article>`}).join('');const recent=state.records.slice(0,25).map(x=>`<div class="study-history-row"><span>${esc(new Date(x.date).toLocaleDateString('ko-KR'))} · ${esc(MODES[x.mode]?.[0]||x.mode)}</span><strong>${Number(x.score)||0}점</strong><small>${x.correct||0}정답 / ${x.wrong||0}오답</small></div>`).join('');$('studyStats').innerHTML=`<div class="stats-summary"><div class="stat-tile"><strong>${done}</strong><small>완료한 게임</small></div><div class="stat-tile"><strong>${total}</strong><small>푼 문제</small></div><div class="stat-tile"><strong>${overall}%</strong><small>누적 정답률</small></div><div class="stat-tile"><strong>${state.maxCombo||0}</strong><small>최고 연속 정답</small></div></div><div class="unit-stat-list">${unitParts}</div><div class="history-box frame"><h3>최근 학습 기록</h3>${recent||'<div class="empty">아직 완료한 학습 기록이 없어.</div>'}</div>`;}
 function exportProgress(){downloadJSON('사회범_학습기록_백업.json',{app:'sahoebeom',schemaVersion:2,exportedAt:new Date().toISOString(),state:JSON.parse(JSON.stringify(state))});toast('학습 기록 백업을 저장했어.');}
 async function importProgress(file){if(!file)return;if(file.size>3_000_000){toast('파일이 너무 커. 3MB 이하 JSON을 골라 줘.');return;}try{const parsed=JSON.parse(await file.text());if(parsed.app!=='sahoebeom'||parsed.schemaVersion!==2||!parsed.state||typeof parsed.state!=='object'||Array.isArray(parsed.state))throw Error('사회범 백업 파일이 아니야.');const old=parsed.state;const fresh=defaults();state={...fresh,name:typeof old.name==='string'?old.name.slice(0,18):fresh.name,unit:['all','경제','세계화','미래'].includes(old.unit)?old.unit:'all',difficulty:['all','1','2','3','4'].includes(String(old.difficulty))?String(old.difficulty):'all',played:Math.max(0,Number(old.played)||0),answered:Math.max(0,Number(old.answered)||0),correct:Math.max(0,Number(old.correct)||0),maxCombo:Math.max(0,Number(old.maxCombo)||0),mistakes:old.mistakes&&typeof old.mistakes==='object'?old.mistakes:{},bookmarks:old.bookmarks&&typeof old.bookmarks==='object'?old.bookmarks:{},records:Array.isArray(old.records)?old.records.slice(0,100):[],topicPerformance:old.topicPerformance&&typeof old.topicPerformance==='object'?old.topicPerformance:{},resumeSession:old.resumeSession&&typeof old.resumeSession==='object'?old.resumeSession:null,equippedTitle:typeof old.equippedTitle==='string'?old.equippedTitle:'',backroomRun:old.backroomRun&&typeof old.backroomRun==='object'?old.backroomRun:null,sfx:old.sfx!==false,bgm:old.bgm===true,haptic:old.haptic!==false,largeText:old.largeText===true,reduceEffects:old.reduceEffects===true,volume:Math.max(0,Math.min(1,(Number.isFinite(Number(old.volume))?Number(old.volume):0.25))),lastMode:MODES[old.lastMode]?old.lastMode:'basic'};save();updatePreferences();renderStats();renderHome();toast('학습 기록을 복원했어.');}catch(e){toast('백업 파일을 읽지 못했어. 형식을 확인해 줘.')}finally{$('backupUpload').value='';}}
-function downloadJSON(filename,data){const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+function downloadJSON(filename,data){
+  const raw=JSON.stringify(data,null,2);
+  if(window.SB_EMBED_INFO?.inApp&&window.SB_EMBED_INFO?.isIOS){
+    openModal('학습 기록 백업 · 앱 내 브라우저',
+      `<p>앱 내 브라우저에서는 파일 다운로드가 제한될 수 있어. 아래 내용을 복사해 메모장 등에 보관하거나, 오른쪽 상단 메뉴에서 외부 브라우저로 열어 다운로드해 줘.</p><textarea id="sb23BackupText" readonly style="width:100%;min-height:140px;font-size:12px;resize:vertical" aria-label="학습 기록 백업 텍스트">${esc(raw)}</textarea><button class="btn-primary" type="button" id="sb23BackupCopy">백업 내용 복사</button>`,'RECORD BACKUP');
+    const copy=$('sb23BackupCopy');if(copy)copy.onclick=async()=>{const val=$('sb23BackupText').value;
+      let ok=false;try{await navigator.clipboard.writeText(val);ok=true}catch(e){const field=$('sb23BackupText');field.focus();field.select();try{ok=document.execCommand('copy')}catch(_){} }
+      toast(ok?'백업 내용을 복사했어. 안전한 곳에 붙여넣어 보관해 줘.':'텍스트를 선택해서 직접 복사해 줘.');};
+    return;
+  }
+  try{
+    const blob=new Blob([raw],{type:'application/json;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');
+    a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),10000);
+  }catch(e){toast('앱 내 브라우저에서 다운로드할 수 없어. 외부 브라우저에서 열어 줘.');}
+}
 function ensureAudio(){if(!audioCtx){const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;audioCtx=new AC();}if(audioCtx.state==='suspended')audioCtx.resume().catch(()=>{});}
 function beep(hz,duration,level){if(!audioCtx||!state.sfx||state.volume<=0)return;try{const o=audioCtx.createOscillator(),g=audioCtx.createGain(),t=audioCtx.currentTime;o.type='sine';o.frequency.setValueAtTime(hz,t);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(Math.max(.0001,level*state.volume),t+.012);g.gain.exponentialRampToValueAtTime(.0001,t+duration);o.connect(g);g.connect(audioCtx.destination);o.start(t);o.stop(t+duration+.02);}catch(e){}}
 function sound(correct){if(!state.sfx)return;if(window.SOCIAL_AUDIO){window.SOCIAL_AUDIO.sfx(correct?'correct':'wrong');if(correct&&session?.combo>=3)window.SOCIAL_AUDIO.sfx('combo');return;}ensureAudio();beep(correct?640:220,.16,.12);if(correct)setTimeout(()=>beep(860,.14,.11),80)}
@@ -9877,7 +9938,15 @@ function brDraw(){const cv=$('brCanvas'),ctx=cv.getContext('2d');if(!ctx||!brSta
  const overlay=ctx.createRadialGradient(px,py,45,px,py,210);overlay.addColorStop(0,'rgba(15,11,20,0)');overlay.addColorStop(.6,'rgba(15,11,20,.08)');overlay.addColorStop(1,'rgba(15,11,20,.73)');ctx.fillStyle=overlay;ctx.fillRect(0,0,900,510);
  const near=brNearest();if(near){ctx.font='bold 20px monospace';ctx.fillStyle='#fff4b0';const tx=near.type==='exit'?28.5:BR_TERMINALS[near.index].x+.5,ty=near.type==='exit'?15.2:BR_TERMINALS[near.index].y;ctx.fillText('!',tx*t-4,ty*t-14);} }
 function initBackroomControls(){for(const b of document.querySelectorAll('[data-br-move]')){const k=b.dataset.brMove;b.addEventListener('pointerdown',e=>{e.preventDefault();brInput[k]=true;b.setPointerCapture?.(e.pointerId)});for(const ev of ['pointerup','pointercancel','lostpointercapture'])b.addEventListener(ev,()=>{brInput[k]=false});}
- $('brSprint').addEventListener('pointerdown',e=>{e.preventDefault();brInput.sprint=true;$('brSprint').setPointerCapture?.(e.pointerId)});['pointerup','pointercancel','lostpointercapture'].forEach(e=>$('brSprint').addEventListener(e,()=>brInput.sprint=false));$('brInteract').onclick=brInteract;$('brExit').onclick=brExit;$('brClose').onclick=brCloseQuestion;$('brRetry').onclick=()=>{brCloseQuestion();brAsk(brQuestionIndex)};
+ $('brSprint').addEventListener('pointerdown',e=>{e.preventDefault();brInput.sprint=true;$('brSprint').setPointerCapture?.(e.pointerId)});['pointerup','pointercancel','lostpointercapture'].forEach(e=>$('brSprint').addEventListener(e,()=>brInput.sprint=false));if(!window.PointerEvent){
+  const bindTouch=(el,key)=>{
+    if(!el)return;
+    el.addEventListener('touchstart',ev=>{ev.preventDefault();brInput[key]=true;},{passive:false});
+    ['touchend','touchcancel'].forEach(type=>el.addEventListener(type,ev=>{ev.preventDefault();brInput[key]=false;},{passive:false}));
+  };
+  document.querySelectorAll('[data-br-move]').forEach(el=>bindTouch(el,el.dataset.brMove));
+  bindTouch($('brSprint'),'sprint');
+}$('brInteract').onclick=brInteract;$('brExit').onclick=brExit;$('brClose').onclick=brCloseQuestion;$('brRetry').onclick=()=>{brCloseQuestion();brAsk(brQuestionIndex)};
  document.addEventListener('keydown',e=>{if(!brState?.active||!$('page-backroom').classList.contains('active'))return;if(!$('brQuestionModal').hidden){if(e.key==='Escape'){e.preventDefault();brCloseQuestion();}return;}const k={w:'up',ArrowUp:'up',s:'down',ArrowDown:'down',a:'left',ArrowLeft:'left',d:'right',ArrowRight:'right',Shift:'sprint'}[e.key];if(k){brInput[k]=true;e.preventDefault();}if(e.key.toLowerCase()==='e'||e.key===' '){e.preventDefault();brInteract();}if(e.key==='Escape'){e.preventDefault();brExit();}});
  document.addEventListener('keyup',e=>{const k={w:'up',ArrowUp:'up',s:'down',ArrowDown:'down',a:'left',ArrowLeft:'left',d:'right',ArrowRight:'right',Shift:'sprint'}[e.key];if(k)brInput[k]=false;});window.addEventListener('blur',()=>{Object.keys(brInput).forEach(k=>brInput[k]=false)});
  document.addEventListener('click',e=>{if(brState?.active&&$('page-backroom').classList.contains('active')&&e.target.closest('[data-page-target]')){saveBackroom();brState.active=false;cancelAnimationFrame(brFrame);}},true);
@@ -10277,9 +10346,9 @@ function sb21Render(){
  if($('poolCount'))$('poolCount').textContent=`현재 선택: ${n}문항`;
 }
 // One-time migration of the legacy hidden topic filter, not users' save files.
-try{if(localStorage.getItem('sahoebeom.v21.studySelectorMigrated')!=='1'){
+try{if(window.SB_SAFE_STORAGE.getItem('sahoebeom.v21.studySelectorMigrated')!=='1'){
  state.questionType='all';state.studyConcept='all';state.studyTopic='all';state.studyFormat='all';state.graphType='all';state.focus='all';
- localStorage.setItem('sahoebeom.v21.studySelectorMigrated','1');save();
+ window.SB_SAFE_STORAGE.setItem('sahoebeom.v21.studySelectorMigrated','1');save();
 }}catch(_){state.questionType='all';}
 const sb21PreviousRenderHome=renderHome;
 renderHome=function(){sb21PreviousRenderHome();sb21Render();};
@@ -10415,16 +10484,16 @@ const KEY='sahoebeom.music.v10';
 const defaults={shuffle:true,repeat:true,category:'auto',musicVolume:.55,sfxVolume:.5,selected:null,ambient:false};
 let prefs={...defaults};
 try{
- const v=JSON.parse(localStorage.getItem(KEY)||'null');if(v&&typeof v==='object')prefs={...defaults,...v};
- if(localStorage.getItem('sahoebeom.v20.audioPlaylistMigrated')!=='1'){
-   prefs.category='auto';localStorage.setItem('sahoebeom.v20.audioPlaylistMigrated','1');
-   localStorage.setItem(KEY,JSON.stringify(prefs));
+ const v=JSON.parse(window.SB_SAFE_STORAGE.getItem(KEY)||'null');if(v&&typeof v==='object')prefs={...defaults,...v};
+ if(window.SB_SAFE_STORAGE.getItem('sahoebeom.v20.audioPlaylistMigrated')!=='1'){
+   prefs.category='auto';window.SB_SAFE_STORAGE.setItem('sahoebeom.v20.audioPlaylistMigrated','1');
+   window.SB_SAFE_STORAGE.setItem(KEY,JSON.stringify(prefs));
  }
 }catch(_){}
 let audio=null,context=null,master=null,current=null,activeGroup='home',activated=true,manualSelection=false,changing=false,autoplayBlocked=false,lastActualGroup='home';
 let lastSfx=0,stepAt=0,soundFiles={};
 const $=id=>document.getElementById(id);
-function persist(){try{localStorage.setItem(KEY,JSON.stringify(prefs))}catch(_){}}
+function persist(){try{window.SB_SAFE_STORAGE.setItem(KEY,JSON.stringify(prefs))}catch(_){}}
 function gameState(){try{return window.SOCIAL_AUDIO_GAME?.getState?.()||{}}catch(_){return {}}}
 function gameSession(){try{return window.SOCIAL_AUDIO_GAME?.getSession?.()||null}catch(_){return null}}
 function isOn(){return !!gameState().bgm}
@@ -10588,6 +10657,8 @@ function unlockSound(){
  syncFromGame();
 }
 window.addEventListener('pointerdown',unlockSound,{capture:true,passive:true});
+window.addEventListener('touchstart',unlockSound,{capture:true,passive:true});
+window.addEventListener('click',unlockSound,{capture:true});
 window.addEventListener('keydown',unlockSound,{capture:true});
 window.addEventListener('pointerdown',spark,{passive:true});
 window.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target?.matches?.('button')){activated=true;sfx('tap')}
@@ -10609,7 +10680,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 /* 사회범 v13 — global touch/press visuals with accessible settings. */
 (()=>{
 'use strict';
-const getPrefs=()=>{try{return JSON.parse(localStorage.getItem('sahoebeom.v1.0')||'{}')||{}}catch{return {}}};
+const getPrefs=()=>{try{return JSON.parse(window.SB_SAFE_STORAGE.getItem('sahoebeom.v1.0')||'{}')||{}}catch{return {}}};
 const reduced=()=>document.documentElement.classList.contains('low-effects')||window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const options=()=>{const s=getPrefs();return {enabled:s.screenTouch!==false, strength:Math.max(1,Math.min(3,Number(s.touchStrength)||2)),style:s.touchStyle==='ring'?'ring':'pixel'};};
 let lastAt=0;
@@ -11033,4 +11104,41 @@ if(document.querySelector('#sb-v12-workshop .sb12-shell'))mount();
 </style>
 
 
-</body></html>
+<script data-source="embedded-browser-runtime-v23.js">
+(function(){
+  'use strict';
+  var info=window.SB_EMBED_INFO||{inApp:false,app:''};
+  var handled=false;
+  function viewport(){var vh=window.innerHeight*.01;document.documentElement.style.setProperty('--sb23-vh',vh+'px');}
+  function copyUrl(){
+    var url=window.location.href.split('#')[0];
+    function feedback(ok){var b=document.getElementById('sb23CopyLink');if(b){b.textContent=ok?'✓ 주소 복사 완료':'주소를 길게 눌러 복사해 주세요';setTimeout(function(){b.textContent='🔗 주소 복사';},2500);}}
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(url).then(function(){feedback(true);},function(){legacy();});
+    }else legacy();
+    function legacy(){var field=document.createElement('textarea');field.value=url;field.setAttribute('readonly','');field.style.cssText='position:fixed;left:-9999px;top:-9999px;';document.body.appendChild(field);field.focus();field.select();var ok=false;try{ok=document.execCommand('copy')}catch(e){}field.remove();feedback(ok);}
+  }
+  function init(){
+    if(handled)return;handled=true;viewport();
+    window.addEventListener('resize',viewport,{passive:true});
+    if(window.visualViewport)window.visualViewport.addEventListener('resize',viewport,{passive:true});
+    var bridge=document.getElementById('sb23-bridge');
+    if(bridge&&(info.inApp||window.SB_SAFE_STORAGE?.persistence!=='local')){
+      bridge.hidden=false;
+      var heading=document.getElementById('sb23BridgeTitle');
+      var help=document.getElementById('sb23BridgeHelp');
+      if(heading)heading.textContent=info.app?info.app+' 앱 안에서도 사회범을 이용할 수 있어요.':'학습 기록 저장이 제한된 브라우저예요.';
+      if(help&&window.SB_SAFE_STORAGE?.persistence!=='local')help.textContent='이 브라우저에서는 기록을 영구적으로 저장하지 못할 수 있어요. 학습 기능은 사용할 수 있지만 기록은 백업해 주세요. 소리가 안 나면 화면을 터치하고 ♫ 음악 버튼을 눌러 주세요.';
+      document.getElementById('sb23CopyLink')?.addEventListener('click',copyUrl);
+      document.getElementById('sb23Dismiss')?.addEventListener('click',function(){bridge.hidden=true;});
+      var link=document.getElementById('sb23OpenNew');if(link)link.href=window.location.href.split('#')[0];
+    }
+    if(info.inApp){
+      window.addEventListener('pageshow',function(){viewport();if(!document.hidden)window.SOCIAL_AUDIO?.syncFromGame?.();});
+      window.addEventListener('pagehide',function(){window.SOCIAL_AUDIO?.stop?.();});
+      document.addEventListener('visibilitychange',function(){if(!document.hidden)viewport();});
+    }
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
+})();
+</script></body></html>
