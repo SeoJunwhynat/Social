@@ -1347,6 +1347,50 @@ body > #js24-judge-chat{position:fixed!important;z-index:2147481600!important;ri
 body > #js24-judge-chat::before{display:none!important}
 body > #js24-judge-chat[data-open="true"]{display:block!important}
 </style>
+
+<style id="js33-dialogue-direction">
+/* The speech bubble lives at the document root; orient its tail to the mascot. */
+body > #js24-judge-chat{overflow:visible!important}
+body > #js24-judge-chat::before,body > #js24-judge-chat::after{
+ content:""!important;display:block!important;position:absolute!important;
+ width:24px;height:24px;background:#563746;z-index:1;pointer-events:none;
+ transform:none!important;box-shadow:none!important;border:0!important;
+}
+body > #js24-judge-chat::after{background:#fff1d4!important;width:17px;height:17px;z-index:2}
+body > #js24-judge-chat[data-direction="left"]::before{
+ right:-21px;left:auto;top:calc(var(--js33-tail-y) - 12px);bottom:auto;
+ clip-path:polygon(0 0,100% 50%,0 100%);
+}
+body > #js24-judge-chat[data-direction="left"]::after{
+ right:-12px;left:auto;top:calc(var(--js33-tail-y) - 8.5px);bottom:auto;
+ clip-path:polygon(0 0,100% 50%,0 100%);
+}
+body > #js24-judge-chat[data-direction="right"]::before{
+ left:-21px;right:auto;top:calc(var(--js33-tail-y) - 12px);bottom:auto;
+ clip-path:polygon(100% 0,0 50%,100% 100%);
+}
+body > #js24-judge-chat[data-direction="right"]::after{
+ left:-12px;right:auto;top:calc(var(--js33-tail-y) - 8.5px);bottom:auto;
+ clip-path:polygon(100% 0,0 50%,100% 100%);
+}
+body > #js24-judge-chat[data-direction="top"]::before{
+ left:calc(var(--js33-tail-x) - 12px);right:auto;top:auto;bottom:-21px;
+ clip-path:polygon(0 0,100% 0,50% 100%);
+}
+body > #js24-judge-chat[data-direction="top"]::after{
+ left:calc(var(--js33-tail-x) - 8.5px);right:auto;top:auto;bottom:-12px;
+ clip-path:polygon(0 0,100% 0,50% 100%);
+}
+body > #js24-judge-chat[data-direction="bottom"]::before{
+ left:calc(var(--js33-tail-x) - 12px);right:auto;bottom:auto;top:-21px;
+ clip-path:polygon(0 100%,100% 100%,50% 0);
+}
+body > #js24-judge-chat[data-direction="bottom"]::after{
+ left:calc(var(--js33-tail-x) - 8.5px);right:auto;bottom:auto;top:-12px;
+ clip-path:polygon(0 100%,100% 100%,50% 0);
+}
+@media(prefers-reduced-motion: reduce){body > #js24-judge-chat{animation:none!important}}
+</style>
 </head>
 <style data-source="embedded-browser-ui-v23.css">
 html.sb23-inapp{scroll-behavior:auto}
@@ -11455,29 +11499,56 @@ if(!dock||!button||!bubble)return;
 d.body.appendChild(bubble);
 function placeDialogue(){
  if(bubble.dataset.open!=='true')return;
- const viewW=Math.max(320,window.innerWidth), viewH=Math.max(320,window.innerHeight);
- const spriteEl=$('js24-judge-sprite');
- const r=(spriteEl||button).getBoundingClientRect();
- const w=Math.min(310,viewW-24);
+ const vw=window.innerWidth, vh=window.innerHeight;
+ const visual=$('js24-judge-sprite')||button;
+ const r=visual.getBoundingClientRect();
+ if(r.width<1||r.height<1)return;
+ const mobile=vw<580;
+ const w=Math.min(mobile?280:310,vw-24);
  bubble.style.setProperty('width',w+'px','important');
  bubble.style.setProperty('max-width',w+'px','important');
- bubble.style.setProperty('box-sizing','border-box','important');
  bubble.style.setProperty('position','fixed','important');
  bubble.style.setProperty('z-index','2147481600','important');
  bubble.style.setProperty('right','auto','important');
  bubble.style.setProperty('bottom','auto','important');
- const besideRight=r.right+12;
- const besideLeft=r.left-w-12;
- let x=besideRight+w<=viewW-12?besideRight:besideLeft;
- if(d.body.dataset.page==='quiz'&&viewW>=1081)x=r.left+r.width/2-w/2;
- if(x<12||x+w>viewW-12){x=Math.max(12,Math.min(viewW-w-12,r.left+r.width/2-w/2));}
- // Put the desktop quiz dialogue above its mascot, not over the question panel.
- let y=d.body.dataset.page==='quiz'&&viewW>=1081?r.top-bubble.offsetHeight-12:r.top+Math.min(28,r.height*.12);
- if(y<12)y=r.top+12;
- y=Math.max(12,Math.min(y,viewH-bubble.offsetHeight-18));
+ bubble.style.setProperty('box-sizing','border-box','important');
+ const h=bubble.offsetHeight||90;
+ const minX=12,minY=12,margin=16;
+ const center={x:r.left+r.width*.50,y:r.top+r.height*.48};
+ const clamp=(n,lo,hi)=>Math.max(lo,Math.min(hi,n));
+ const avoid=[...d.querySelectorAll('#page-home #js26-hero-anchor>.pixel-logo,#page-quiz .quiz-panel')]
+   .filter(el=>el.getClientRects().length&&getComputedStyle(el).visibility!=='hidden').map(el=>el.getBoundingClientRect());
+ const candidates=[
+  {dir:'left',x:r.left-w-margin,y:center.y-h*.5},
+  {dir:'right',x:r.right+margin,y:center.y-h*.5},
+  {dir:'top',x:center.x-w*.5,y:r.top-h-margin},
+  {dir:'bottom',x:center.x-w*.5,y:r.bottom+margin}
+ ];
+ const preferred=d.body.dataset.page==='quiz'?['top','left','right','bottom']:['right','top','left','bottom'];
+ const score=opt=>{
+  const overflow=Math.max(0,minX-opt.x)+Math.max(0,opt.x+w-(vw-minX))+
+    Math.max(0,minY-opt.y)+Math.max(0,opt.y+h-(vh-minY));
+  const bx=clamp(opt.x,minX,vw-w-minX),by=clamp(opt.y,minY,vh-h-minY);
+  const overlap=avoid.reduce((total,a)=>{
+   const x=Math.max(0,Math.min(bx+w,a.right)-Math.max(bx,a.left));
+   const y=Math.max(0,Math.min(by+h,a.bottom)-Math.max(by,a.top));
+   return total+x*y;
+  },0);
+  // Screen fit and preventing overlap outrank the visual reading preference.
+  return overflow*100+overlap*.11+preferred.indexOf(opt.dir)*23;
+ };
+ candidates.sort((a,b)=>score(a)-score(b));
+ const chosen=candidates[0];
+ const x=clamp(chosen.x,minX,Math.max(minX,vw-w-minX));
+ const y=clamp(chosen.y,minY,Math.max(minY,vh-h-minY));
+ const tipX=clamp(center.x-x,18,w-18),tipY=clamp(center.y-y,18,h-18);
+ bubble.dataset.direction=chosen.dir;
+ bubble.style.setProperty('--js33-tail-x',Math.round(tipX)+'px');
+ bubble.style.setProperty('--js33-tail-y',Math.round(tipY)+'px');
  bubble.style.setProperty('left',Math.round(x)+'px','important');
  bubble.style.setProperty('top',Math.round(y)+'px','important');
 }
+
 window.addEventListener('resize',placeDialogue,{passive:true});
 window.addEventListener('scroll',placeDialogue,{passive:true});
 
@@ -11553,52 +11624,124 @@ if(quiz&&feedback){
   special=verdict==='good'?'cheer':'ponder';specialUntil=performance.now()+2800;
  }).observe(feedback,{attributes:true,childList:true,characterData:true,subtree:true,attributeFilter:['class','hidden']});
 }
-// 10 distinct motions, combining the existing 12 hand-drawn frames with additional
-// procedural pixel animation: floating, swaying, balance wobble, pondering, reading,
-// chatting, twirling, cheering, stamping with the gavel, and dozing.
-const idles=['float','sway','balance','ponder','read','twirl','doze','float'];
+// v33 natural mascot motion: expressive gestures, ease-in/out, hand-drawn 12-frame
+// poses with soft crossfades, independent floating and animated pixel emotes.
+const itinerary=[
+ ['float',3500],['sway',3100],['balance',3300],['ponder',3000],
+ ['read',3600],['inspect',2500],['doze',3200],['stretch',2400],
+ ['twirl',2700],['float',2400],['nod',2300],['bow',2500],
+ ['shrug',2300],['float',2800]
+];
+const itineraryTotal=itinerary.reduce((sum,step)=>sum+step[1],0);
 const config={
- float:{row:0,speed:230},sway:{row:0,speed:200},balance:{row:1,speed:290},
- ponder:{row:1,speed:280},read:{row:1,speed:340},twirl:{row:2,speed:160},
- doze:{row:0,speed:420},chat:{row:2,speed:180},think:{row:1,speed:245},
- intro:{row:2,speed:175},wobble:{row:1,speed:160},
- stamp:{row:3,speed:135},gavel:{row:3,speed:135},
- cheer:{row:3,speed:165},confused:{row:1,speed:195},sleep:{row:0,speed:330}
+ float:{row:0,speed:310,frames:[0,1,2,1]},
+ sway:{row:0,speed:350,frames:[0,1,2,1]},
+ balance:{row:1,speed:320,frames:[0,1,2,1]},
+ ponder:{row:1,speed:500,frames:[0,0,1,1,2,1]},
+ read:{row:1,speed:550,frames:[2,2,1,1,2,1]},
+ inspect:{row:2,speed:440,frames:[0,1,1,2,1]},
+ doze:{row:0,speed:620,frames:[0,0,1,1,2,2]},
+ stretch:{row:2,speed:330,frames:[0,1,2,1]},
+ twirl:{row:2,speed:215,frames:[0,1,2,1,0,1]},
+ nod:{row:0,speed:310,frames:[0,1,2,1]},
+ bow:{row:2,speed:340,frames:[0,1,2,1]},
+ shrug:{row:1,speed:260,frames:[0,1,2,1]},
+ chat:{row:2,speed:235,frames:[0,1,2,1]},
+ think:{row:1,speed:410,frames:[0,1,2,1]},
+ intro:{row:2,speed:210,frames:[0,1,2,1]},
+ wobble:{row:1,speed:180,frames:[0,1,2,1]},
+ stamp:{row:3,speed:140,frames:[0,1,2,2,1,0]},
+ gavel:{row:3,speed:135,frames:[0,1,2,2,1,0]},
+ cheer:{row:3,speed:210,frames:[0,1,2,1]},
+ confused:{row:1,speed:200,frames:[0,1,2,1]},
+ sleep:{row:0,speed:670,frames:[0,0,1,1,2,2]}
 };
 const reduce=window.matchMedia('(prefers-reduced-motion: reduce)');
-let lastActive='float',lastFrame=0;
-function effectMark(ctx,x,y,text,color,size){ctx.save();ctx.fillStyle=color;ctx.textAlign='center';ctx.font=`bold ${size}px system-ui`;ctx.fillText(text,x,y);ctx.restore();}
-function draw(t){
- if(sprite.complete&&sprite.naturalWidth){
-  const state=(specialUntil>t?special:idles[Math.floor(t/4200)%idles.length]);
-  const action=reduce.matches?'float':state;
-  const mode=config[action]||config.float;
-  const frame=reduce.matches?0:Math.floor(t/mode.speed)%3;
-  lastActive=action;lastFrame=frame;
-  drawContexts.forEach(({el,ctx})=>{
-   if(!el.offsetWidth||!el.offsetHeight)return;
-   const W=el.width,H=el.height,r=W/256;
-   ctx.clearRect(0,0,W,H);
-   ctx.save();ctx.scale(r,H/256);
-   const p=t/400, bob=reduce.matches?0:Math.sin(p)*4;
-   const angle=reduce.matches?0:(action==='balance'||action==='wobble'?Math.sin(p*1.9)*.13:action==='sway'?Math.sin(p*.8)*.08:action==='twirl'?Math.sin(p*2)*.09:0);
-   const pulse=reduce.matches?1:(action==='cheer'?1+Math.sin(p*2.5)*.035:1);
-   const stamp=(action==='stamp'||action==='gavel')?(frame===2?7:0):0;
-   ctx.translate(128,128+bob+stamp);ctx.rotate(angle);ctx.scale(pulse,pulse);
-   ctx.drawImage(sprite,frame*256,mode.row*256,256,256,-128,-128,256,256);
-   ctx.restore();
-   if(!reduce.matches){
-    const k=Math.floor(t/220)%5;
-    if(action==='cheer'||action==='gavel'||action==='stamp'){for(let i=0;i<3;i++)effectMark(ctx,204+i*14,65+i*18+k*2,'✦','#ffe08b',12+i*2);}
-    if(action==='ponder'||action==='think'||action==='confused'){effectMark(ctx,211,47+k,'?', '#fff5cc',26);}
-    if(action==='doze'||action==='sleep'){effectMark(ctx,213,63-k*4,'z','#d6cefb',22);}
-    if(action==='balance'||action==='wobble'){effectMark(ctx,26,60+k,'⚖','#ffe59e',16);}
-    if(action==='read'){effectMark(ctx,207,67+k,'…','#ffecd2',20);}
-    if(action==='chat'||action==='intro'){effectMark(ctx,216,64+k,'!', '#ffea9b',24);}
-   }
-  });
- }
+const ease=(n)=>{const t=Math.min(1,Math.max(0,n));return t*t*(3-2*t)};
+const lerp=(a,b,w)=>a+(b-a)*w;
+let lastActive='float',lastFrame=0,prevActive='float',motionChanged=0,lastPaint=0;
+function defaultMotion(now){
+ let elapsed=(now+900)%itineraryTotal;
+ for(const [name,duration] of itinerary){if(elapsed<duration)return name;elapsed-=duration;}
+ return 'float';
+}
+function effectMark(ctx,x,y,text,color,size){
+ ctx.save();ctx.fillStyle=color;ctx.textAlign='center';ctx.font=`900 ${size}px system-ui`;
+ ctx.fillText(text,Math.round(x),Math.round(y));ctx.restore();
+}
+function getPose(name,now){
+ const sec=now/1000,slow=Math.sin(sec*1.8),fast=Math.sin(sec*6),medium=Math.sin(sec*3.3);
+ let x=Math.sin(sec*.72)*2,y=Math.sin(sec*2.1)*4+Math.sin(sec*.82)*1.5;
+ let angle=0,sx=1+Math.sin(sec*1.7)*.013,sy=1-Math.sin(sec*1.7)*.013;
+ if(name==='sway'){angle=slow*.07;x+=slow*4;}
+ if(name==='balance'||name==='wobble'){angle=medium*(name==='wobble'?.13:.105);y+=Math.sin(sec*2.8)*2;}
+ if(['ponder','think','confused'].includes(name)){angle=Math.sin(sec*1.2)*.048;y-=2;}
+ if(name==='read'){angle=-.065;y+=1;}
+ if(name==='inspect'){x+=Math.sin(sec*1.4)*6;angle=slow*.05;}
+ if(['doze','sleep'].includes(name)){angle=-.09+Math.sin(sec*.8)*.025;y+=Math.sin(sec*.92)*3;}
+ if(name==='stretch'){sy+=.055+Math.sin(sec*3)*.025;sx-=.03;}
+ if(name==='twirl'){angle=Math.sin(sec*4.0)*.22;x+=Math.sin(sec*4)*4;}
+ if(name==='nod'){angle=medium*.046;y+=medium*3;}
+ if(name==='bow'){angle=-.10-Math.abs(slow)*.085;y+=Math.abs(slow)*3;}
+ if(name==='shrug'){angle=medium*.045;sx+=Math.abs(medium)*.04;sy-=Math.abs(medium)*.02;}
+ if(['chat','intro'].includes(name)){y+=fast*2;angle=medium*.03;}
+ if(['stamp','gavel'].includes(name)){angle=-.14+Math.abs(fast)*.15;y+=Math.max(0,-fast)*7;}
+ if(name==='cheer'){sy+=Math.abs(medium)*.05;y-=Math.abs(medium)*5;angle=medium*.08;}
+ return {x,y,angle,sx,sy};
+}
+function frameFor(name,now){
+ const c=config[name]||config.float;
+ const index=Math.floor(now/c.speed)%c.frames.length;
+ return {row:c.row,col:c.frames[index]};
+}
+function paintPose(ctx,name,now,alpha,blendPose){
+ const f=frameFor(name,now);
+ const p=getPose(name,now);
+ const pose=blendPose?{
+  x:lerp(blendPose.x,p.x,alpha),y:lerp(blendPose.y,p.y,alpha),
+  angle:lerp(blendPose.angle,p.angle,alpha),sx:lerp(blendPose.sx,p.sx,alpha),sy:lerp(blendPose.sy,p.sy,alpha)
+ }:p;
+ ctx.save();ctx.translate(128+pose.x,128+pose.y);
+ ctx.rotate(pose.angle);ctx.scale(pose.sx,pose.sy);
+ ctx.drawImage(sprite,f.col*256,f.row*256,256,256,-128,-128,256,256);
+ ctx.restore();
+ return f;
+}
+function draw(now){
  requestAnimationFrame(draw);
+ if(!sprite.complete||!sprite.naturalWidth||d.hidden)return;
+ if(now-lastPaint<1000/30)return;
+ lastPaint=now;
+ const action=reduce.matches?'float':(specialUntil>now?special:defaultMotion(now));
+ if(action!==lastActive){prevActive=lastActive;lastActive=action;motionChanged=now;}
+ const transition=reduce.matches?1:ease((now-motionChanged)/300);
+ const oldPose=getPose(prevActive,now),currFrame=frameFor(action,now);
+ lastFrame=currFrame.col;
+ for(const {el,ctx} of drawContexts){
+  if(!el.offsetWidth||!el.offsetHeight)continue;
+  const W=el.width,H=el.height;
+  ctx.clearRect(0,0,W,H);ctx.save();ctx.scale(W/256,H/256);
+  if(transition<1&&prevActive!==action){
+   ctx.globalAlpha=1-transition;paintPose(ctx,prevActive,now,1);
+   ctx.globalAlpha=transition;paintPose(ctx,action,now,transition,oldPose);
+  }else{ctx.globalAlpha=1;paintPose(ctx,action,now,1);}
+  ctx.globalAlpha=1;
+  if(!reduce.matches){
+   const k=Math.sin(now/500);
+   if(['cheer','gavel','stamp'].includes(action)){
+    effectMark(ctx,199,57+k*5,'✦','#ffe08b',16);
+    effectMark(ctx,219,81-k*7,'✧','#fff4b8',13);
+   }
+   if(['ponder','think','confused'].includes(action))effectMark(ctx,210,48+k*3,'?','#ffefbd',23);
+   if(['doze','sleep'].includes(action))effectMark(ctx,212,57-(now/140)%19,'z','#e3d9fb',19);
+   if(action==='balance'||action==='wobble')effectMark(ctx,38,60+k*4,'⚖','#ffe59e',16);
+   if(action==='read')effectMark(ctx,213,65+k*3,'…','#ffecd2',19);
+   if(action==='chat'||action==='intro')effectMark(ctx,216,65+k*4,'!','#ffea9b',22);
+   if(action==='inspect')effectMark(ctx,208,57+k*3,'✧','#ffe59e',17);
+   if(action==='stretch')effectMark(ctx,212,54+k*2,'↗','#ffe59e',16);
+  }
+  ctx.restore();
+ }
 }
 requestAnimationFrame(draw);
 window.JEONGSIM_DEBUG={getMotion:()=>lastActive,getFrame:()=>lastFrame,getLine:()=>line.textContent,getClicks:()=>count};
@@ -11607,9 +11750,9 @@ window.JEONGSIM_DEBUG={getMotion:()=>lastActive,getFrame:()=>lastFrame,getLine:(
 <script id="sb27-build-identity">
 (()=>{
   'use strict';
-  window.SOCIAL_BUILD_VERSION='v31-20261113';
-  document.documentElement.dataset.socialBuild='v31-20261113';
-  document.title='사회범 | 통합사회2 학습 게임 v32 · 정심';
+  window.SOCIAL_BUILD_VERSION='v33-20261116';
+  document.documentElement.dataset.socialBuild='v33-20261116';
+  document.title='사회범 | 통합사회2 학습 게임 v33 · 정심';
 })();
 </script>
 <script id="sb28-build-marker">document.documentElement.dataset.countryAtlas="v29";</script></body></html>
