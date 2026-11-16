@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#49323b"><meta name="description" content="맛춘범 스타일 통합사회2 경제~미래 학습 게임">
-<title>사회범 | 통합사회2 학습 게임 v41 · 정심</title>
+<title>사회범 | 통합사회2 학습 게임 v42 · 정심</title>
 <meta name="social-build" content="social-v40-20261116" />
 <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" /><script data-source="embedded-browser-bootstrap-v23.js">
 (function(){
@@ -11268,6 +11268,9 @@ try{
  }
 }catch(_){}
 let audio=null,context=null,master=null,current=null,activeGroup='home',activated=true,manualSelection=false,changing=false,autoplayBlocked=false,lastActualGroup='home';
+// v42: A user's pause is not an autoplay permission failure. Preserve it across clicks/page changes.
+let userPaused=false;
+const isMusicControlEvent=e=>!!(e?.target instanceof Element&&e.target.closest('#socialAudioDialog, #audioMusicBtn, #socialOpenMusicFromSettings'));
 let lastSfx=0,stepAt=0,soundFiles={};
 const $=id=>document.getElementById(id);
 function persist(){try{window.SB_SAFE_STORAGE.setItem(KEY,JSON.stringify(prefs))}catch(_){}}
@@ -11297,7 +11300,7 @@ function pick(excludeId){const l=list();if(!l.length)return null;if(!prefs.shuff
 function volume(){if(audio)audio.volume=Math.max(0,Math.min(1,prefs.musicVolume*Number(gameState().volume??.25)*2))}
 async function play(t,explicit=false){
  if(!t)return;
- makeAudio();if(explicit){activated=true;if(!isOn())window.SOCIAL_AUDIO_GAME?.setBgm?.(true)}
+ makeAudio();if(explicit){userPaused=false;activated=true;if(!isOn())window.SOCIAL_AUDIO_GAME?.setBgm?.(true)}
  if(current?.id!==t.id){current=t;audio.src='assets/audio/'+encodeURIComponent(t.file);audio.load();}
  volume();update();
  if(!isOn()||!activated)return;
@@ -11317,6 +11320,8 @@ function syncFromGame(){
  if(prefs.category==='auto'&&activeGroup!==group){activeGroup=group;change=true;manualSelection=false;}
  if(!isOn()){stop();return}
  volume();
+ // Explicit pause must not be undone by click/touch/keyboard, navigation, focus or visibility events.
+ if(userPaused){stop();return}
  // Backrooms are never chosen automatically. Entering the backroom pauses general BGM.
  // A backroom song starts only after the player chooses it from the music library.
  if(group==='backrooms'){
@@ -11410,8 +11415,14 @@ function build(){
  const cats=$('socialAudioCats');for(const [cat,label] of Object.entries(CATS)){let b=document.createElement('button');b.type='button';b.dataset.saudioCat=cat;b.textContent=label;b.onclick=()=>setCategory(cat);cats.appendChild(b)}
  $('socialAudioClose').onclick=close;
  $('socialAudioPrevious').onclick=()=>{activated=true;previous();renderList()};$('socialAudioNext').onclick=()=>{activated=true;next();renderList()};
- $('socialAudioToggle').onclick=()=>{activated=true;if(!isOn()){window.SOCIAL_AUDIO_GAME?.setBgm?.(true);const t=current||pick();play(t,true)}else if(audio&&!audio.paused){stop()}else play(current||pick(),true);update()};
- $('socialAudioEnabled').onchange=e=>{activated=true;window.SOCIAL_AUDIO_GAME?.setBgm?.(e.target.checked);syncFromGame();update()};
+ $('socialAudioToggle').onclick=()=>{
+  activated=true;
+  // This handler is the only owner of the pause/play toggle state.
+  if(isOn()&&audio&&!audio.paused){userPaused=true;stop();}
+  else {userPaused=false;const t=current||pick();if(t)play(t,true);}
+  update();
+ };
+ $('socialAudioEnabled').onchange=e=>{activated=true;if(e.target.checked)userPaused=false;window.SOCIAL_AUDIO_GAME?.setBgm?.(e.target.checked);syncFromGame();update()};
  $('socialAudioShuffle').onchange=e=>{prefs.shuffle=e.target.checked;persist()};$('socialAudioRepeat').onchange=e=>{prefs.repeat=e.target.checked;persist()};
  $('socialAudioMusicVolume').oninput=e=>{prefs.musicVolume=Number(e.target.value)/100;volume();persist()};
  $('socialAudioSfxVolume').oninput=e=>{prefs.sfxVolume=Number(e.target.value)/100;persist()};
@@ -11422,15 +11433,16 @@ function build(){
 }
 function spark(e){
  const b=e.target.closest('button');if(!b||b.disabled)return;
- activated=true;if(isOn()&&!current)queueMicrotask(syncFromGame);else if(isOn()&&audio?.paused)audio.play().catch(()=>{});const isOption=b.classList.contains('option');
+ activated=true;if(!userPaused&&!isMusicControlEvent(e)){if(isOn()&&!current)queueMicrotask(syncFromGame);else if(isOn()&&audio?.paused)audio.play().catch(()=>{});}const isOption=b.classList.contains('option');
  if(isOption)return;
  sfx(b.matches('[data-page-target], .dock-item, .mode-card')?'nav':'tap');
  // v13에서는 터치 시각 효과를 전체 화면 공통 레이어가 일괄 담당해 중복 재생되지 않게 한다.
  // 클릭·탭 효과음은 위 sfx() 호출을 그대로 유지한다.
  return;
 }
-function unlockSound(){
- if(!isOn())return;
+function unlockSound(e){
+ // Music controls already implement their own action on click; never resume ahead of it.
+ if(!isOn()||userPaused||isMusicControlEvent(e))return;
  activated=true;
  syncFromGame();
 }
@@ -11445,7 +11457,7 @@ window.addEventListener('change',e=>{if(e.target.matches('input[type=checkbox],s
 window.addEventListener('socialgame:result',()=>{sfx('success');queueMicrotask(syncFromGame)});
  document.addEventListener('visibilitychange',()=>{
   if(document.hidden&&audio&&!audio.paused)audio.pause();
-  else if(!document.hidden&&isOn())syncFromGame();
+  else if(!document.hidden&&isOn()&&!userPaused)syncFromGame();
  });
 window.SOCIAL_AUDIO={tracks, effects:soundEffects, open, stop, play: id=>{const t=tracks.find(x=>x.id===id);if(t){manualSelection=true;play(t,true);}},
  next, previous, sfx, syncFromGame, update, getCurrent:()=>current, getCategory:()=>activeGroup,
