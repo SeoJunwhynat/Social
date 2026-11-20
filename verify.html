@@ -1,0 +1,39 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>시대와 사회 — 배포 파일 검사</title><style>
+:root{color-scheme:dark;font-family:system-ui,-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif}*{box-sizing:border-box}body{margin:0;background:#18141c;color:#f8ead6}main{max-width:880px;margin:35px auto;padding:0 18px}a{color:#ffd399}h1{font-size:clamp(24px,4vw,36px)}h2{font-size:18px;margin-top:30px}.intro{color:#d8c7b6;line-height:1.8}.tile{background:#2b222d;border:1px solid #685044;border-radius:12px;padding:15px;margin:12px 0}.ok{color:#9ae3b3}.bad{color:#ffab9e}.muted{color:#bcaea5}.row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px}.btn{display:inline-block;background:#f3cb92;color:#34212a;border:0;border-radius:9px;font-weight:850;padding:11px 15px;cursor:pointer}code{font-size:12px;word-break:break-all}#missing{white-space:pre-wrap;font-size:12px;max-height:240px;overflow:auto;background:#100c13;border-radius:10px;padding:12px}meter{width:100%;height:20px;accent-color:#edc48c}li{margin:6px 0}</style></head><body><main>
+<a href="/">← 통합 홈으로</a><h1>📂 배포 파일 검사</h1><p class="intro">GitHub·Vercel에 파일이 빠짐없이 올라갔는지 확인하는 도구야. <b>한국사 이미지가 없으면</b> <code>history/assets/media/</code> 안의 이미지 파일 416개가 실제 저장소에 있는지 확인해 줘.</p>
+<div class="tile" id="root">루트 홈 확인 중…</div><div class="tile" id="history">한국사 HTML 확인 중…</div><div class="tile" id="social">통합사회 HTML 확인 중…</div><div class="tile" id="manifest">미디어 목록 확인 중…</div>
+<div class="tile"><div class="row"><b>한국사 전체 이미지·음악 파일 검사</b><button id="go" class="btn" disabled>416개 검사 시작</button></div><p class="muted">검사 버튼을 누를 때만 요청해. 서버에 있는 파일의 응답코드와 파일 형식을 확인해.</p><meter id="progress" min="0" max="416" value="0"></meter><p id="result" class="muted">미디어 목록을 불러온 뒤 시작할 수 있어.</p><div id="missing" hidden></div></div>
+<h2>정상적으로 업로드할 폴더</h2><div class="tile"><code>index.html  ← 과목 선택 홈 (약 10KB)<br>vercel.json<br>history/index.html  ← 한국사 (약 1.9MB)<br>history/assets/MEDIA_MANIFEST.json<br>history/assets/media/  ← 이미지·음악 416개<br>social/index.html  ← 사회범 (약 6.7MB)<br>social/assets/ · social/data/<br>assets/audio/  ← 기존 사회범 음악 45개 (없으면 음악만 영향)</code></div>
+<p class="intro">Vercel 설정: <b>Root Directory</b>는 저장소 최상위(빈칸 또는 <code>./</code>), <b>Framework Preset</b>은 Other, <b>Output Directory</b>는 비워 둬. GitHub에는 ZIP 파일이 아니라 압축을 푼 실제 파일을 커밋해야 해.</p></main>
+<script>
+(async()=>{
+const show=(id,msg,good)=>{const el=document.getElementById(id);el.innerHTML='<b class="'+(good?'ok':'bad')+'">'+(good?'✓ ':'✗ ')+msg+'</b>'};
+async function head(url){try{const r=await fetch(url,{method:'HEAD',cache:'no-store'});const type=(r.headers.get('content-type')||'').toLowerCase();return{ok:r.ok&&!type.includes('text/html')||r.ok&&(/\.html?$/.test(url))&&type.includes('text/html'),status:r.status,type};}catch(e){return{ok:false,status:String(e)}}}
+const probe=[['root','/index.html'],['history','/history/index.html'],['social','/social/index.html']];
+for(const [id,url]of probe){const r=await head(url);show(id,url+' — '+r.status+(r.ok?'':' (누락 또는 잘못된 경로)'),r.ok)}
+try {
+  const r=await fetch('/index.html',{cache:'no-store'});
+  const len=Number(r.headers.get('content-length')||0);
+  if(!r.ok || len>250000)throw Error('루트 index.html 파일이 너무 크거나 한국사 파일로 바뀐 상태');
+  const t=await r.text();
+  if(!t.includes('id="hub-home"')||!t.includes('id="frame-social"'))throw Error('현재 루트 index.html은 과목 선택 홈이 아님');
+  show('root','/index.html — 과목 선택 홈 확인됨',true);
+}catch(e){show('root','/index.html 오류: '+e.message,false)}
+let names=[];
+try{
+  const r=await fetch('/history/assets/MEDIA_MANIFEST.json',{cache:'no-store'});if(!r.ok)throw Error('HTTP '+r.status);
+  const d=await r.json();names=Object.keys(d.media||{});
+  show('manifest','history/assets/MEDIA_MANIFEST.json — '+names.length+'개 목록',names.length===416);
+}catch(e){show('manifest','미디어 목록 없음: '+e.message,false)}
+const btn=document.getElementById('go');btn.disabled=names.length===0;btn.textContent=names.length+'개 검사 시작';
+btn.addEventListener('click',async()=>{
+  btn.disabled=true;let next=0,done=0,missing=[];const m=document.getElementById('progress');m.max=names.length;m.value=0;
+  const result=document.getElementById('result');
+  async function worker(){while(next<names.length){const name=names[next++];const r=await head('/history/assets/media/'+encodeURIComponent(name));if(!r.ok)missing.push(name+' — '+r.status);done++;m.value=done;result.textContent=done+' / '+names.length+' 확인 중';}}
+  await Promise.all(Array.from({length:10},()=>worker()));
+  const bad=document.getElementById('missing');bad.hidden=missing.length===0;bad.textContent=missing.join('\n');
+  result.className=missing.length?'bad':'ok';result.textContent=missing.length?'누락 '+missing.length+'개 / '+names.length+'개 — 하단 파일 확인':'완료: '+names.length+'개 미디어 파일이 모두 응답했어.';
+  btn.disabled=false;
+});
+})();
+</script></body></html>

@@ -1,0 +1,36 @@
+{
+  "version": "v41",
+  "total": 1269,
+  "byDifficulty": {
+    "1": 123,
+    "2": 563,
+    "3": 442,
+    "4": 141
+  },
+  "evaluationIds": [
+    "SB38-MOCK-01",
+    "SB38-MOCK-02",
+    "SB38-MOCK-03",
+    "SB38-MOCK-04",
+    "SB38-MOCK-05",
+    "SB38-MOCK-06",
+    "SB38-MOCK-07",
+    "SB38-MOCK-08",
+    "SB38-MOCK-09",
+    "SB38-MOCK-10",
+    "SB38-MOCK-11",
+    "SB38-MOCK-12",
+    "SB38-MOCK-13",
+    "SB38-MOCK-14",
+    "SB38-MOCK-15",
+    "SB38-MOCK-16",
+    "SB38-MOCK-17",
+    "SB38-MOCK-18",
+    "SB38-MOCK-19",
+    "SB38-MOCK-20"
+  ],
+  "evaluationCount": 20,
+  "added": 66,
+  "explanationsUpdated": 49,
+  "note": "The 20 original evaluation-style items are integrated in difficulty 4; no standalone mock exam. Backup JSON is not loaded at runtime; index.html embeds the bank."
+}
