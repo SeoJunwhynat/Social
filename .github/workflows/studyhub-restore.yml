@@ -1,0 +1,42 @@
+name: Restore history and social studyhub v2
+on:
+  push:
+    paths:
+      - '.github/workflows/studyhub-restore.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Fetch complete studyhub ZIP
+        env:
+          ZIP_URL: "https://sdmntpraustraliaeast.oaiusercontent.com/files/00000000-1860-81fa-9bb6-a53dc30d75fe/raw?se=2026-11-20T03%3A22%3A58Z&sp=r&sv=2026-06-06&sr=b&scid=efd03ba1-f637-5cf2-9a4b-c5b7dacceb2a&skoid=cb94e22a-e3df-4e6a-9e17-1696f40fa435&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-11-20T00%3A51%3A40Z&ske=2026-11-21T00%3A51%3A40Z&sks=b&skv=2026-06-06&sig=g%2B4cFfr1WiJS%2BF82EaZC1zUmykRvUnAwZFZ8T9eAjII%3D"
+        run: |
+          curl --fail --location --retry 3 --silent --show-error "$ZIP_URL" -o /tmp/studyhub-v2.zip
+          python3 - <<'PY'
+          import zipfile
+          with zipfile.ZipFile('/tmp/studyhub-v2.zip') as z:
+              names=set(z.namelist())
+              assert all(n in names for n in ('index.html','vercel.json','verify.html','history/index.html','social/index.html'))
+              media=[n for n in names if n.startswith('history/assets/media/') and not n.endswith('/')]
+              assert len(media)==416, f'Expected 416 media, got {len(media)}'
+              bad=z.testzip()
+              assert bad is None, f'Corrupted ZIP file: {bad}'
+              print('Validated 416 historical media assets and both subjects')
+          PY
+      - name: Extract files and commit full site
+        run: |
+          unzip -oq /tmp/studyhub-v2.zip -d .
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html vercel.json verify.html DEPLOY_GUIDE.md QA_REPORT.md history social
+          if ! git diff --cached --quiet; then
+            git commit -m "Deploy studyhub v2: Korean history and social with restored images"
+            git push origin HEAD:main
+          fi
