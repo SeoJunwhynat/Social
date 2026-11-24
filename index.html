@@ -1,31 +1,137 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#2e202b">
-<title>대민다위 10.8 | 대한민국을 다시 위대한 그때로!</title>
-<link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/textbook_v7.css"><link rel="stylesheet" href="css/arcade.css"><link rel="stylesheet" href="css/v4_ui.css"><link rel="stylesheet" href="css/mobile_story_v5.css"><link rel="stylesheet" href="css/v62_fixes.css"><link rel="stylesheet" href="css/primary_material_v71.css"><link rel="stylesheet" href="css/v72_polish.css"><link rel="stylesheet" href="css/v73_selection.css"><link rel="stylesheet" href="css/v74_ui.css"><link rel="stylesheet" href="css/functional_pixel_v75.css"><link rel="stylesheet" href="css/daemindawi_v8.css"><link rel="stylesheet" href="css/redrawn_v82.css"><link rel="stylesheet" href="css/social_v83.css"><link rel="stylesheet" href="css/source_map_v84.css"><link rel="stylesheet" href="css/records_v85.css"><link rel="stylesheet" href="css/contrast_v86.css"><link rel="stylesheet" href="css/source_v87.css"><link rel="stylesheet" href="css/quiz_readability_v88.css"><link rel="stylesheet" href="css/quiz_multiselect_v102.css"><script defer src="js/data.js"></script><script defer src="js/arcade_questions.js"></script><script defer src="js/timeline_expanded.js"></script><script defer src="js/questions_v4.js"></script><script defer src="js/question_material_v62.js"></script><script defer src="js/source_questions_v71.js"></script><script defer src="js/primary_material_v71.js"></script><script defer src="js/content_audit_v72.js"></script><script defer src="js/source_focus_v74.js"></script><script defer src="js/source_map_v84.js"></script><script defer src="js/questions_v87.js"></script><script defer src="js/exam_scope_v108.js"></script><script defer src="js/hide_button_tooltips_v100.js"></script><script defer src="js/story_loader_v100.js"></script><script defer src="js/app.js"></script><script defer src="js/arcade.js"></script><script defer src="js/ui_v4.js"></script><script defer src="js/functional_pixel_v75.js"></script><script defer src="js/daemindawi_v8.js"></script><script defer src="js/redrawn_v82.js"></script><script defer src="js/contrast_v86.js"></script>
-<link rel="stylesheet" href="css/v9_integrated.css"><link rel="stylesheet" href="css/music_library_v97.css"><link rel="stylesheet" href="css/music_library_v98_fix.css"><script defer src="js/social_audio_available.js"></script><script defer src="js/music_library_v101.js"></script><link rel="stylesheet" href="css/story_chapters_v99.css"><link rel="stylesheet" href="css/story_loading_v100.css"><link rel="stylesheet" href="css/exam_sources_v108.css"></head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#1b1720" />
+<title>시대와 사회 | 한국사 · 통합사회 통합 학습관</title>
+<style>
+:root{font-family:system-ui,-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;color-scheme:dark;--bg:#120f17;--paper:#f4e4c8;--gold:#eac68e;--sub:#baaeba;--line:rgba(245,216,170,.19)}*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#120f17;color:#f6eee7}
+body{background:radial-gradient(circle at 15% 0%,rgba(144,64,72,.19),transparent 40%),radial-gradient(circle at 95% 15%,rgba(195,142,82,.16),transparent 35%),#120f17}
+button{font:inherit;cursor:pointer}button:focus-visible{outline:3px solid #efd3a1;outline-offset:3px}
+header{height:68px;padding:0 clamp(13px,2.5vw,30px);display:flex;align-items:center;justify-content:space-between;gap:12px;background:#1f1823ed;border-bottom:1px solid var(--line);z-index:50;position:relative}
+.brand{display:flex;align-items:center;gap:10px;border:0;background:transparent;color:#f3d9ad;padding:3px 6px;text-align:left;min-width:0}
+.brand-symbol{font-size:25px;background:#563c3c;border:1px solid #936f55;border-radius:9px;width:39px;height:39px;display:grid;place-items:center}
+.brand b{display:block;white-space:nowrap;font-size:16px;line-height:1.2}.brand small{display:block;font-size:10px;color:#c1a9a1}
+header nav{display:flex;gap:6px}.subject-tab{border:1px solid transparent;color:#d3c3c0;background:transparent;border-radius:9px;padding:10px 15px;white-space:nowrap;font-weight:750;font-size:13px}
+.subject-tab:hover{background:#3d2d36;color:#fff}.subject-tab.active{background:#5e413a;border:1px solid #9a7055;color:#ffebc7}
+main{min-height:calc(100dvh - 68px)}.landing{min-height:calc(100dvh - 68px);display:flex;align-items:center;justify-content:center;padding:30px 18px 65px;overflow:auto}
+.landing-content{width:min(1040px,100%)}.eyebrow{font-size:11px;font-weight:900;letter-spacing:3.2px;color:#e3bf8e}
+h1{font-size:clamp(32px,4.5vw,56px);line-height:1.25;letter-spacing:-1.6px;margin:15px 0 12px;color:#f6e6d2}
+.lead{font-size:clamp(13px,1.35vw,16px);line-height:1.85;color:#cabbc0;margin:0 0 34px;max-width:700px}
+.subject-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.subject-card{position:relative;text-align:left;padding:29px;border-radius:19px;border:1px solid #84604d;background:linear-gradient(135deg,#3f2934,#281e2c);color:#f6e9d7;min-height:300px;overflow:hidden;box-shadow:0 15px 50px #0003;display:flex;flex-direction:column;align-items:flex-start;transition:transform .18s,border-color .18s}
+.subject-card::after{content:'◈';position:absolute;font-family:serif;right:5%;top:30px;font-size:165px;color:#e3b38212;line-height:1;pointer-events:none}
+.subject-card.social{background:linear-gradient(135deg,#3c312c,#27262c);border-color:#7c684b}.subject-card.social::after{content:'⚖';font-family:serif;font-size:135px;color:#e3b38216}
+.subject-card:hover{transform:translateY(-4px);border-color:#e6bb82}
+.subject-card .tag{font-size:10px;color:#e8cb9d;letter-spacing:1.2px;font-weight:900;border:1px solid #98704c;padding:6px 10px;border-radius:99px;background:#1b151936}
+.subject-card .visual{font-size:39px;margin-top:22px}.subject-card h2{font-size:28px;letter-spacing:-.8px;margin:7px 0 7px}.subject-card p{font-size:13px;line-height:1.7;color:#dbcabb;max-width:350px;margin:0 0 26px}
+.card-cta{margin-top:auto;font-size:13px;font-weight:900;color:#ffdfae}.notes{display:flex;flex-wrap:wrap;gap:12px 20px;color:#b1a6b3;font-size:12px;margin-top:25px}
+.workspace{display:none;height:calc(100dvh - 68px);overflow:hidden;position:relative}
+.workspace.active{display:block}.workspace iframe{display:block;width:100%;height:100%;border:0;background:#15131a}
+.hidden{display:none!important}
+@media(max-width:760px){header{height:64px;padding:0 10px}.brand-symbol{width:33px;height:33px;font-size:21px}.brand b{font-size:13px}.brand small{font-size:9px}.subject-tab{padding:8px 9px;font-size:11px}main,.landing{min-height:calc(100dvh - 64px)}.workspace{height:calc(100dvh - 64px)}.subject-grid{grid-template-columns:1fr;gap:12px}.landing{align-items:flex-start;padding-top:36px}.subject-card{min-height:210px;padding:21px}.subject-card .visual{margin-top:15px;font-size:27px}.subject-card h2{font-size:24px;margin-top:4px}.subject-card p{margin-bottom:14px}.subject-card:after{font-size:105px}.subject-card.social:after{font-size:100px}.lead{margin-bottom:23px}}
+@media(max-width:390px){header nav{gap:0}.brand-symbol{display:none}.subject-tab{padding:7px 6px}.brand b{font-size:12px}}
+
+#hub-deploy-warning{position:fixed;z-index:200;left:12px;right:12px;bottom:12px;margin:auto;max-width:730px;padding:13px 16px;background:#4b2c2e;border:2px solid #eeaa91;color:#fff0df;box-shadow:0 10px 35px #0008;border-radius:13px;font-size:13px;line-height:1.6}
+#hub-deploy-warning a{color:#ffe1a5;font-weight:900;text-decoration:underline}
+#hub-deploy-warning button{float:right;color:#fff;background:transparent;border:0;font-size:22px;margin-left:6px}
+</style>
+</head>
 <body>
-<div id="app" class="app-shell">
-  <div id="overlay" class="backdrop" aria-hidden="true"></div>
-  <aside id="sidebar" class="sidebar v9-sidebar" aria-label="대민다위 공통 메뉴"><button type="button" class="v9-side-logo" data-route="home" aria-label="대민다위 홈"><img src="assets/ui/v9/new/sidebar_logo.png" alt="대민다위"></button><nav class="v9-side-nav" aria-label="한국사 메뉴"><button type="button" class="nav-btn dmd-sidebar-hit v9-side-btn" data-route="home" aria-label="홈" title="홈"><img src="assets/ui/v9/new/sidebar_01_home.png" alt="" draggable="false"><span class="sr-only">홈</span></button><button type="button" class="nav-btn dmd-sidebar-hit v9-side-btn" data-a-go="arcade" aria-label="문제 풀기" title="문제 풀기"><img src="assets/ui/v9/new/sidebar_02_quiz.png" alt="" draggable="false"><span class="sr-only">문제 풀기</span></button><button type="button" class="nav-btn dmd-sidebar-hit v9-side-btn" data-route="timeline" aria-label="역사 연표" title="역사 연표"><img src="assets/ui/v9/new/sidebar_04_timeline.png" alt="" draggable="false"><span class="sr-only">역사 연표</span></button><button type="button" class="nav-btn dmd-sidebar-hit v9-side-btn" data-route="museum" aria-label="사료 박물관" title="사료 박물관"><img src="assets/ui/v9/new/sidebar_05_museum.png" alt="" draggable="false"><span class="sr-only">사료 박물관</span></button><button type="button" class="nav-btn dmd-sidebar-hit v9-side-btn" data-route="story" aria-label="역사 탐험" title="역사 탐험"><img src="assets/ui/v9/new/sidebar_06_exploration.png" alt="" draggable="false"><span class="sr-only">역사 탐험</span></button><button type="button" class="nav-btn dmd-sidebar-hit v9-side-btn" data-route="wrong" aria-label="오답노트" title="오답노트"><img src="assets/ui/v9/new/sidebar_07_wrong_answers.png" alt="" draggable="false"><span class="sr-only">오답노트</span></button><button type="button" class="nav-btn dmd-sidebar-hit v9-side-btn" data-route="records" aria-label="학습기록" title="학습기록"><img src="assets/ui/v9/new/sidebar_08_records.png" alt="" draggable="false"><span class="sr-only">학습기록</span></button><button type="button" class="nav-btn dmd-sidebar-hit v9-side-btn" data-route="settings" aria-label="설정" title="설정"><img src="assets/ui/v9/new/sidebar_09_settings.png" alt="" draggable="false"><span class="sr-only">설정</span></button></nav><div id="arcadeNav" hidden></div><p class="v9-side-foot">1945년 광복 이후 ~ 현대사<br>나의 역사 학습실</p></aside>
-  <div class="workspace">
-    <header class="topbar v9-topbar"><button id="menuToggle" class="icon-btn menu-toggle v9-menu-toggle" aria-label="메뉴 열기">☰</button><button type="button" class="v9-top-brand" data-route="home" aria-label="대민다위 홈"><span class="v9-brand-glyph">史</span><strong>대민다위</strong></button><nav class="v9-top-nav" aria-label="주요 학습 기능"><button type="button" class="v9-top-link" data-route="home">홈</button><button type="button" class="v9-top-link" data-a-go="arcade">문제 풀기</button><button type="button" class="v9-top-link" data-route="timeline">역사 연표</button><button type="button" class="v9-top-link" data-route="museum">사료 박물관</button><button type="button" class="v9-top-link" data-route="story">역사 탐험</button><button type="button" class="v9-top-link" data-route="wrong">오답노트</button><button type="button" class="v9-top-link" data-route="records">학습기록</button></nav><div class="v9-top-actions"><span class="v9-subject-label">한국사</span><button id="musicLibraryToggle" class="icon-btn v97-music-button" title="음악 설정" aria-label="음악 설정 열기" aria-haspopup="dialog">♪</button><button class="icon-btn v9-settings-shortcut" data-route="settings" aria-label="설정">⚙</button></div><div id="crumb" class="v9-crumb" aria-live="polite">대민다위 <span> / 홈</span></div></header>
-    <main id="view" class="v9-view" tabindex="-1" aria-live="polite"><div class="loading">학습실을 구성하는 중…</div></main>
-    <footer>대민다위 10.8 · 문제 풀이 · 시험범위 학습 · 역사 연표 · 사료 박물관 · 역사 스토리 <span>2026 2차 지필 · 교과서 p65, p72~111 · 로컬 저장</span></footer>
-  </div>
-</div>
-<nav class="mobile-ui-dock v9-mobile-dock" aria-label="모바일 빠른 메뉴"><button data-route="home"><img src="assets/ui/icons/home.svg" alt="">홈</button><button data-a-go="arcade"><img src="assets/ui/icons/quiz.svg" alt="">문제</button><button data-a-resume="1"><img src="assets/ui/icons/resume.svg" alt="">이어 풀기</button><button data-route="museum"><img src="assets/ui/icons/museum.svg" alt="">박물관</button><button data-route="story"><img src="assets/ui/icons/runner.svg" alt="">탐험</button></nav>
-<div id="modalHost" aria-live="polite"></div><div id="toastHost" role="status" aria-live="polite"></div>
-<dialog id="musicLibraryPanel" class="v97-music-dialog" aria-label="배경음악 라이브러리">
-  <div class="v97-music-header"><div><small>DAEMINDAWI SOUNDTRACK</small><h2>음악 설정</h2></div><button type="button" id="v97MusicClose" aria-label="닫기">✕</button></div>
-  <div class="v97-music-now"><strong id="v97NowTitle">Empire of Concrete</strong><span id="v97MusicStatus" role="status" aria-live="polite">재생 준비 중</span></div>
-  <div class="v97-music-progress"><span id="v97TimeCurrent">0:00</span><input id="v97MusicSeek" type="range" min="0" max="1000" value="0" aria-label="재생 위치"><span id="v97TimeDuration">0:00</span></div>
-  <div class="v97-music-controls"><button type="button" id="v97Prev">⏮ 이전</button><button type="button" id="v97PlayPause">▶ 재생</button><button type="button" id="v97Next">다음 ⏭</button></div>
-  <div class="v97-music-pref"><label>배경음 볼륨 <input type="range" id="v97MusicVolume" min="0" max="100" step="5" value="35"></label><label><input type="checkbox" id="v97MusicRepeat" checked> 연속 재생</label><label><input type="checkbox" id="v97MusicShuffle"> 셔플</label><label>효과음 <button type="button" id="soundToggle" class="v97-sfx-toggle" title="효과음 켜기/끄기" aria-label="효과음 켜기/끄기">♪</button></label></div>
-  <div class="v97-music-groups" id="v97MusicGroups"></div>
-  <div class="v97-music-list" id="v97MusicList" aria-label="음악 선택 목록"></div>
-  <div class="v97-music-footer"><button id="v97ResetDefault" type="button">기본 메인 3곡으로 복구</button><p>첫 자동재생은 브라우저 정책에 따라 차단될 수 있어요. 추가 음악은 인터넷 연결이 필요하며, 오프라인용 파일은 별도 다운로드 가능합니다.</p></div>
-</dialog>
+<header>
+  <button type="button" class="brand" data-view="home" aria-label="통합 학습관 홈으로">
+    <span class="brand-symbol" aria-hidden="true">◈</span>
+    <span><b>시대와 사회</b><small>한국사 × 통합사회 통합 학습관</small></span>
+  </button>
+  <nav aria-label="과목 선택">
+    <button type="button" data-view="home" class="subject-tab active" aria-current="page">홈</button>
+    <button type="button" data-view="history" class="subject-tab">📜 한국사</button>
+    <button type="button" data-view="social" class="subject-tab">⚖ 통합사회</button>
+  </nav>
+</header>
+<main>
+<section id="hub-home" class="landing" aria-labelledby="hub-title">
+ <div class="landing-content">
+   <span class="eyebrow">KOREAN HISTORY · INTEGRATED SOCIAL STUDIES</span>
+   <h1 id="hub-title">어제의 기록으로,<br>오늘의 세상을 이해하다.</h1>
+   <p class="lead">한국사의 현장과 통합사회의 개념을 한곳에서. 각 과목의 기존 게임·문제·진행 기록을 그대로 사용하면서 언제든 화면 위쪽에서 과목을 바꿔 보세요.</p>
+   <div class="subject-grid">
+     <button type="button" class="subject-card history" data-view="history">
+       <span class="tag">KOREAN HISTORY · 10.8</span>
+       <span class="visual" aria-hidden="true">📜</span><h2>한국사 · 대민다위</h2>
+       <p>광복 이후 현대사 · 역사 연표 · 기록 박물관 · 스토리 어드벤처 · 역사 퀴즈</p>
+       <span class="card-cta">한국사 학습하기 →</span>
+     </button>
+     <button type="button" class="subject-card social" data-view="social">
+       <span class="tag">INTEGRATED SOCIAL STUDIES · V43</span>
+       <span class="visual" aria-hidden="true">⚖️</span><h2>통합사회 · 사회범</h2>
+       <p>경제 그래프 · 비교우위와 절대우위 · 세계 분쟁 지도 · 복수 개념 선택 · 1,310개 문제</p>
+       <span class="card-cta">통합사회 학습하기 →</span>
+     </button>
+   </div>
+   <div class="notes"><a style="color:#d9bd96" href="/verify.html" target="_blank" rel="noopener">배포 파일 검사</a><span>✓ 기존 과목 화면 유지</span><span>✓ 과목 이동 시 플레이 화면 유지</span><span>✓ 별도 회원가입 없이 싱글플레이</span></div>
+ </div>
+</section>
+<section id="hub-history" class="workspace" aria-label="한국사 게임 화면">
+  <iframe id="frame-history" title="한국사 대민다위 10.8" allow="autoplay; fullscreen" allowfullscreen referrerpolicy="same-origin"></iframe>
+</section>
+<section id="hub-social" class="workspace" aria-label="통합사회 게임 화면">
+  <iframe id="frame-social" title="통합사회 사회범 v43" allow="autoplay; fullscreen" allowfullscreen referrerpolicy="same-origin"></iframe>
+</section>
+</main>
+<aside id="hub-deploy-warning" role="alert" hidden>
+  <button type="button" onclick="this.parentElement.hidden=true" aria-label="닫기">×</button>
+  <b>한국사 이미지 파일이 배포되지 않았어.</b> <span id="hub-warn-extra"></span>
+  <a href="/verify.html" target="_blank" rel="noopener">누락 파일 검사하기</a>
+</aside>
+<script>
+(()=>{
+const tabs=Array.from(document.querySelectorAll('[data-view]'));
+const frames={history:document.getElementById('frame-history'),social:document.getElementById('frame-social')};
+const sections={home:document.getElementById('hub-home'),history:document.getElementById('hub-history'),social:document.getElementById('hub-social')};
+let current='home';
+let mediaCheckStarted=false;
+async function checkMediaOnce(){
+  if(mediaCheckStarted || location.protocol==='file:')return;
+  mediaCheckStarted=true;
+  try {
+    const url='/history/assets/media/e4e173e563fc5b07ce4a.webp';
+    const r=await fetch(url,{method:'HEAD',cache:'no-store'});
+    const type=(r.headers.get('content-type')||'').toLowerCase();
+    if(!r.ok || type.includes('text/html')) throw new Error('HTTP '+r.status);
+  }catch(err){
+    const warn=document.getElementById('hub-deploy-warning');
+    const extra=document.getElementById('hub-warn-extra');
+    extra.textContent='history/assets/media/ 폴더와 Vercel 프로젝트 루트 설정을 확인해 줘. ('+String(err.message||err)+')';
+    warn.hidden=false;
+  }
+}
+function valid(v){return Object.hasOwn(sections,v)?v:'home'}
+function show(v,{push=true}={}){
+  const target=valid(v);
+  if(current===target && target!=='home')return;
+  const previous=current;
+  if(previous in frames){frames[previous].contentWindow?.postMessage({source:'studyhub.v1',action:'suspend'},(location.origin==='null'?'*':location.origin))}
+  current=target;
+  for(const [id,el] of Object.entries(sections)){el.classList.toggle('active',id===target);el.classList.toggle('hidden',id!==target)}
+  for(const tab of tabs){const on=tab.dataset.view===target;tab.classList.toggle('active',on);if(tab.classList.contains('subject-tab')){if(on)tab.setAttribute('aria-current','page');else tab.removeAttribute('aria-current')}}
+  if(target==='history')checkMediaOnce();
+  if(target in frames){
+    const frame=frames[target];
+    if(!frame.dataset.loaded){
+      frame.addEventListener('load',()=>frame.contentWindow?.postMessage({source:'studyhub.v1',action:'activate'},(location.origin==='null'?'*':location.origin)),{once:true});
+      frame.src=target==='history'?'/history-v108.html':'/social/index.html';frame.dataset.loaded='1';
+    }else {frame.contentWindow?.postMessage({source:'studyhub.v1',action:'activate'},(location.origin==='null'?'*':location.origin))}
+  }
+  document.title=target==='history'?'한국사 · 대민다위 | 시대와 사회':target==='social'?'통합사회 · 사회범 | 시대와 사회':'시대와 사회 | 한국사 · 통합사회 통합 학습관';
+  if(push){const u=new URL(location.href);if(target==='home')u.searchParams.delete('subject');else u.searchParams.set('subject',target);history.pushState({subject:target},'',u)}
+}
+for(const tab of tabs){tab.addEventListener('click',()=>show(tab.dataset.view))}
+window.addEventListener('popstate',()=>show(new URL(location.href).searchParams.get('subject')||'home',{push:false}));
+show(new URL(location.href).searchParams.get('subject')||'home',{push:false});
+})();
+</script>
 </body>
 </html>
