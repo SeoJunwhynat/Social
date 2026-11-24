@@ -4,6 +4,30 @@ const D=window.HISTORY_DATA;
 if(!D||window.HISTORY_UPGRADE_109)return;
 window.HISTORY_UPGRADE_109=true;
 const ESC=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+/* Restore original uploaded image assets already present in the deployed museum. */
+const verifiedImageAliases={
+ exam_map_map_acheson:"m065",exam_map_map_start:"m070",exam_map_map_incheon:"m071",
+ exam_map_map_china:"m072",exam_map_map_armistice:"m073",
+ v108src_sanfran:"m022",v108src_preparation:"m024",v108src_line38_reason:"m028",
+ v108src_us_occupation:"m030",v108src_sov_occupation:"m031",v108src_moscow:"m032",
+ v108src_joint_seven:"m044",v108src_un_vote:"m043",v108src_kim_gu_appeal:"m045",
+ v108src_agrarian:"m063",v108src_constitution_compare:"m086"
+};
+for(const [brokenId,originalId] of Object.entries(verifiedImageAliases)){
+ const original=D.assets.find(a=>a.id===originalId),target=D.assets.find(a=>a.id===brokenId);
+ if(original?.path?.startsWith("/history/assets/media/")&&target){
+  target.path=original.path;
+  target.original=original.original;
+  target.sourceAlias=originalId;
+ }
+}
+for(const question of D.questions){
+ if(question.mapMaskImage&&verifiedImageAliases[question.sourceAssetId]){
+  delete question.mapMaskImage; // Missing masked files: use the original genuine map instead of a broken image.
+ }
+}
+
 const lessons={
 17:"냉전 체제와 동아시아",18:"8·15 광복과 정치 세력",19:"모스크바 회의와 신탁 통치",20:"좌우 합작·단독선거 논쟁",21:"대한민국 정부 수립과 제주 4·3",22:"6·25 전쟁과 정전",23:"이승만 정부와 장기 집권",24:"4·19 혁명과 장면 내각",25:"5·16과 박정희 정부",26:"신군부와 5·18 민주화 운동",27:"6월 민주 항쟁과 직선제 개헌"};
 const ranges={17:[1,2],18:[3,4],19:[5,6],20:[7,9],21:[10,12],22:[13,15],23:[16,17],24:[18,20],25:[21,24],26:[25,26],27:[27,30]};
@@ -67,11 +91,23 @@ blankEvents.forEach((e,i)=>{
  D.questions.push({id,type:"학습지 빈칸",era:e.era,level:"보통",prompt:p,options:rotated,answer:rotated.indexOf(e.title),explanation:e.title+" — "+e.summary,sourcePage:Number(String(e.source||"").match(/PDF (\d+)쪽/)?.[1])||undefined,examScope:true});
 });
 window.HISTORY_V2_TYPES=[...new Set(["전체",...D.questions.map(q=>q.type)])];
-window.HISTORY_EXAM_SCOPE&&(window.HISTORY_EXAM_SCOPE.questionCount=D.questions.length);
+if(window.HISTORY_EXAM_SCOPE){window.HISTORY_EXAM_SCOPE.questionCount=D.questions.length;window.HISTORY_EXAM_SCOPE.questionTypes=Object.fromEntries([...new Set(D.questions.map(q=>q.type))].map(t=>[t,D.questions.filter(q=>q.type===t).length]));}window.HISTORY_V2_QUESTION_COUNT={...(window.HISTORY_V2_QUESTION_COUNT||{}),total:D.questions.length};
 
 
 const detailedEvents={"카이로 회담":["제2차 세계 대전 중 연합국이 전후 동아시아 문제를 논의했다.","1943년 11월 미국·영국·중국 정상이 한국의 독립을 '적절한 시기'에 실현할 것을 언급했다.","한국 독립을 국제회의에서 선언한 중요한 근거가 되었다."],"포츠담 선언":["연합국은 일본에 무조건 항복을 요구했다.","1945년 7월 포츠담 선언으로 카이로 선언의 이행을 재확인했다.","한국 독립에 대한 앞선 약속을 재확인했다."],"모스크바 3국 외상 회의":["일본 패전 뒤 한국의 임시정부 수립과 전후 처리 문제가 국제적 쟁점이 됐다.","1945년 12월 한국 민주주의 임시정부 수립과 미소공동위원회 설치 등 방안을 결정했다.","신탁 통치와 회의 결정의 해석을 둘러싼 국내 정치 세력의 대립이 심화됐다."],"좌우 합작 7원칙 발표":["미소공동위원회가 교착되면서 좌우 정치 세력이 통일정부 수립을 위해 협력하려 했다.","1946년 10월 좌우합작위원회는 임시정부 수립, 토지 개혁, 친일 청산 등의 원칙을 제시했다.","이념 대립 속에서도 통일된 국가 건설 방안을 모색했음을 보여 준다."],"5·10 총선거":["유엔한국임시위원단이 한반도 북쪽 지역에서 선거를 감시할 수 없는 상황이었다.","1948년 5월 10일 감시 가능 지역인 남한에서 총선거가 시행됐다.","제헌국회가 구성되어 대한민국 정부 수립으로 이어졌다."],"반민족행위처벌법 제정":["광복 이후 일제에 협력한 행위에 대한 역사적 책임을 묻는 문제가 제기됐다.","1948년 9월 제헌국회가 반민족행위처벌법을 제정했다.","법률에 따라 반민특위가 활동했으나 정치적 방해와 압력에 직면했다."],"농지개혁법 제정":["식민지 시기 지주·소작 관계를 개선하고 농민의 경제적 자립을 돕는 일이 과제였다.","1949년 농지개혁법이 제정되어 정부의 유상 매입과 농민에게 유상 분배하는 개혁을 추진했다.","경작 농민의 토지 소유 확대와 농촌 사회 변화에 영향을 주었다."],"6·25 전쟁 발발":["광복 뒤 분단과 냉전 대립이 격화되고 38도선 인근에서 무력 충돌이 벌어졌다.","1950년 6월 25일 북한군이 남침하며 전면전이 시작됐다.","유엔군과 중국군 등이 개입한 전쟁으로 확대되었고 큰 피해를 남겼다."],"인천 상륙 작전":["국군과 유엔군은 전쟁 초기 낙동강 방어선까지 후퇴해 방어했다.","1950년 9월 15일 인천 상륙 작전으로 북한군 후방을 공격했다.","서울 수복과 북진으로 이어지는 전세 역전의 계기가 됐다."],"정전 회담 시작":["전쟁 장기화에 따라 군사적 적대행위를 멈추기 위한 협상이 추진됐다.","1951년 7월 10일 정전 회담이 시작됐다.","군사분계선과 포로 송환 등 문제를 둘러싼 논의가 계속됐다."],"정전 협정 체결":["1951년부터 이어진 정전 회담에서 군사분계선과 포로 송환 문제가 쟁점이 됐다.","1953년 7월 27일 정전 협정이 체결됐다.","전투는 중단되었지만 평화조약이 체결된 것은 아니었다."],"2·28 민주 운동":["1960년 대구 학생들에게 야당 집회 참가를 막으려는 부당한 일요 등교 지시가 내려졌다.","학생들이 이에 항의하며 민주적 권리와 자유를 요구했다.","3·15 부정 선거에 대한 저항과 4·19 혁명으로 이어지는 민주화 흐름에 영향을 주었다."],"4·19 혁명":["3·15 부정 선거와 김주열 학생의 죽음이 알려지면서 시민의 분노가 커졌다.","1960년 4월 19일 학생과 시민이 부정 선거와 독재에 맞서 항의했다.","이승만은 4월 26일 하야했고 제1공화국이 끝났다."],"5·16 군사 정변":["4·19 혁명 뒤 수립된 제2공화국에서 정치적 불안정과 사회 변화 요구가 맞물렸다.","1961년 5월 16일 군부 세력이 정권을 장악했다.","장면 내각이 무너지고 군사정부 체제가 이어졌다."],"10월 유신 선포":["박정희 정부의 장기 집권과 권력 집중을 둘러싼 갈등이 커졌다.","1972년 10월 유신을 선포하고 기존 헌정 질서를 중단시켰다.","유신 헌법을 통해 대통령 권한이 크게 강화됐다."],"부마 민주 항쟁":["유신 체제의 독재와 기본권 제한에 대한 반발이 확산됐다.","1979년 부산과 마산의 학생·시민이 유신 체제에 반대하는 시위를 전개했다.","유신 체제의 위기가 심화되는 계기가 됐다."],"5·18 민주화 운동 시작":["1980년 5월 17일 비상계엄이 전국으로 확대되었고 정치 활동이 제한됐다.","5월 18일 광주에서 민주화 요구에 대한 군의 폭력적 진압에 맞서 항의가 시작됐다.","시민들의 민주화 요구와 저항이 확대되었다."],"6·10 국민대회":["4·13 호헌 조치와 박종철 고문치사 사건 은폐에 대한 비판이 커졌다.","1987년 6월 10일 전국에서 민주화와 대통령 직선제 개헌을 요구하는 집회가 열렸다.","6월 민주 항쟁의 전국적 확산과 6·29 선언으로 이어졌다."],"6·29 선언":["6월 민주 항쟁으로 시민들의 대통령 직선제와 민주화 요구가 확산됐다.","1987년 6월 29일 여당 대통령 후보 노태우가 직선제 개헌 등을 수용하겠다고 발표했다.","제9차 헌법 개정과 대통령 직선제 실현으로 이어졌다."],"제9차 개헌 국민투표":["6월 민주 항쟁 이후 대통령 직선제 개헌안이 마련됐다.","1987년 10월 27일 국민투표로 개헌안이 확정됐다.","10월 29일 개정 헌법이 공포되었으며 대통령 직선제와 5년 단임제를 규정했다."]};
 (D.events||[]).forEach(e=>{const v=detailedEvents[e.title];if(v){e.background=v[0];e.development=v[1];e.impact=v[2]}});
+
+const actualSourceByPage={4:"m030",5:"m032",7:"m044",8:"m045",12:"m063"};
+for(const q of D.questions){
+ if(!q.worksheetSourcePage||!q.id?.startsWith("v109_source_"))continue;
+ const id=actualSourceByPage[q.worksheetSourcePage];
+ const a=D.assets.find(a=>a.id===id);
+ if(a?.path?.startsWith("/history/assets/media/")){
+  q.sourceAssetId=id;q.sourceType="사료";q.sourceCaption=a.title;
+  delete q.worksheetSourcePage;
+ }
+}
+
 D.questions.forEach(cleanQuestion);
 // The source from the worksheet is used only when a matching *original image* is not available.
 const orig=window.HISTORY_MATERIALS?.render;
@@ -80,7 +116,7 @@ if(typeof orig==="function")window.HISTORY_MATERIALS.render=function(q,compact,r
  const asset=D.assets.find(a=>a.id===q?.sourceAssetId);
  const path=asset?.path||"";
  const mayBeMissing=!!q?.worksheetSourcePage|| (!!q?.sourceAssetId&&!path.startsWith("/history/assets/media/")&&!path.startsWith("data:image/"));
- if(!mayBeMissing)return orig.call(this,q,compact,revealed);
+ if(!mayBeMissing){const rendered=orig.call(this,q,compact,revealed);return q?.sourceType==="지도"||q?.type==="지도 분석"?rendered.replace("🖼 사료·사진","🗺 지도"):rendered;}
  const page=Number(q.worksheetSourcePage||q.sourcePage||asset?.source_page);
  const exact=(sheet?.pages||[]).find(a=>a.kind==="학생용"&&a.page===page);
  const text=exact?.text||"";
