@@ -59,7 +59,7 @@ h1{font-size:clamp(32px,4.5vw,56px);line-height:1.25;letter-spacing:-1.6px;margi
    <p class="lead">한국사의 현장과 통합사회의 개념을 한곳에서. 각 과목의 기존 게임·문제·진행 기록을 그대로 사용하면서 언제든 화면 위쪽에서 과목을 바꿔 보세요.</p>
    <div class="subject-grid">
      <button type="button" class="subject-card history" data-view="history">
-       <span class="tag">KOREAN HISTORY · 10.4 · UI 복구</span>
+       <span class="tag">KOREAN HISTORY · 최신 시험범위 · 픽셀 UI</span>
        <span class="visual" aria-hidden="true">📜</span><h2>한국사 · 대민다위</h2>
        <p>광복 이후 현대사 · 역사 연표 · 기록 박물관 · 스토리 어드벤처 · 역사 퀴즈</p>
        <span class="card-cta">한국사 학습하기 →</span>
@@ -75,10 +75,10 @@ h1{font-size:clamp(32px,4.5vw,56px);line-height:1.25;letter-spacing:-1.6px;margi
  </div>
 </section>
 <section id="hub-history" class="workspace" aria-label="한국사 게임 화면">
-  <iframe id="frame-history" title="한국사 대민다위 · UI 복구" allow="autoplay; fullscreen" allowfullscreen referrerpolicy="same-origin"></iframe>
+  <iframe id="frame-history" title="한국사 대민다위 · 전체 이미지 UI" allow="fullscreen" allowfullscreen referrerpolicy="same-origin"></iframe>
 </section>
 <section id="hub-social" class="workspace" aria-label="통합사회 게임 화면">
-  <iframe id="frame-social" title="통합사회 사회범 v43" allow="autoplay; fullscreen" allowfullscreen referrerpolicy="same-origin"></iframe>
+  <iframe id="frame-social" title="통합사회 사회범 v43" allow="fullscreen" allowfullscreen referrerpolicy="same-origin"></iframe>
 </section>
 </main>
 <aside id="hub-deploy-warning" role="alert" hidden>
@@ -134,68 +134,6 @@ show(new URL(location.href).searchParams.get('subject')||'home',{push:false});
 })();
 </script>
 
-<script id="studyhub-shared-audio-v2">
-(()=>{
- 'use strict';
- const frames={history:document.getElementById('frame-history'),social:document.getElementById('frame-social')};
- if(!frames.history||!frames.social)return;
- const key='studyhub.shared.music.v2';let settings={muted:false,volume:50};
- try{settings={...settings,...JSON.parse(localStorage.getItem(key)||'null')}}catch(_){}
- settings.volume=Math.max(0,Math.min(100,Number(settings.volume)||0));
- const registry=new Set();let current=null;let owner=null;const origin=location.origin==='null'?'*':location.origin;
- const active=()=>Object.entries(frames).find(([k,f])=>f.closest('section')?.classList.contains('active'))?.[0]||'home';
- const bgm=a=>{try{return a?.tagName==='AUDIO' && !/(effect_|sfx|click|correct|wrong|footstep|heartbeat)/i.test(a.currentSrc||a.src||'') && /(?:\.mp3(?:$|[?#])|\.ogg(?:$|[?#])|\.wav(?:$|[?#])|data:audio\/)/i.test(a.currentSrc||a.src||'')}catch(_){return false}};
- const save=()=>{try{localStorage.setItem(key,JSON.stringify(settings))}catch(_){}};
- const update=()=>{const b=document.getElementById('hubMusicButton');const v=document.getElementById('hubMusicVolume');if(b){b.textContent=settings.muted?'🔇':'♫';b.setAttribute('aria-label',settings.muted?'음악 켜기':'음악 끄기')}if(v&&document.activeElement!==v)v.value=settings.volume};
- const pauseOthers=except=>{for(const m of registry)try{if(m!==except&&bgm(m)&&!m.paused)m.pause()}catch(_){}};
- function patch(win,k){
-  try{
-   if(!win?.HTMLMediaElement)return;
-   const p=win.HTMLMediaElement.prototype;
-   if(p.__hubSharedBgmV2)return;
-   const native=p.play;
-   p.play=function(...args){
-    if(bgm(this)){
-     registry.add(this);current=this;owner=k;
-     if(active()!==k||settings.muted){try{this.pause()}catch(_){};return Promise.resolve()}
-     pauseOthers(this);
-     try{this.volume=settings.volume/100}catch(_){}
-     update();
-    }
-    return native.apply(this,args);
-   };
-   Object.defineProperty(p,'__hubSharedBgmV2',{value:true});
-   const nested=child=>child.addEventListener('load',()=>{try{patch(child.contentWindow,k)}catch(_){}});
-   win.document.querySelectorAll('iframe').forEach(nested);
-   new win.MutationObserver(list=>{for(const rec of list)for(const node of rec.addedNodes)if(node.tagName==='IFRAME')nested(node)}).observe(win.document.documentElement,{subtree:true,childList:true});
-  }catch(_){}
- }
- const controls=document.createElement('div');
- controls.id='hubSharedMusic';controls.innerHTML='<button type="button" id="hubMusicButton" aria-label="음악 끄기">♫</button><input type="range" id="hubMusicVolume" min="0" max="100" step="5" value="50" aria-label="사회·역사 공통 음악 음량">';
- const bar=document.querySelector('header nav');if(bar)bar.after(controls);
- const css=document.createElement('style');css.textContent='#hubSharedMusic{display:flex;gap:4px;align-items:center;padding:4px 7px;border:1px solid #95705d;border-radius:7px;background:#3c2835}#hubSharedMusic button{width:32px;height:32px;color:#fff0d7;border:0;background:transparent;font-size:20px;cursor:pointer}#hubSharedMusic input{width:75px;accent-color:#ecc388}@media(max-width:760px){#hubSharedMusic{padding:2px}#hubSharedMusic input{width:43px}}';document.head.append(css);
- document.getElementById('hubMusicButton')?.addEventListener('click',()=>{
-  settings.muted=!settings.muted;save();
-  if(settings.muted)pauseOthers(null);
-  else if(current&&owner===active()){try{current.play()?.catch?.(()=>{})}catch(_){}}
-  update();
- });
- document.getElementById('hubMusicVolume')?.addEventListener('input',e=>{settings.volume=Number(e.target.value);save();for(const m of registry)if(bgm(m))try{m.volume=settings.volume/100}catch(_){}});
- for(const [k,f]of Object.entries(frames))f.addEventListener('load',()=>{
-   try{patch(f.contentWindow,k)}catch(_){}
-   if(active()!==k){try{f.contentWindow.postMessage({source:'studyhub.v1',action:'suspend'},origin)}catch(_){}}
- });
- document.addEventListener('click',e=>{
-  if(!e.target.closest('[data-view]'))return;
-  queueMicrotask(()=>{
-   for(const [k,f]of Object.entries(frames))if(active()!==k){try{f.contentWindow?.postMessage({source:'studyhub.v1',action:'suspend'},origin)}catch(_){}}
-   if(current&&owner!==active()){try{current.pause()}catch(_){};current=null;owner=null}
-  });
- },true);
- window.addEventListener('popstate',()=>queueMicrotask(()=>{for(const [k,f]of Object.entries(frames))if(active()!==k)try{f.contentWindow?.postMessage({source:'studyhub.v1',action:'suspend'},origin)}catch(_){}}));
- window.StudyHubAudio={state:()=>({active:active(),muted:settings.muted,volume:settings.volume,seen:registry.size})};
- update();
-})();
-</script>
+<script src="/shared/hub-audio.js"></script>
 </body>
 </html>
