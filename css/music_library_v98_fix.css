@@ -1,0 +1,19 @@
+/* v9.8 — Non-blocking music tray attached near the top-right control. */
+.v97-music-dialog[open]{
+ position:fixed!important;
+ top:clamp(52px,6.5vh,76px)!important;
+ right:12px!important;
+ bottom:auto!important;
+ left:auto!important;
+ margin:0!important;
+ width:min(560px,calc(100vw - 24px))!important;
+ max-width:min(560px,calc(100vw - 24px))!important;
+ max-height:calc(100dvh - 90px)!important;
+ z-index:10000!important;
+ overflow-y:auto!important;
+ overscroll-behavior:contain;
+}
+.v97-music-dialog::backdrop{display:none!important;background:transparent!important;backdrop-filter:none!important}
+@media(max-width:600px){
+ .v97-music-dialog[open]{top:58px!important;right:8px!important;width:calc(100vw - 16px)!important;max-width:calc(100vw - 16px)!important;max-height:calc(100dvh - 68px)!important}
+}

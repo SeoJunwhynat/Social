@@ -1,0 +1,25 @@
+/* 대민다위 9.6 — 독립 홈 BGM 플레이어; 다른 UI 크기에는 관여하지 않음 */
+.v96-bgm{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:#301c30eb;border:2px solid #d1a879;box-shadow:0 4px 0 #1a101a;color:#fff0d9;padding:10px 14px;min-height:65px;box-sizing:border-box}
+.v96-bgm-title{display:flex;flex-direction:column;gap:2px;min-width:122px;flex:0 0 auto}
+.v96-bgm-title .v96-eyebrow{color:#e8bd8d;font-size:10px;font-weight:850;letter-spacing:.11em}
+.v96-bgm-title strong{font-size:15px;line-height:1.3}
+.v96-bgm-select{flex:1 1 220px;min-width:165px;max-width:360px;width:auto;height:42px;color:#2c1b28;background:#ffebce;border:2px solid #be8f7a;border-radius:2px;font-size:14px;font-weight:750;padding:5px 10px;box-sizing:border-box}
+.v96-bgm-controls{display:flex;align-items:center;gap:6px;flex:0 0 auto}
+.v96-bgm button{cursor:pointer;min-width:39px;min-height:40px;padding:6px 10px;border:2px solid #bd8b77;background:#5b2e47;color:#ffe9d2;font-weight:900;font-size:16px;border-radius:2px}
+.v96-bgm button:hover{background:#77405b}
+.v96-bgm button:focus-visible,.v96-bgm-select:focus-visible,.v96-bgm-volume input:focus-visible{outline:3px solid #ffe19d;outline-offset:2px}
+.v96-bgm button[data-bgm-action="toggle"]{min-width:66px;background:#ffe4b6;color:#3a2035;border-color:#c28e68;font-size:13px}
+.v96-bgm-volume{display:flex;align-items:center;gap:7px;min-width:115px;color:#f3cba9;font-size:12px;font-weight:800;flex:0 1 155px}
+.v96-bgm-volume input{width:100%;min-width:65px;accent-color:#f6c287;cursor:pointer}
+.v96-bgm-status{flex:1 1 100%;min-height:16px;color:#dfbea9;font-size:11px;line-height:1.2}
+@media(max-width:720px){
+ .v96-bgm{padding:10px;gap:8px;min-height:0}
+ .v96-bgm-title{min-width:100px;flex:1 1 110px}
+ .v96-bgm-select{min-width:0;flex:2 1 160px;font-size:13px;height:38px}
+ .v96-bgm-controls{order:3;flex:0 0 auto}
+ .v96-bgm-volume{order:4;flex:1 1 105px}
+ .v96-bgm-status{order:5}
+ .v96-bgm button{min-width:36px;min-height:38px;padding:6px 9px}
+ .v96-bgm button[data-bgm-action="toggle"]{min-width:58px}
+}
+@media(max-width:380px){.v96-bgm-title{flex-basis:100%}.v96-bgm-select{flex-basis:100%}.v96-bgm-controls{order:3}.v96-bgm-volume{order:4}}

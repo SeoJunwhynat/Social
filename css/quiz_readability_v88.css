@@ -1,0 +1,140 @@
+/* 대민다위 8.8 | 문제 읽기 중심 UI · 기존 기능/정답 데이터는 변경하지 않음 */
+:root{--v88-paper:#fffaf0;--v88-ink:#241d27;--v88-muted:#5b4851;--v88-line:#b28e7d;--v88-plum:#4a293c;--v88-cream:#ffebcf}
+/* 문제 패널과 제목을 읽기 좋은 계층으로 정리 */
+body .arcade-live-wrap,body .quiz-live{max-width:1070px;width:100%;margin-inline:auto}
+body .arcade-paper,body .quiz-panel{
+ background:var(--v88-paper)!important;color:var(--v88-ink)!important;
+ border:2px solid #8d6571!important;border-radius:10px!important;
+ box-shadow:0 6px 0 #180e1c,0 18px 46px #160e1770!important;
+ padding:clamp(18px,2.5vw,34px)!important
+}
+body .arcade-paper-top,body .quiz-panel>.eyebrow{
+ border-bottom:1px solid #d4b6a4!important;padding-bottom:12px!important;margin-bottom:18px!important;
+ display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:7px;
+ color:#6b4254!important;font-weight:850!important;letter-spacing:.02em!important;font-size:13px!important;line-height:1.5
+}
+body .v88-question-label{
+ display:inline-flex;align-items:center;gap:6px;line-height:1.4;padding:5px 11px;
+ color:#fff3dc;background:#513047;border-left:4px solid #e5b86f;
+ font-size:13px;font-weight:900;letter-spacing:.04em;border-radius:3px;margin-bottom:10px
+}
+body .arcade-prompt,body .quiz-panel .quiz-question{
+ font-size:clamp(21px,2vw,29px)!important;line-height:1.66!important;letter-spacing:-.035em!important;
+ font-weight:850!important;color:#251922!important;margin:0 0 22px!important;
+ padding:0 0 6px!important;overflow-wrap:break-word!important;word-break:keep-all!important;
+ white-space:pre-line!important;text-wrap:pretty!important
+}
+body .v88-material-label{
+ display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;
+ background:#eee1d2;color:#543244;border:1px solid #d5bcaa;border-bottom:0;
+ font-size:13px;border-radius:6px 6px 0 0;padding:10px 14px;margin-top:4px
+}
+body .v88-material-label strong{font-weight:900;letter-spacing:.02em;font-size:14px}
+body .v88-material-label span{color:#6f5563;font-size:12px}
+/* 사료 원문 및 지도 자료 — 별도 명확한 영역, 확대해도 글 읽기 가능 */
+body .arcade-paper .v87-source-box,body .quiz-panel .v87-source-box,
+body .arcade-paper .v84-material,body .quiz-panel .v84-material,
+body .arcade-paper .v74-material,body .quiz-panel .v74-material,
+body .arcade-paper .v71-source-preview,body .quiz-panel .v71-source-preview{
+ width:100%!important;max-width:100%!important;box-sizing:border-box;
+ border:2px solid #9e7a73!important;border-radius:0 0 8px 8px!important;
+ background:#fff7e8!important;box-shadow:none!important;
+ margin:0 0 24px!important
+}
+body .arcade-paper .v87-source-box figcaption,body .quiz-panel .v87-source-box figcaption{
+ background:#473042!important;color:#fff7e9!important;font-size:14px!important;padding:12px 16px!important
+}
+body .arcade-paper .v87-source-box blockquote,body .quiz-panel .v87-source-box blockquote{
+ padding:22px clamp(16px,2.8vw,31px)!important;color:#2c2228!important;
+ font-size:clamp(17px,1.65vw,21px)!important;line-height:1.85!important;font-weight:650!important;
+ letter-spacing:-.01em;word-break:keep-all;overflow-wrap:anywhere
+}
+body .arcade-paper .v87-source-box small,body .quiz-panel .v87-source-box small{
+ font-size:13px!important;line-height:1.65!important;color:#604858!important;
+ padding:10px 16px!important;background:#f1e2d0!important
+}
+body .v84-map-source .v84-source-canvas,body .v84-source-canvas{background:#fffaf3!important;padding:clamp(8px,1.4vw,18px)!important}
+body .v84-material figcaption,body .v84-map-callout{font-size:14px!important;line-height:1.6!important}
+body .v84-reading-guide,body .v84-source-excerpt{font-size:14px!important;line-height:1.7!important}
+body .arcade-paper .v84-source-canvas img,body .quiz-panel .v84-source-canvas img{height:auto!important;max-width:100%!important;object-fit:contain!important}
+/* 답안 영역 — 긴 텍스트는 자동으로 1열, 짧은 선택지는 2열 */
+body .arcade-answers,body .quiz-panel .answer-grid{
+ display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px!important;
+ margin-top:12px!important;align-items:stretch
+}
+body .arcade-answers::before,body .quiz-panel .answer-grid::before{
+ content:'정답 선택';grid-column:1/-1;display:block;color:#69465a;
+ font-size:14px;font-weight:900;line-height:1.3;border-bottom:1px solid #dbc5b5;
+ padding:0 0 9px;margin-bottom:2px
+}
+body .v88-long-choices .arcade-answers,body .quiz-panel.v88-long-choices .answer-grid{grid-template-columns:1fr}
+body .arcade-choice,body .quiz-panel .answer{
+ display:flex!important;align-items:center!important;justify-content:flex-start!important;text-align:left!important;
+ gap:13px!important;width:100%!important;min-width:0;min-height:68px!important;
+ border:2px solid #b9a199!important;background:#fffdf8!important;border-radius:7px!important;
+ padding:13px 16px!important;color:#29202b!important;box-shadow:0 2px 0 #c3afa8!important;
+ font-size:clamp(15px,1.27vw,18px)!important;line-height:1.65!important;
+ font-weight:650!important;word-break:keep-all!important;overflow-wrap:break-word!important
+}
+body .arcade-choice>span:last-child{flex:1;min-width:0}
+body .arcade-choice-no,body .quiz-panel .ansidx{
+ display:inline-grid!important;place-items:center!important;flex:0 0 34px!important;width:34px!important;height:34px!important;
+ padding:0!important;background:#f1e1d2!important;color:#583446!important;
+ border:2px solid #a9887f!important;border-radius:5px!important;font-size:15px!important;font-weight:900!important
+}
+body .arcade-choice:hover:not(:disabled),body .quiz-panel .answer:hover:not(:disabled){background:#fff2dc!important;border-color:#8d5266!important;box-shadow:0 3px 0 #8d5266!important}
+body .arcade-choice:focus-visible,body .quiz-panel .answer:focus-visible{outline:3px solid #dbac4b!important;outline-offset:2px!important}
+body .arcade-choice.correct,body .quiz-panel .answer.correct{background:#e4f4e8!important;color:#15482d!important;border-color:#337a53!important;box-shadow:0 2px 0 #287344!important}
+body .arcade-choice.incorrect,body .quiz-panel .answer.wrong{background:#fbe8e2!important;color:#80372e!important;border-color:#b8504b!important;box-shadow:0 2px 0 #b8504b!important}
+body .arcade-choice.correct .arcade-choice-no,body .quiz-panel .answer.correct .ansidx{color:#15482d!important;background:#d4ecdc!important;border-color:#337a53!important}
+body .arcade-choice.incorrect .arcade-choice-no,body .quiz-panel .answer.wrong .ansidx{color:#80372e!important;background:#f6d5cd!important;border-color:#b8504b!important}
+/* 해설: 색과 테두리만으로도 정답/오답 즉시 구분 */
+body .arcade-feedback,body .quiz-panel .feedback{
+ margin-top:22px!important;border:2px solid #a18476!important;border-left-width:6px!important;
+ border-radius:7px!important;background:#fff6e5!important;color:#2b2229!important;
+ padding:17px 21px!important;box-shadow:none!important
+}
+body .arcade-feedback::before,body .quiz-panel .feedback::before{
+ content:'정답 및 해설';display:block;color:#6e4c5c;font-size:13px;font-weight:900;
+ letter-spacing:.035em;margin-bottom:8px
+}
+body .arcade-feedback.yes,body .quiz-panel .feedback.good{border-left-color:#32845c!important;background:#f0f9f0!important}
+body .arcade-feedback.no,body .quiz-panel .feedback.bad{border-left-color:#c24d4b!important;background:#fff1e9!important}
+body .arcade-feedback strong,body .quiz-panel .feedback strong{font-size:clamp(17px,1.5vw,20px)!important;line-height:1.55!important;overflow-wrap:anywhere}
+body .arcade-feedback p,body .quiz-panel .feedback p{font-size:clamp(15px,1.15vw,17px)!important;line-height:1.85!important;color:#3d3038!important;margin:9px 0 15px!important;word-break:keep-all!important;overflow-wrap:anywhere}
+body .arcade-feedback .btn.primary,body .quiz-panel .answer-ctrl .btn.primary{min-height:48px;font-size:15px;font-weight:850}
+/* 부차 정보는 작고 차분하게, 실제 문제 본문은 가장 강조 */
+body .arcade-live-head{gap:9px!important;flex-wrap:wrap!important;margin-bottom:12px!important}
+body .arcade-live-metrics{gap:8px!important;margin-bottom:9px!important}
+body .arcade-live-metrics>div{min-height:62px!important;padding:9px 12px!important}
+body .arcade-live-metrics strong{font-size:clamp(17px,1.7vw,23px)!important;line-height:1.2!important}
+body .arcade-live-metrics span{font-size:12px!important;line-height:1.35!important}
+body .arcade-progress{margin-bottom:15px!important}
+body .arcade-hint{color:#d9c0be!important;line-height:1.55!important;margin-top:16px!important;font-size:12px!important;text-align:center}
+body .written-area input{min-height:51px;font-size:17px!important;line-height:1.5}
+body .source-disclaimer{line-height:1.65!important;color:#674e59!important;font-size:13px!important}
+@media(max-width:800px){
+ body .arcade-paper,body .quiz-panel{padding:17px!important}
+ body .arcade-answers,body .quiz-panel .answer-grid{grid-template-columns:1fr!important;gap:10px!important}
+ body .arcade-prompt,body .quiz-panel .quiz-question{font-size:clamp(19px,4.4vw,23px)!important;line-height:1.65!important;margin-bottom:16px!important}
+ body .arcade-choice,body .quiz-panel .answer{font-size:16px!important;padding:13px!important;min-height:59px!important}
+ body .v87-source-box blockquote{font-size:17px!important;line-height:1.8!important}
+ body .arcade-paper-top{gap:6px!important}
+}
+@media(max-width:480px){
+ body .arcade-paper,body .quiz-panel{padding:13px!important;border-radius:5px!important}
+ body .arcade-paper-top,body .quiz-panel>.eyebrow{font-size:11px!important;gap:4px!important;padding-bottom:9px!important;margin-bottom:12px!important}
+ body .v88-question-label{font-size:12px;margin-bottom:8px}
+ body .arcade-prompt,body .quiz-panel .quiz-question{font-size:19px!important;line-height:1.7!important}
+ body .arcade-choice,body .quiz-panel .answer{font-size:15px!important;line-height:1.6!important;min-height:57px!important;padding:11px 10px!important;gap:10px!important}
+ body .arcade-choice-no,body .quiz-panel .ansidx{width:30px!important;height:30px!important;flex-basis:30px!important}
+ body .v87-source-box blockquote{padding:14px!important}
+ body .arcade-feedback,body .quiz-panel .feedback{padding:13px!important;margin-top:16px!important}
+ body .arcade-live-metrics{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:5px!important}
+ body .arcade-live-metrics>div{padding:8px 4px!important;min-width:0!important;min-height:54px!important}
+ body .arcade-live-metrics strong{font-size:17px!important}
+ body .arcade-live-metrics span{font-size:10px!important;word-break:keep-all}
+ body .arcade-hint{font-size:11px!important}
+ body .v88-material-label{padding:8px 10px;font-size:12px}
+}
+@media(prefers-reduced-motion:reduce){body .arcade-choice,body .quiz-panel .answer{transition:none!important;transform:none!important}}

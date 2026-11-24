@@ -1,0 +1,211 @@
+/* 대민다위 8.6: 대비 강화, 밀도 조절, 문제풀이 화면 일관성.
+   기존 문제·사료·지도·학습기록 엔진에는 손대지 않는다. */
+:root {
+  --v86-night: #1e1721;
+  --v86-rail: #291e2a;
+  --v86-ink: #281a25;
+  --v86-plum: #582c3f;
+  --v86-plum-strong: #753249;
+  --v86-cream: #fff1dd;
+  --v86-surface: #fffaef;
+  --v86-paper: #ffe9ce;
+  --v86-border: #9b6b60;
+  --v86-subtext: #654551;
+  --v86-focus: #e5a93c;
+}
+html {scroll-padding-top:70px;}
+body {background:#1f1722;color:#fff0dd;}
+.app-shell {grid-template-columns:clamp(212px,16.2vw,242px) minmax(0,1fr);}
+.workspace {background:linear-gradient(#201722d9,#201722ea),url('../assets/ui/daemindawi/museum-ambience.webp') center top /cover fixed,#241a25!important;}
+.topbar {height:54px;min-height:54px;background:#221925!important;border-bottom:3px solid #ae8468;padding:0 clamp(12px,1.9vw,28px);}
+.topbar .crumb {color:#fff0dc;font-size:13px;}
+.topbar .crumb span {color:#ffcf80;}
+.topbar .subject-tab {background:#ffe4c2;color:#432d39;border:2px solid #a98168;}
+.topbar .subject-tab.is-active {background:#6e3448;color:#fff7e9;border-color:#efc18d;}
+.topbar .icon-btn {border:2px solid #b38469;background:#3b2938;color:#fff0db;border-radius:3px;}
+footer {background:#211722f0!important;color:#e6c7b3!important;padding:11px 24px;font-size:11px;}
+main#view {width:100%;max-width:none;padding:clamp(12px,1.7vw,23px) clamp(13px,2vw,28px) 40px!important;}
+main#view>.arcade-page {width:100%;max-width:1140px;margin-inline:auto;}
+body.dmd-home-route main#view,body.dmd-mode-route main#view {padding:14px clamp(12px,1.8vw,26px) 34px!important;}
+/* One sidebar design on home, modes, setup, live quiz, results, and all archive screens. */
+.sidebar.v82-sidebar {background:var(--v86-rail)!important;border-right:3px solid #b18871!important;padding:9px 10px 12px!important;}
+.v82-sidebar-back {background:linear-gradient(155deg,#261a27,#362633)!important;opacity:1!important;}
+.v82-side-title {margin:7px 5px 13px!important;padding:10px 4px!important;background:#ffe7c8!important;color:#352332!important;border:3px solid #190f18!important;box-shadow:0 0 0 2px #b88968!important;}
+.v82-side-title strong {font-size:clamp(24px,2.1vw,31px)!important;color:#3f2635!important;text-shadow:none!important;}
+.v82-side-title span {font-size:10px!important;color:#694956!important;}
+.v82-sidebar-nav.v83-sidebar-nav {gap:6px!important;padding:0 3px 8px!important;}
+.v82-nav-item.v83-nav-item.nav-btn,
+.v82-nav-item.v83-nav-item.active[data-a-go="arcade"] {
+  display:flex!important;align-items:center!important;justify-content:flex-start!important;gap:11px!important;
+  min-height:44px!important;height:44px!important;padding:5px 12px!important;
+  border:2px solid #120d16!important;border-radius:3px!important;
+  color:#fef0db!important;background:#452c3d!important;
+  box-shadow:inset 0 0 0 2px #785364,0 2px 0 #0e0911!important;
+  font-size:15px!important;line-height:1.2!important;font-weight:900!important;
+  filter:none!important;transform:none!important;
+}
+.v82-nav-item.v83-nav-item .v83-nav-svg {height:23px!important;width:23px!important;min-width:23px!important;opacity:1!important;filter:brightness(0) invert(.94) sepia(.13)!important;}
+.v82-nav-item.v83-nav-item .v83-nav-label {display:block!important;opacity:1!important;color:inherit!important;}
+.v82-nav-item.v83-nav-item.active,
+.v82-nav-item.v83-nav-item.active[data-a-go="arcade"] {color:#301d29!important;background:#ffdea8!important;border:2px solid #291a24!important;box-shadow:inset 0 0 0 2px #fff4dc,0 0 0 2px #d5a365!important;}
+.v82-nav-item.v83-nav-item.active .v83-nav-svg {filter:brightness(0) saturate(100%) invert(.19) sepia(.45)!important;}
+.v82-nav-item.v83-nav-item:hover:not(.active){background:#65405a!important;}
+/* Shared page surfaces: high contrast with restrained borders and no translucent text. */
+.v82-home.v83-home,.v82-modes {max-width:1120px!important;background:var(--v86-cream)!important;color:var(--v86-ink)!important;border:4px solid #241620!important;box-shadow:0 0 0 3px #c69a7a,5px 6px 0 #0d090f!important;padding:clamp(15px,2vw,24px)!important;}
+.v83-home-title h1 {color:#48293b!important;}
+.v83-home-title p,.v83-home-title .v83-kicker {color:#674651!important;}
+.v83-home-card.v82-card {border:3px solid #261922!important;box-shadow:inset 0 0 0 2px #c89b7e,3px 3px 0 #5a414e!important;min-height:103px!important;padding:11px!important;}
+.v83-home-card.v83-home-major {background:#542c40!important;color:#fff4de!important;min-height:112px!important;}
+.v83-home-card:not(.v83-home-major) {background:#fff0d8!important;color:#31202b!important;}
+.v82-primary-actions {gap:10px;max-width:920px;margin:13px auto 11px;}
+.v82-secondary-actions {gap:8px;max-width:1010px;margin-bottom:14px;}
+.v82-live-panels {gap:10px;}
+.v82-live-panel {background:#fffaee!important;border:3px solid #976b61!important;box-shadow:3px 3px 0 #5b414e!important;padding:10px 13px!important;color:#33232e!important;}
+.v82-live-head {color:#4c2a3d!important;font-size:15px;}
+.v82-live-panel p,.v82-smallstats small {color:#59424a!important;}
+.v82-smallstats b {color:#51253e!important;}
+.v82-mini-action {background:#6c3249!important;border:2px solid #2c1a28!important;color:#fff5e6!important;}
+.v82-mode-grid {gap:8px!important;max-width:970px;}
+.v82-mode-footnote {color:#694a54!important;}
+.v82-modes-head {margin-bottom:12px!important;}
+.v82-modes-head h1 {color:#392334!important;margin:0!important;font-size:clamp(26px,3vw,40px)!important;}
+.v82-modes-head p,.v82-kicker {color:#654753!important;}
+.v82-mode-resume {background:#fffaf0!important;color:#36222e!important;border:2px solid #a07664!important;min-height:58px!important;margin:0 0 13px!important;padding:7px 12px!important;box-shadow:3px 3px 0 #6c5260!important;}
+.v82-mode-resume strong {color:#482638!important;}
+.v82-mode-resume span {color:#624651!important;}
+.v82-mode-resume button {background:#71334c!important;color:#fff7e8!important;border:2px solid #321c2a!important;padding:8px 13px!important;}
+/* The entire question flow uses one paper/ink system: mode -> type -> live -> result.
+   No old navy/transparent cards or alternate quiz sidebar assets. */
+.arcade-page .pagehead,.pagehead {background:#452b3c!important;border:0!important;border-left:5px solid #eeb965!important;box-shadow:3px 3px 0 #140d16!important;border-radius:2px!important;padding:13px 17px!important;margin-bottom:14px!important;max-width:none!important;}
+.arcade-page .page-title,.pagehead .page-title {color:#fff4e2!important;margin:2px 0 4px!important;font-size:clamp(24px,2.45vw,32px)!important;letter-spacing:-.7px!important;}
+.arcade-page .page-kicker,.pagehead .page-kicker {color:#ffd58d!important;font-size:10px!important;letter-spacing:1.2px!important;}
+.arcade-page .page-desc,.pagehead .page-desc {color:#f5dcc7!important;font-size:13px!important;line-height:1.5!important;}
+.arcade-section,.surface,.textbook-lesson,.textbook-page,.v73-type-section,.v73-filters {background:#fff1dd!important;color:#2b1b28!important;border:2px solid #a07362!important;border-radius:3px!important;box-shadow:3px 4px 0 #1c121b66!important;}
+.arcade-section {padding:15px 17px!important;margin:12px 0!important;}
+.surface.pad {padding:17px!important;}
+.surface h1,.surface h2,.surface h3,.surface strong,.arcade-section h2,.section-heading h2 {color:#402739!important;}
+.surface .sub,.surface .muted,.surface p,.arcade-section .section-heading>span {color:#644d54!important;}
+.btn,.v73-type-groups button,.v73-clear {border-radius:3px!important;font-weight:850!important;}
+.btn.primary,.v73-start,.v74-resume-cta {background:#efb75a!important;color:#291920!important;border:2px solid #2c1826!important;box-shadow:inset 0 0 0 2px #ffe1a7,2px 2px 0 #5e404b!important;}
+.btn.ghost,.btn.outline,.v73-clear {background:#653349!important;color:#fff2df!important;border:2px solid #3b2231!important;box-shadow:inset 0 0 0 1px #a26c70!important;}
+.btn:hover:not(:disabled),.v73-start:hover:not(:disabled) {filter:brightness(1.07);}
+.arcade-type-grid.v73-types {grid-template-columns:repeat(3,minmax(0,1fr));gap:8px!important;}
+.v73-types .v73-type,.arcade-type-card.v73-type {background:#fffcf5!important;color:#2f202c!important;border:2px solid #b68a78!important;min-height:96px!important;padding:12px 13px!important;border-radius:3px!important;box-shadow:2px 2px 0 #88665c66!important;}
+.v73-types .v73-type.selected,.arcade-type-card.v73-type.selected {background:#ffe0a9!important;border:3px solid #803c4f!important;box-shadow:inset 0 0 0 2px #fff4dd,2px 3px 0 #6b4b52!important;}
+.v73-type-content strong,.v73-types .v73-type strong {color:#342333!important;font-size:15px!important;}
+.v73-type-content small {color:#57474e!important;font-size:12px!important;}
+.v73-type-count {color:#743449!important;font-size:12px!important;}
+.v73-type-icon {border:2px solid #9e7362!important;background:#ffe7c6!important;color:#5e3044!important;border-radius:3px!important;}
+.v73-type-groups button {background:#f6e5cf!important;color:#3e2638!important;border:2px solid #b48d77!important;}
+.v73-type-groups button.active,.v73-type-groups button[aria-pressed="true"] {background:#67334b!important;color:#fff8ea!important;border-color:#362030!important;}
+.v73-search-row input,.arcade-setup select,.field,select {background:#fffcf5!important;color:#2a1a25!important;border:2px solid #ac806c!important;border-radius:3px!important;min-height:42px!important;}
+.v73-fixed-count {background:#fff9eb!important;border:2px dashed #b38b78!important;}
+.v73-fixed-count small {color:#69434e!important;}
+.v73-fixed-count strong {color:#45263c!important;}
+.v73-current-mode {background:#fff1dc!important;color:#3d2935!important;border:2px solid #aa7e6d!important;border-radius:3px!important;padding:10px 14px!important;}
+.v73-current-mode small,.v73-current-mode span {color:#76505b!important;}
+.v73-current-mode strong {color:#442739!important;}
+.select-steps {margin:9px 0 12px!important;}
+.step-chip {border-radius:3px!important;}
+.v73-startbar {position:sticky;bottom:12px;z-index:8;background:#382535!important;color:#fff5df!important;border:2px solid #d4a475!important;border-radius:3px!important;box-shadow:4px 4px 0 #0f0a11bb!important;padding:12px 15px!important;margin-top:12px!important;gap:12px!important;}
+.v73-start-summary small,.v73-start-summary>span,.v73-start-summary strong span {color:#f3ddc7!important;}
+.v73-start-summary strong {font-size:24px!important;color:#ffe09e!important;}
+.v73-start {min-height:45px!important;min-width:180px!important;font-size:15px!important;}
+/* Question live: consistent paper layout, strong option selection and semantic feedback. */
+.arcade-live-wrap,.quiz-live {max-width:1100px!important;margin:0 auto!important;}
+.arcade-live-head {background:#3b2737!important;padding:9px 12px!important;border:2px solid #b48b70!important;border-radius:3px!important;margin:0 0 9px!important;}
+.arcade-chip {background:#efc98c!important;color:#382435!important;border:2px solid #452735!important;border-radius:3px!important;padding:5px 10px!important;}
+.arcade-timer {color:#ffe6aa!important;}
+.arcade-live-metrics {gap:7px!important;grid-template-columns:repeat(4,minmax(0,1fr));}
+.arcade-live-metrics>div {background:#ffebd0!important;border:2px solid #a7796a!important;color:#3c2737!important;border-radius:3px!important;padding:8px 9px!important;text-align:center!important;}
+.arcade-live-metrics strong {color:#512a3d!important;font-size:clamp(17px,1.7vw,24px)!important;}
+.arcade-live-metrics span {color:#6a4b57!important;font-size:11px!important;font-weight:800!important;}
+.arcade-progress {background:#a48a84!important;height:8px!important;margin:9px 0 13px!important;border:1px solid #7f5c5a!important;border-radius:2px!important;}
+.arcade-progress>div {background:#eaaa41!important;}
+.arcade-paper,.quiz-panel {padding:clamp(17px,2.6vw,29px)!important;background:#fff8ec!important;color:#291c26!important;border:3px solid #9b6f5e!important;border-radius:3px!important;box-shadow:4px 5px 0 #180f19!important;}
+.arcade-paper:before {border-color:#dbba9f!important;}
+.arcade-paper-top {color:#734653!important;border-bottom:2px solid #d8b4a0!important;padding-bottom:8px!important;}
+.arcade-prompt,.quiz-panel .quiz-question {font-size:clamp(20px,2vw,26px)!important;line-height:1.6!important;font-weight:850!important;color:#271a27!important;margin:13px 0 18px!important;}
+.arcade-answers,.quiz-panel .answer-grid {gap:9px!important;}
+.arcade-choice,.quiz-panel .answer {background:#fffdf8!important;color:#2c1e2b!important;border:2px solid #ad887a!important;border-radius:3px!important;min-height:59px!important;padding:11px 14px!important;font-size:16px!important;line-height:1.5!important;box-shadow:1px 2px 0 #9c81737a!important;}
+.arcade-choice-no,.quiz-panel .ansidx {background:#efddc8!important;color:#492a3e!important;border:2px solid #a57c72!important;border-radius:3px!important;}
+.arcade-choice:hover:not(:disabled),.quiz-panel .answer:hover:not(:disabled) {background:#ffefd2!important;border-color:#833f55!important;}
+.arcade-choice.correct,.quiz-panel .answer.correct {background:#d5efdd!important;color:#153d29!important;border:2px solid #408b61!important;}
+.arcade-choice.incorrect,.quiz-panel .answer.wrong {background:#ffe0da!important;color:#753027!important;border:2px solid #b65854!important;}
+.arcade-feedback,.quiz-panel .feedback {background:#fff7e9!important;color:#33252c!important;border:2px solid #b78b71!important;border-radius:3px!important;padding:14px 16px!important;margin-top:15px!important;}
+.arcade-feedback.yes {border-left:6px solid #3d9b62!important;}
+.arcade-feedback.no {border-left:6px solid #cf695a!important;}
+.arcade-feedback p,.quiz-panel .feedback p {color:#4b363c!important;line-height:1.65!important;font-size:15px!important;}
+.arcade-hint {color:#e7d3be!important;font-size:12px!important;}
+.written-area input {background:#fff!important;color:#29202a!important;border:2px solid #a98170!important;}
+.v71-source-card,.v74-material,.v84-map-wrap {background:#fffdf7!important;border-color:#9c7869!important;}
+.v71-source-preview {background:#fffdf6!important;}
+.v71-source-card figcaption {color:#2c2029!important;background:#f4ddc3!important;}
+.v85-wrong-item,.v85-mode-record,.v85-stat {background:#fff9ed!important;color:#2f1c29!important;border-color:#a57c6a!important;box-shadow:2px 3px 0 #62475259!important;}
+.v85-wrong-item p,.v85-mode-numbers {color:#523944!important;}
+.v85-stat small,.v85-stat span {color:#5a4550!important;}
+.museum-card {background:#fff8ec!important;border:2px solid #a77a69!important;box-shadow:3px 3px 0 #261822!important;}
+.museum-info {background:#422c3d!important;}
+.museum-info span {color:#f2d7bf!important;}
+.mobile-ui-dock {background:#281b29!important;border-top:3px solid #dfb18a!important;}
+.mobile-ui-dock button {color:#f5e5d4!important;}
+.mobile-ui-dock button.active {background:#f2d3a9!important;color:#281b29!important;}
+@media(max-width:980px){
+ .app-shell {display:block;}
+ .sidebar.v82-sidebar {position:fixed;left:-290px;width:270px;z-index:45;}
+ .sidebar.v82-sidebar.open {left:0;}
+ .topbar .menu-toggle {display:grid!important;}
+ main#view {padding:14px 12px 90px!important;}
+ body.dmd-home-route main#view,body.dmd-mode-route main#view {padding:12px 12px 94px!important;}
+ .arcade-type-grid.v73-types {grid-template-columns:repeat(2,minmax(0,1fr));}
+}
+@media(max-width:600px){
+ .topbar {padding:0 10px;}
+ .v82-home.v83-home,.v82-modes {padding:11px!important;border-width:3px!important;box-shadow:0 0 0 2px #ae866d,3px 4px 0 #110b13!important;}
+ .v82-primary-actions,.v82-secondary-actions {gap:7px!important;}
+ .v83-home-card.v82-card {padding:8px!important;}
+ .v83-home-title h1 {font-size:36px!important;}
+ .v82-live-panels {grid-template-columns:1fr!important;gap:8px!important;}
+ .v82-mode-resume {flex-wrap:wrap;}
+ .v82-mode-resume button {width:100%;}
+ .arcade-page .pagehead,.pagehead {padding:11px 12px!important;}
+ .arcade-page .page-title,.pagehead .page-title {font-size:24px!important;}
+ .arcade-section,.surface.pad {padding:12px!important;}
+ .arcade-type-grid.v73-types {grid-template-columns:1fr;gap:7px!important;}
+ .v73-types .v73-type {min-height:78px!important;padding:10px 11px!important;}
+ .v73-type-content small {font-size:12px!important;}
+ .v73-startbar {bottom:58px;padding:10px 11px!important;flex-direction:column!important;align-items:stretch!important;gap:7px!important;}
+ .v73-start-summary strong {font-size:18px!important;}
+ .v73-start {width:100%;min-height:44px!important;}
+ .arcade-live-head {flex-wrap:wrap!important;justify-content:flex-start!important;}
+ .arcade-live-metrics {gap:4px!important;}
+ .arcade-live-metrics>div {padding:6px 3px!important;}
+ .arcade-live-metrics strong {font-size:17px!important;}
+ .arcade-live-metrics span {font-size:10px!important;}
+ .arcade-paper,.quiz-panel {padding:14px 11px!important;}
+ .arcade-prompt,.quiz-panel .quiz-question {font-size:19px!important;line-height:1.6!important;}
+ .arcade-choice,.quiz-panel .answer {min-height:55px!important;padding:10px 9px!important;font-size:15px!important;}
+ .v85-stat-grid {gap:7px;}
+}
+@media(prefers-reduced-motion:reduce){.arcade-page,.v82-card,.v82-mode-tile,.v83-home-card{animation:none!important;transition:none!important;}}
+/* Final density pass: no sticky start bar covering lower question cards. */
+@media(min-width:981px){
+ .arcade-type-grid.v73-types{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px!important;}
+ .v73-types .v73-type,.arcade-type-card.v73-type{min-height:84px!important;padding:10px!important;grid-template-columns:34px minmax(0,1fr);gap:8px!important;}
+ .v73-type-icon{width:34px;height:34px;font-size:18px;}
+ .v73-type-content strong{font-size:14px!important;}
+ .v73-type-content small{font-size:11px!important;line-height:1.4!important;}
+ .v73-type-count{font-size:11px!important;}
+}
+.v73-startbar{position:relative!important;bottom:auto!important;}
+.arcade-setup{background:#f8e4cb!important;border:2px solid #c59a84!important;border-radius:3px!important;gap:10px!important;padding:12px!important;}
+.arcade-setup label,.arcade-setup label strong{color:#392735!important;}
+.v73-search-row{gap:8px!important;}
+.v73-filters .section-heading,.v73-type-section .section-heading{margin-bottom:10px!important;}
+.v73-type-groups{gap:6px!important;}
+.v73-type-groups button{padding:6px 10px!important;min-height:32px!important;}
+.v85-list-panel .v85-table th{background:#e8c8aa!important;color:#382032!important;}
+.v85-table td{color:#3c2834!important;}
+.v85-outcome.yes{background:#c5ebd0!important;color:#225239!important;}
+.v85-outcome.no{background:#f4c2bd!important;color:#7e2b30!important;}
+@media(max-width:600px){.v73-startbar{position:relative!important;bottom:auto!important;}}

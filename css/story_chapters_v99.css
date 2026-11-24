@@ -1,0 +1,16 @@
+/* Daemindawi 9.9 - full replacement of former runner exploration with four-chapter story. */
+#view.v9-view:has(.v99-story-layout){overflow-anchor:none;padding-top:12px!important;padding-bottom:12px!important}
+.v99-story-layout{width:100%;max-width:1500px;margin:0 auto;display:flex;flex-direction:column;gap:10px;min-width:0;overscroll-behavior:contain}
+.v99-story-head{display:flex;gap:10px;justify-content:space-between;align-items:center;background:#321e2de8;color:#ffecd3;border:2px solid #bd8f77;padding:7px 12px;flex-wrap:wrap;box-shadow:0 4px 0 #1a101b}
+.v99-story-head h1{margin:0;font-size:clamp(18px,1.8vw,23px);line-height:1.24;color:#ffead3}
+.v99-story-kicker{font-size:10px;color:#e8b88c;letter-spacing:1.5px;font-weight:900}
+.v99-story-head p{display:none;margin:5px 0 0;color:#e8c5b2;font-size:12px;line-height:1.5}
+.v99-story-head-controls{display:flex;gap:7px;flex-wrap:wrap}
+.v99-story-head-controls button{white-space:nowrap;min-height:36px;font-size:12px}
+.v99-story-frame{width:min(100%,850px);height:max(785px,calc(100dvh - 160px));min-height:640px;margin-inline:auto;border:3px solid #b48071;background:#160e1b;display:block;box-sizing:border-box;overflow:auto;box-shadow:0 8px 0 #1e111d;scrollbar-gutter:stable}
+.v99-story-help{background:#2f202cdb;padding:10px 15px;color:#ebcabd;border-left:3px solid #c99979;font-size:12px;line-height:1.5}
+.v99-story-frame.v99-expanded{position:fixed!important;inset:0!important;height:100dvh!important;width:100vw!important;z-index:100000!important;margin:0!important}
+@media(max-width:800px){#view.v9-view:has(.v99-story-layout){padding:5px 4px 75px!important}.v99-story-layout{gap:6px}.v99-story-head{padding:8px 10px;gap:8px}.v99-story-head h1{font-size:19px}.v99-story-head p{font-size:10px}.v99-story-head-controls button{font-size:11px;padding:6px}.v99-story-frame{width:100%;height:calc(100dvh - 165px);min-height:570px;border-width:2px}.v99-story-help{font-size:11px;padding:7px 10px}}
+@media(max-width:420px){.v99-story-head p{display:none}.v99-story-frame{height:calc(100dvh - 160px);min-height:570px}}
+
+.v99-story-frame:fullscreen{width:100vw!important;height:100dvh!important;min-height:0!important;border:0!important;box-shadow:none!important}

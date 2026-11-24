@@ -1,0 +1,90 @@
+/* 대민다위 8.0 · 고정 박물관 UI. 실제 학습 엔진은 7.5 그대로 사용. */
+:root{--bg:#2b1c24;--side:#281921;--panel:#3a262e;--panel2:#4d303a;--panel3:#5a3b43;--text:#fcebd5;--sub:#e2c7b0;--muted:#c5a998;--gold:#e0b18a;--gold2:#ffdfb8;--line:#946f60}
+body{background:#291a23;color:var(--text);background-image:none}
+.app-shell{grid-template-columns:clamp(226px,17.11vw,286px) minmax(0,1fr);min-height:100dvh}
+.sidebar.dmd-sidebar{position:sticky;top:0;height:100dvh;max-height:none;overflow:visible;width:100%;padding:0!important;background:#281921!important;border:0;box-shadow:none;z-index:30;isolation:isolate}
+.dmd-sidebar-art{pointer-events:none;position:absolute;inset:0;background:url('../assets/ui/daemindawi/sidebar-fixed.webp') top center /100% 100% no-repeat}
+.dmd-sidebar-buttons{position:absolute;inset:0}
+.dmd-sidebar-hit.nav-btn{position:absolute;left:7.5%;width:85%;top:var(--hit-top);height:5.72%;min-height:0;padding:0!important;margin:0;display:block;background:transparent;border:2px solid transparent;box-shadow:none;border-radius:3px;outline-offset:-3px;color:transparent;font-size:0;transition:background .11s;transform:none}
+.dmd-sidebar-hit.nav-btn:hover{background:#f2c28b1c;border-color:#ffe0aa93;transform:none;box-shadow:inset 0 0 0 1px #ffeac16b}
+.dmd-sidebar-hit.nav-btn.active{background:#e3b08025;border-color:#f6d9a4;box-shadow:inset 0 0 0 1px #ffe7b5}
+.dmd-sidebar-hit.nav-btn:focus-visible{outline:3px solid #ffe7b8;outline-offset:0}
+.dmd-sidebar #arcadeNav{display:none!important}
+.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+.workspace{min-width:0;background:linear-gradient(#281921d9,#281921e8),url('../assets/ui/daemindawi/museum-ambience.webp') center top /cover fixed;isolation:isolate}
+.topbar{background:#2b1c24f2;border-bottom:2px solid #8c6254;min-height:57px;height:57px}
+.crumb{color:#fae2c2;font-weight:900}
+.subject-tab{background:#f2dcc0;border-color:#d0a07f}.subject-tab.is-active{background:#6d3e4e;border-color:#ecc39f}
+main#view{max-width:none;min-width:0;padding:28px clamp(15px,2.7vw,40px) 45px}
+body.dmd-home-route main#view,body.dmd-mode-route main#view{padding:0;max-width:unset}
+body.dmd-mode-route main#view>.arcade-page{padding:0}
+.dmd-stage-image{position:relative;width:100%;overflow:hidden;background:#2d1b25}
+.dmd-stage-image>img{width:100%;height:auto;display:block;image-rendering:auto;user-select:none}
+.dmd-hotspot{position:absolute;z-index:2;display:block;border:3px solid transparent;border-radius:4px;background:transparent;cursor:pointer;padding:0;touch-action:manipulation;transition:border .13s,background .13s}
+.dmd-hotspot:hover{border-color:#ffe6af;background:rgba(255,239,195,.09);box-shadow:inset 0 0 0 2px #d3a47a99}
+.dmd-hotspot:focus-visible{outline:4px solid #f5bf85;outline-offset:-4px;background:#ffe6af2d}
+.dmd-home-status{position:absolute;z-index:4;left:11.55%;top:46.7%;width:73%;height:6.4%;border:2px solid #a77d6d;background:#3a2431;color:#ffe4c7;display:flex;align-items:center;justify-content:space-between;gap:1.2vw;padding:0 2%;font-size:clamp(9px,.9vw,15px);font-weight:800;text-align:left;cursor:pointer;white-space:nowrap}
+.dmd-home-status strong{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:clamp(10px,.95vw,15px)}
+.dmd-home-status:hover{background:#513041}
+.dmd-home-mobile,.dmd-mode-mobile{display:none}
+.dmd-resume-under{margin:0 auto;padding:12px clamp(15px,2.7vw,40px) 30px;max-width:1100px}
+.dmd-resume-under .v74-resume-card{max-width:none}
+.pagehead{border-bottom:1px solid #7f5b56;padding-bottom:16px}.page-title{color:#ffe7ca}.page-desc{color:#e4c7b7}
+.surface,.textbook-page,.textbook-lesson{background:#f4e2ca;color:#38252b;border:3px solid #a47d66;box-shadow:4px 5px 0 #1b1019;border-radius:3px}
+.surface h2,.surface h3,.surface strong{color:#3d2931}.surface .sub,.surface .muted{color:#745d59}
+.arcade-paper{border-color:#a87d66}
+.arcade-page:not(:has(.dmd-stage-image)){padding:6px 0 20px}
+.arcade-page .pagehead,.arcade-page .v73-current-mode{max-width:1200px}
+.arcade-page .arcade-mode{border-color:#ad8172}
+.museum-grid img,.museum-asset img,.v74-material img{object-fit:contain!important}
+.mobile-ui-dock{background:#2e1c25;border-color:#a77b63}
+.mobile-ui-dock button.active{background:#734255}
+.topbar .menu-toggle{display:none}
+footer{background:#251822b0;border-color:#694a49}
+@media(max-width:980px){
+ .app-shell{display:block}
+ .sidebar.dmd-sidebar{position:fixed;left:min(-320px,-92vw);top:0;width:min(85vw,286px);height:100dvh;z-index:42;transition:left .19s;box-shadow:5px 0 20px #0a0509b9}
+ .sidebar.dmd-sidebar.open{left:0}
+ .topbar .menu-toggle{display:grid}
+ .workspace{min-height:100vh}
+ main#view{padding:22px 15px 95px}
+ body.dmd-home-route main#view,body.dmd-mode-route main#view{padding:0 0 78px}
+ .dmd-home-desktop,.dmd-mode-desktop{display:none}
+ .dmd-home-mobile,.dmd-mode-mobile{display:block;padding:20px 15px 40px}
+ .dmd-mobile-hero{padding:20px 12px 23px;margin:0 0 20px;text-align:center;border-bottom:2px solid #946c61;background:#30202a99}
+ .dmd-mobile-hero strong{display:block;font-size:clamp(34px,8vw,50px);font-weight:950;color:#fff0d9;text-shadow:3px 3px #4e303a}
+ .dmd-mobile-hero span{display:block;font-size:12px;color:#e0bd9d;margin-top:3px}
+ .dmd-mobile-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+ .dmd-mobile-grid.dmd-mobile-major{grid-template-columns:1fr;gap:11px}
+ .dmd-mobile-grid button,.dmd-mode-mobile-grid button{padding:0;display:block;border:3px solid #bd8b72;background:#3c2730;box-shadow:4px 4px #170f15;border-radius:2px;overflow:hidden;cursor:pointer;min-width:0}
+ .dmd-mobile-grid button:hover,.dmd-mode-mobile-grid button:hover{border-color:#ffe4b9}
+ .dmd-mobile-grid img,.dmd-mode-mobile-grid img{display:block;width:100%;height:auto}
+ .dmd-mobile-status{margin:16px 0 24px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:7px;width:100%;padding:13px;background:#3e2833;color:#ffebd4;border:2px solid #a47d68;box-shadow:3px 3px #1e1118;text-align:left}
+ .dmd-mobile-status strong{display:block;flex-basis:100%;font-size:15px;color:#f9dab6}
+ .dmd-home-mobile h2{color:#ffe6c7;border-left:4px solid #bb8e70;font-size:16px;padding-left:10px;margin:20px 0 12px}
+ .dmd-mobile-links{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:15px}
+ .dmd-mobile-links button{background:#f4e0c7;border:2px solid #a27b69;color:#36242b;font-weight:900;min-height:46px}
+ .dmd-mode-mobile{padding:20px 14px 12px}
+ .dmd-mode-mobile header{text-align:center;margin:0 0 20px;color:#fff0d8}
+ .dmd-mode-mobile h1{margin:0 0 6px;font-size:29px;color:#f8e1c1}
+ .dmd-mode-mobile p{margin:0;color:#e4c8ae;font-size:13px}
+ .dmd-mode-mobile-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+ .dmd-resume-under{padding:0 15px 23px}
+ .arcade-page:not(:has(.dmd-stage-image)){padding:18px 13px 85px}
+}
+@media(max-width:420px){.dmd-mobile-grid{gap:8px}.dmd-mobile-grid.dmd-mobile-major{gap:8px}.dmd-mobile-links button{font-size:11px}.dmd-mode-mobile-grid{gap:8px}}
+@media(prefers-reduced-motion:reduce){.dmd-hotspot,.sidebar.dmd-sidebar{transition:none}}
+
+/* Historic records use the same parchment-and-plum vocabulary instead of legacy navy cards. */
+.museum-card{background:#f5e1c8!important;color:#3e2931!important;border:2px solid #ac7c65!important;border-radius:2px!important;box-shadow:3px 4px 0 #170e16!important}
+.museum-card:hover{border-color:#f3c396!important}
+.museum-img{background:#f2ebe2!important}
+.museum-info{background:#3b2631!important;color:#f9e5ca!important}
+.museum-info strong{color:#ffe5c9!important}
+.museum-info span{color:#d9b9a4!important}
+.chapter-card{background:linear-gradient(150deg,#51363d,#33232d)!important;border:2px solid #a37968!important;color:#f5ddbe!important;border-radius:2px!important}
+.chapter-card:hover{border-color:#e3b98b!important}
+.chapter-card .year{color:#f9d6a7!important}
+.dialog{background:#32222b;border:2px solid #b78d76;border-radius:3px;color:#f9e4cc}
+.dialog-head{border-color:#8d685f}
+.dialog-close{color:#ffe4c5}

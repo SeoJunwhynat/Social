@@ -1,0 +1,19 @@
+/* Textbook source reader and fact-matching source label */
+.v7-reader{padding:clamp(15px,3vw,30px)!important}
+.v7-reader-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.v7-reader h2{font-size:clamp(22px,2.8vw,33px);margin:8px 0 19px;color:#f0e6c9}
+.v7-reader-grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(280px,1fr);gap:22px;align-items:start}
+.v7-clickable-image{width:100%;padding:0;background:#151923;border:1px solid #746850;border-radius:11px;overflow:hidden;color:#e0cfac;cursor:zoom-in;text-align:center}
+.v7-clickable-image img{width:100%;height:auto;max-height:560px;object-fit:contain;display:block;background:#ece5d0}
+.v7-clickable-image span{display:block;font-size:12px;padding:10px 12px}
+.v7-points{background:#1c2435;border-radius:12px;padding:18px 19px;border:1px solid #39435b}
+.v7-points h3{font-size:17px;color:#f7d792;margin:0 0 15px}.v7-points ul{padding-left:23px;line-height:1.8;margin:0 0 18px}.v7-points li{margin-bottom:9px}
+.v7-audit-note{font-size:12px;color:#c5c6c8;padding:12px;background:#111827;border-radius:8px;line-height:1.6}.v7-points .btn{margin:6px 5px 0 0}
+.v7-chapter-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:10px}
+.v7-chapter-card{display:flex;flex-direction:column;align-items:start;gap:8px;text-align:left;padding:14px 15px;min-height:125px;background:#1b2333;border:1px solid #44506b;border-radius:11px;color:#f0e3cd;cursor:pointer}
+.v7-chapter-card:hover,.v7-chapter-card.current{background:#2c3649;border-color:#e5b975}
+.v7-chapter-card strong{font-size:14px;line-height:1.5}.v7-chapter-card span:last-child{font-size:11px;color:#aab3c5}
+.v7-chapter-number{color:#eacb8c;font-size:12px;font-weight:700}
+.v7-question-material figcaption{flex-wrap:wrap;line-height:1.4;gap:8px}.v7-question-material .v62-reference-type{font-weight:400}
+@media(max-width:780px){.v7-reader-grid{grid-template-columns:1fr}.v7-points{padding:14px 15px}.v7-chapter-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.v7-chapter-card{padding:12px;min-height:124px}.v7-reader-heading .row{gap:5px}}
+@media(max-width:390px){.v7-chapter-grid{grid-template-columns:1fr 1fr;gap:7px}.v7-chapter-card{padding:10px;min-height:120px}.v7-chapter-card strong{font-size:12px}}

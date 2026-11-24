@@ -1,0 +1,51 @@
+/* 6.2 accessibility, legible data, and story-film runner */
+.v62-question-material{margin:16px 0 20px;background:#fff0d9;color:#3d3026;border:2px solid #947447;border-radius:16px;box-shadow:0 9px 24px #0002;overflow:hidden;max-width:960px}
+.v62-question-material figcaption{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;padding:11px 16px;font-size:14px;font-weight:900;background:#eddbb9;border-bottom:1px solid #b89b68}
+.v62-reference-type{font-size:11px;border-radius:12px;padding:4px 10px;background:#d3b489;color:#513720}
+.v62-question-material>img{display:block;width:100%;height:auto;max-height:none;aspect-ratio:16/9;object-fit:contain;object-position:center;background:#e3d6bb;border:0;filter:none}
+.v62-material-foot{padding:12px 15px;display:flex;justify-content:space-between;gap:15px;align-items:center;flex-wrap:wrap}
+.v62-material-foot small{font-size:12px;line-height:1.55;color:#65513d;flex:1 1 200px}
+.v62-zoom,.v62-image-close{cursor:pointer;border:0;border-radius:10px;padding:12px 18px;background:#5d3c34;color:#fff0d9;font-weight:900;font-size:13px;min-height:44px}
+.v62-image-error{margin:12px;color:#913c28;font-weight:800}
+.v62-image-overlay{position:fixed;inset:0;z-index:10005;background:#080d16ee;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:12px;overflow:auto}
+.v62-image-bar{display:flex;align-items:center;justify-content:space-between;gap:18px;width:min(1100px,100%);color:#fff0d4;margin-bottom:12px}
+.v62-image-overlay>img{display:block;max-width:100%;max-height:calc(100dvh - 100px);width:auto;height:auto;object-fit:contain;border:3px solid #dcc69f;box-shadow:0 15px 50px #000b}
+.v62-cinematic-overlay{z-index:30!important;padding:0!important;background:#0b1122f5!important}
+.runner-frame .v62-cutscene{position:absolute;inset:0;overflow:hidden;background:#162137;color:#fff4da;border:2px solid #ad895e;display:flex;flex-direction:column;justify-content:space-between;box-shadow:inset 0 0 70px #0d1220}
+.v62-cutscene-sky{position:absolute;inset:0;background:radial-gradient(ellipse at 75% 28%,#d1a77a45,transparent 30%),linear-gradient(160deg,#303f52,#172538 58%,#5d493d);overflow:hidden}
+.v62-cutscene-moon{position:absolute;top:13%;right:14%;width:62px;height:62px;border-radius:50%;background:#ffe6aa;box-shadow:0 0 70px #ffe0a973}
+.v62-cutscene-street{position:absolute;bottom:0;height:50%;left:0;right:0;border-bottom:12px solid #1b2336;display:flex;align-items:flex-end;justify-content:space-around}
+.v62-cutscene-street span{width:14%;height:65%;background:#111a2d;box-shadow:inset 0 11px #45576d;clip-path:polygon(0 15%,10% 15%,10% 0,70% 0,70% 14%,100% 14%,100% 100%,0 100%)}
+.v62-cutscene-street span:nth-child(2){height:95%}.v62-cutscene-street span:nth-child(4){height:85%}
+.v62-cutscene-person{position:absolute;right:13%;bottom:14%;font-size:62px;color:#d3b49088;filter:drop-shadow(0 0 14px #ddae66)}
+.v62-cutscene-head,.v62-cutscene-dialog,.v62-cutscene-foot{z-index:1;position:relative}
+.v62-cutscene-head{padding:24px 35px 0;display:flex;align-items:start;flex-direction:column;gap:6px;text-shadow:1px 2px 5px #000}
+.v62-cutscene-eyebrow{font-size:12px;font-weight:900;letter-spacing:3px;color:#f8c789}
+.v62-cutscene-head strong{font-size:26px;font-weight:900}
+.v62-cutscene-dialog{margin:auto 25px 6px;padding:15px 22px;background:#111a30e8;border:1px solid #b29b78;border-left:5px solid #e9b879;backdrop-filter:blur(5px);border-radius:10px;max-height:55%;overflow:auto;animation:v62-appear .5s both}
+.v62-character-name{font-size:13px;color:#ffd998;font-weight:950}.v62-character-name small{font-weight:600;color:#c6c2b7}
+.v62-script-line{font-size:clamp(14px,2vw,19px);line-height:1.5;color:#f8ecda;margin:7px 0 12px;font-weight:750}
+.v62-event-record{padding:9px 12px;background:#ede0c9;color:#3c342e;border-radius:8px}
+.v62-event-record span{font-size:11px;letter-spacing:.7px;font-weight:950;color:#815a33}
+.v62-event-record p{font-size:clamp(12px,1.5vw,15px);margin:4px 0;color:#332a22;line-height:1.5;font-weight:800}
+.v62-cutscene-foot{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:8px 27px 15px;color:#e8d7b9;font-size:12px}
+.v62-skip-btn{background:#e4bd84;color:#33271e;border-radius:10px;min-height:42px;border:2px solid #eace9f;padding:9px 16px;font-weight:900;cursor:pointer}
+.v62-cutscene-timer{position:absolute;z-index:2;bottom:0;left:0;height:5px;background:#f8cc80;transform-origin:left;animation:v62-progress 6.2s linear forwards;width:100%}
+@keyframes v62-progress{from{transform:scaleX(1)}to{transform:scaleX(0)}}
+@keyframes v62-appear{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.runner-warning{position:absolute;z-index:14;top:104px;left:50%;transform:translateX(-50%) translateY(-8px);pointer-events:none;white-space:nowrap;border-radius:12px;padding:8px 14px;background:#2e1b19;border:3px solid #ffb55e;box-shadow:0 3px 16px #0008;color:#ffe9b4;font-weight:950;font-size:14px;opacity:0;transition:opacity .14s,transform .14s}
+.runner-warning.visible{opacity:1;transform:translateX(-50%) translateY(0)}.runner-warning.slide-warning{background:#2b1a43;border-color:#cc8bff;color:#fff0ff}
+@media(max-width:700px){.v62-question-material figcaption{font-size:12px;padding:9px 10px}.v62-material-foot{padding:10px}.v62-zoom{width:100%;text-align:center}.runner-warning{top:98px;font-size:12px;padding:6px 9px}.runner-frame .v62-cutscene-head{padding:12px 14px 0}.v62-cutscene-head strong{font-size:19px}.runner-frame .v62-cutscene-dialog{margin:auto 6px 4px;padding:10px 12px;max-height:64%;min-height:0}.v62-script-line{font-size:13px!important;line-height:1.35;margin:5px 0}.v62-event-record{padding:6px 8px}.v62-event-record p{font-size:11px!important;line-height:1.35}.v62-cutscene-foot{padding:5px 10px 12px;gap:6px;font-size:9px}.v62-skip-btn{padding:7px 10px;font-size:11px;min-height:37px}.v62-cutscene-moon{width:39px;height:39px}}
+@media(max-height:430px){.v62-cutscene-head{padding-top:7px!important}.v62-cutscene-head strong{font-size:17px}.v62-cutscene-dialog{max-height:58%;overflow:auto}}
+
+/* Put mobile controls OUTSIDE the obstacle lane and remove former obstructive hint toast. */
+.runner-frame .runner-prompt{display:none!important}
+@media(max-width:700px) and (orientation:portrait){
+  body.story-playing:not(.story-immersive) .runner-controls{position:fixed!important;left:10px!important;right:10px!important;top:auto!important;bottom:max(10px,env(safe-area-inset-bottom))!important;z-index:901!important;justify-content:flex-end;pointer-events:none}
+  body.story-playing:not(.story-immersive) .runner-control-info{display:none}
+  body.story-playing:not(.story-immersive) .runner-actions{pointer-events:auto;gap:10px}
+  body.story-playing:not(.story-immersive) .runner-controls .game-control{width:81px;height:63px;background:#215e7af0}
+  body.story-playing:not(.story-immersive) .runner-controls .runner-slide{background:#75513feF}
+  body.story-playing .runner-warning{top:88px}
+}
+@media(min-width:701px) and (pointer:coarse){.runner-controls .game-control{opacity:.8}}

@@ -1,0 +1,27 @@
+/* 한국사 7.4 · 이어서 풀기 / 지도 전체 보기 / 사료 집중 분석 */
+.v74-resume-card{margin:14px 0 24px;padding:22px;border:1px solid #dfad68;border-radius:18px;background:linear-gradient(135deg,#44342c,#27232b);box-shadow:0 12px 35px #0a070722;color:#f6ead7}
+.v74-resume-head{display:flex;align-items:center;gap:13px;flex-wrap:wrap}.v74-resume-head strong{color:#ecd0a1}
+.v74-resume-card h3{font-size:clamp(18px,2vw,24px);margin:14px 0 5px}.v74-resume-card p{line-height:1.55;color:#e1cbb8;margin:0 0 12px}
+.v74-resume-card>small{display:block;color:#c4ac9a;margin-top:9px}.v74-resume-track{height:10px;border-radius:99px;background:#17171c;overflow:hidden;margin:13px 0 17px}
+.v74-resume-track span{height:100%;display:block;background:linear-gradient(90deg,#dda55b,#f6d996);border-radius:99px}
+.v74-resume-cta{min-width:170px;min-height:48px}.v74-resume-empty{display:flex;align-items:center;gap:13px;padding:15px;border:1px dashed #88745e;border-radius:12px;background:#26232b}
+.v74-resume-empty span{font-size:26px}.v74-resume-empty div{flex:1;min-width:0;display:grid;gap:3px}.v74-resume-empty strong{color:#efceaa}.v74-resume-empty small{color:#c4b1a7}.v74-resume-empty .btn{flex:none}
+.v74-home-resume:disabled{opacity:.6;cursor:default}.v74-end{font-size:12px}.arcade-live-head{flex-wrap:wrap}
+/* 버튼과 안내를 원본 이미지와 분리하여 지도·사료를 가리지 않는다. */
+.v74-material{overflow:visible}.v74-material .v74-source-inline{display:block;max-width:100%;width:auto;height:auto;max-height:none;margin:18px auto 0;border:1px solid #cebda4;background:#fff9eb;object-fit:contain}
+.v74-material.v74-map-source .v74-source-inline{width:min(100%,580px);image-rendering:auto}
+.v74-source-toolbar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:9px;margin:12px 14px}
+.v74-source-toolbar span{font-size:11px;color:#725b41}.v74-material-zoom{background:#443528;color:#fff3d9;border:2px solid #e3be88;padding:12px 16px;border-radius:10px;font-weight:800;min-height:44px;cursor:zoom-in}
+.v74-material-zoom:focus-visible{outline:3px solid #aa753e;outline-offset:3px}.v74-focus{padding:13px 15px;background:#fff2d6;border-block:1px solid #cfaa75;color:#4a3124}
+.v74-focus b{color:#774b2c}.v74-focus p{margin:5px 0 0;line-height:1.6;font-size:14px}
+body.v74-zoom-open{overflow:hidden}.v74-source-overlay{display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:12px;align-items:stretch;justify-content:stretch;padding:12px}
+.v74-source-overlay .v71-source-overlay-bar{width:100%;min-width:0;display:flex;flex-wrap:wrap}.v74-zoom-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.v74-zoom-controls button{background:#efcca0;border:0;border-radius:8px;padding:9px 13px;color:#30231e;font-size:13px;font-weight:800;min-height:41px}
+.v74-zoom-controls span{color:#fff3dd;min-width:42px;text-align:center;font-size:13px}
+.v74-zoom-viewport{height:100%;width:100%;min-height:0;overflow:hidden;background:#16171b;display:flex;align-items:center;justify-content:center;touch-action:none;cursor:grab;user-select:none}
+.v74-zoom-viewport:active{cursor:grabbing}.v74-zoom-viewport .v74-zoom-img{display:block;max-height:100%;max-width:100%;width:auto;height:auto;object-fit:contain;transform-origin:center center;will-change:transform;pointer-events:none;background:#fff;box-shadow:0 4px 18px #0007}
+.v74-source-overlay>small{margin:auto;color:#f0ddc3}
+@media(max-width:750px){.v74-resume-empty{flex-wrap:wrap}.v74-resume-empty .btn{width:100%}.v74-resume-card{padding:17px}.v74-resume-cta{width:100%}.v74-map-source .v74-source-inline{min-width:0;width:100%}.v74-source-toolbar{margin:10px}.v74-material-zoom{width:100%}.v74-source-toolbar span{display:none}.v74-source-overlay{padding:6px}.v74-source-overlay .v71-source-overlay-bar{gap:6px}.v74-zoom-controls{gap:5px}.v74-zoom-controls button{padding:8px 9px;min-height:40px}}
+
+/* 문제 화면에서는 상단 메뉴가 자료 위에 달라붙지 않도록 일반 흐름에 둡니다. */
+body.v74-in-quiz .topbar{position:relative!important;top:auto!important}

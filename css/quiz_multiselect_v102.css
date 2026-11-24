@@ -1,0 +1,12 @@
+/* 10.2 — 복수 문제 유형 선택: 선택 상태·요약을 명확하게 표시 */
+.v102-selection-bar{display:flex;align-items:center;gap:9px;flex-wrap:wrap;background:#fff0d6;border:2px solid #b98775;padding:11px 13px;margin-bottom:14px;color:#45283d}
+.v102-selection-bar>div{flex:1 1 180px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.v102-selection-bar strong{color:#4a2638;font-size:14px;font-weight:900}
+.v102-selection-bar span{font-size:12px;line-height:1.5;color:#704859;overflow-wrap:anywhere;word-break:keep-all}
+.v102-selection-bar button{border:2px solid #97576b;background:#58304a;color:#fff1d7;min-height:39px;padding:5px 12px;font-size:12px;font-weight:900;cursor:pointer}
+.v102-selection-bar button:disabled{opacity:.45;cursor:not-allowed}
+.v102-kind-tick{display:inline-grid;place-items:center;vertical-align:middle;width:25px;height:25px;border:2px solid #bd9a83;border-radius:3px;background:#fff6e5;color:#744658;font-size:15px;font-weight:900;margin-left:4px}
+.v73-type.selected .v102-kind-tick{background:#61364a!important;border-color:#a46873!important;color:#ffebd1!important}
+.v73-types .v73-type[aria-pressed="true"]{outline:2px solid #a35b68;outline-offset:1px}
+.v73-start-summary>small{white-space:normal;overflow-wrap:anywhere;line-height:1.5}
+@media(max-width:760px){.v102-selection-bar{gap:7px;padding:9px}.v102-selection-bar>div{flex-basis:100%}.v102-selection-bar button{flex:1 1 auto;font-size:12px}}

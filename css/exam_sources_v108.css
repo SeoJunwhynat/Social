@@ -1,0 +1,16 @@
+/* 10.7 PC/mobile/tablet source presentation: preserve actual image ratio. */
+#view .v107-source-frame{display:flex;flex-direction:column;justify-content:center;align-items:center;min-height:150px;background:#fff9ed;border:1px solid #b99988;padding:14px!important;max-width:100%;overflow:hidden}
+#view .v107-source-frame img{display:block;max-width:100%!important;width:min(100%,680px)!important;height:auto!important;max-height:min(62vh,580px)!important;object-fit:contain!important;image-rendering:auto}
+#view .v107-source-frame img[hidden]{display:none!important}
+#view .v107-image-error:not([hidden]){display:block;font-size:14px;color:#943f42;background:#fff0eb;border:1px solid #c5837d;padding:15px;line-height:1.7}
+#view .v84-material figcaption{line-height:1.6;overflow-wrap:anywhere}
+#view .v87-source-box{margin-top:12px!important}
+#view .v87-source-box blockquote{white-space:pre-line;line-height:1.8}
+#view .v88-material-label span{font-size:12px}
+@media(max-width:700px){#view .v107-source-frame{min-height:105px;padding:9px!important}#view .v107-source-frame img{max-height:min(48vh,450px)!important}#view .v84-material figcaption{font-size:12px!important}}
+
+/* 10.8: source-panel crops preserve aspect ratio, fully visible; zoom still uses original pixel data */
+#view .v108-source-canvas img, #view .v107-source-frame img{height:auto!important;max-height:min(75vh,780px)!important;object-fit:contain!important;image-rendering:auto!important}
+#view .v107-source-frame{max-height:none!important;overflow:visible!important;}
+#view .v84-material figcaption{font-weight:800!important;}
+@media(max-width:700px){#view .v107-source-frame img{max-height:min(60vh,550px)!important}}

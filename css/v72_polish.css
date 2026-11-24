@@ -1,0 +1,44 @@
+/* 7.2 | 문제 풀이 우선의 한지 UI, 자료 접근성, PC·모바일 반응형 */
+:root{--v72-gold:#eac594;--v72-ink:#302721;--v72-paper:#f5e7ce}
+button,input,select{font-family:inherit}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #d7a15b!important;outline-offset:3px}
+#view{min-width:0}
+.pagehead{max-width:1160px}.page-desc{line-height:1.7}
+.quiz-panel,.arcade-paper{background:linear-gradient(150deg,#faf0dc 0%,#f5e1be 80%,#e8c99d 100%);border:2px solid #ac815d;border-radius:18px;box-shadow:0 22px 65px #07070a55,inset 0 0 0 5px #fff8ed80}
+.quiz-live,.arcade-live-wrap{max-width:1050px}
+.quiz-panel .quiz-question,.arcade-paper .arcade-prompt{font-size:clamp(20px,2.1vw,29px);line-height:1.8;color:#302824;white-space:pre-line;overflow-wrap:anywhere;text-wrap:pretty}
+.quiz-panel .answer-grid,.arcade-answers{gap:12px}
+.quiz-panel .answer,.arcade-choice{padding:15px 18px;min-height:72px;border-radius:12px;background:#fffdf7;border:1px solid #c7ab86;color:#302824;box-shadow:0 2px 0 #8c6e452b;font-size:clamp(14px,1.2vw,17px);line-height:1.55;word-break:keep-all}
+.quiz-panel .answer:hover:not(:disabled),.arcade-choice:hover:not(:disabled){border-color:#966039;background:#fff8e8;transform:translateY(-1px)}
+.quiz-panel .answer.correct,.arcade-choice.correct{background:#e0f0dd;color:#225539;border-color:#458b60}
+.quiz-panel .answer.wrong,.arcade-choice.incorrect{background:#fbe3dd;color:#7c322e;border-color:#c66c69}
+.quiz-panel .feedback,.arcade-feedback{margin-top:22px;border:1px solid #c6a382;background:#fff8e9;color:#332923;border-radius:12px;padding:18px;line-height:1.75}
+.quiz-panel .feedback p,.arcade-feedback p{line-height:1.85;font-size:15px;word-break:keep-all;color:#4e3e36!important}
+.arcade-paper-top{color:#795841;font-size:12px}.arcade-paper .v4-bookmark-row{margin-bottom:12px}
+.arcade-paper .source-disclaimer{color:#705a49;font-size:12px}.arcade-paper .arcade-hint{color:#d2b9a0}
+.v71-source-card{max-width:none;background:#fff8e9;border:1px solid #b58b5e;border-radius:14px;margin:21px 0}
+.v71-source-card figcaption{background:#ead9b8;border-bottom:1px solid #c6ab7b;color:#362821;align-items:flex-start;padding:12px 17px}
+.v71-source-card figcaption span{max-width:65%;color:#735840;text-align:right}
+.v71-source-preview{min-height:180px;padding:20px 18px 48px;background:#fffcf6}
+.v71-source-preview img{max-height:460px;width:auto;height:auto;object-fit:contain;box-shadow:none;border:1px solid #dfcdaa}
+.v71-source-preview span{background:#3d3029;color:#fff7e9;font-size:13px;padding:10px 14px}
+.v71-source-card small{font-size:12px;color:#68523e;background:#f8ebd5;line-height:1.65}
+.arcade-setup select,.field{min-height:44px}
+.arcade-mode-grid{gap:15px}.arcade-mode{min-height:125px}.arcade-type-card{min-height:150px}
+#v4Guide{max-width:1160px}.v4-floating-guide{line-height:1.65}
+.sidebar{overscroll-behavior:contain}.main-nav{gap:3px}
+/* 내용이 긴 연표와 자료를 볼 때 화면 폭이 불필요하게 흔들리지 않도록 */
+#view .quiz-progress,#view .arcade-live-metrics{min-width:0}.arcade-page{min-width:0}
+@media(max-width:800px){
+ main{padding:16px 12px 26px}
+ .quiz-panel,.arcade-paper{padding:19px 15px;border-width:2px;border-radius:14px}
+ .quiz-panel .quiz-question,.arcade-paper .arcade-prompt{font-size:20px;line-height:1.7;margin:16px 0}
+ .quiz-panel .answer-grid,.arcade-answers{grid-template-columns:1fr}
+ .quiz-panel .answer,.arcade-choice{width:100%;min-height:65px;padding:14px;font-size:16px}
+ .v71-source-preview{padding:12px 9px 50px}.v71-source-preview img{max-height:390px;max-width:100%}
+ .v71-source-card figcaption{display:block}.v71-source-card figcaption span{display:block;max-width:100%;text-align:left;margin-top:5px}
+ .arcade-feedback{padding:14px}.topbar{min-height:58px}
+ .arcade-live-metrics{grid-template-columns:repeat(4,minmax(0,1fr))}.arcade-live-metrics>div{min-width:0}
+}
+@media(max-width:440px){.quiz-panel,.arcade-paper{padding:15px 11px}.arcade-paper:before{inset:5px}.quiz-panel .quiz-question,.arcade-paper .arcade-prompt{font-size:19px}.arcade-live-metrics strong{font-size:15px}.v71-source-preview img{max-height:320px}.top-chip{display:none}}
+@media(prefers-reduced-motion:reduce){button,.arcade-mode,.arcade-type-card{transition:none!important}}

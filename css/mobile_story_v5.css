@@ -1,0 +1,57 @@
+
+/* v5: touch-first history adventure; isolated from other study views */
+.mobile-game-controls,.game-tools{position:absolute;z-index:13;display:none}
+.game-tools{display:flex;gap:6px;top:53px;right:9px;z-index:17}
+.game-tool{border:1px solid #d5ae7b;background:#182435e8;color:#fff0d1;border-radius:9px;padding:7px 10px;min-height:36px;font-size:12px;font-weight:800;touch-action:manipulation}
+.game-tool:active{background:#75533a}
+.mobile-game-hint{display:none}
+.mobile-game-controls{inset:auto 10px 9px;justify-content:space-between;align-items:flex-end;gap:10px;pointer-events:none}
+.mobile-move-pad,.mobile-action-pad{display:flex;align-items:flex-end;gap:8px;pointer-events:none}
+.mobile-game-controls .game-control{pointer-events:auto;width:68px;height:67px;min-height:60px;border:2px solid #d2ac70;border-radius:16px;background:#1a3047dc;color:#ffe9bd;box-shadow:0 4px 12px #0009;font-weight:950;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.2;gap:3px}
+.mobile-game-controls .game-control span{font-size:10px;font-weight:800;white-space:nowrap}
+.mobile-game-controls .mobile-direction{font-size:23px}
+.mobile-game-controls .mobile-jump{background:#375271df;font-size:22px}
+.mobile-game-controls .mobile-interact{width:87px;font-size:14px;background:#855838e6}
+.mobile-game-controls .mobile-interact.ready{background:#436e60ed;border-color:#b9e5b2}
+.mobile-game-controls .game-control:active,.mobile-game-controls .game-control.pressed{transform:scale(.94);filter:brightness(1.28);border-color:#fff1c7}
+#gameInteraction{z-index:20}
+#gameInteraction .story-dialogue,#gameInteraction .story-overlay{z-index:21}
+.game-frame:has(.story-dialogue) .mobile-game-controls,.game-frame:has(.story-overlay) .mobile-game-controls{opacity:.18;pointer-events:none}
+.game-frame:has(.story-dialogue) .mobile-game-controls button,.game-frame:has(.story-overlay) .mobile-game-controls button{pointer-events:none}
+@media(pointer:coarse){
+ .mobile-game-controls{display:flex}
+ .mobile-game-hint{display:block;margin:10px 0;padding:10px 13px;background:#253344;border:1px solid #4b6174;border-radius:10px;font-size:12px;color:#d4e0ed}
+ .game-frame,.game-frame canvas{touch-action:none;-webkit-touch-callout:none}
+ .game-prompt{bottom:91px!important;padding:5px 9px;font-size:11px!important;white-space:normal;text-align:center;max-width:92%}
+ .story-dialogue{bottom:87px!important;left:8px!important;right:8px!important;padding:12px 13px!important}
+ .game-hud{top:8px!important;left:8px!important;right:8px!important;gap:5px}
+ .game-hud .hud-pill{font-size:10px;padding:4px 7px;line-height:1.4;max-width:55%}
+}
+@media(max-width:700px){
+ .mobile-game-controls{display:flex}
+ .mobile-game-hint{display:block}
+ .story-wrap{width:100%;min-width:0}
+ .story-top{align-items:flex-start;gap:8px}
+ .story-top .page-title{font-size:21px}
+ .story-top .page-kicker{font-size:9px}
+ .game-frame{border-width:2px;border-radius:11px}
+ .game-tools{top:45px;right:7px;gap:5px}
+ .game-tool{font-size:10px;padding:5px 7px;min-height:30px}
+ .game-bottom{gap:8px}
+ .mobile-game-controls .game-control{width:64px;height:62px}
+ .mobile-game-controls .mobile-interact{width:76px}
+ .story-paper{max-height:96%;overflow:auto}
+}
+@media(max-width:360px){.mobile-game-controls{left:5px;right:5px;bottom:5px}.mobile-move-pad,.mobile-action-pad{gap:5px}.mobile-game-controls .game-control{width:55px;height:58px}.mobile-game-controls .mobile-interact{width:68px}.game-prompt{bottom:82px!important}}
+/* Focus mode: usable without Fullscreen API on iOS and Android. */
+body.story-immersive{overflow:hidden}
+body.story-immersive .game-frame{position:fixed;inset:0;width:100vw;height:100dvh;max-height:100dvh;z-index:1000;border:0;border-radius:0;background:#090f19;box-shadow:none}
+body.story-immersive #gameCanvas{width:100%;height:100%;object-fit:contain;object-position:center}
+body.story-immersive .game-tools{top:max(52px,env(safe-area-inset-top));right:max(8px,env(safe-area-inset-right));z-index:35}
+body.story-immersive .game-hud{top:max(9px,env(safe-area-inset-top));left:max(8px,env(safe-area-inset-left));right:max(8px,env(safe-area-inset-right))}
+body.story-immersive .mobile-game-controls{bottom:max(12px,env(safe-area-inset-bottom));left:max(12px,env(safe-area-inset-left));right:max(12px,env(safe-area-inset-right))}
+body.story-immersive .game-prompt{bottom:max(95px,calc(env(safe-area-inset-bottom) + 85px))!important}
+body.story-immersive .story-dialogue{bottom:max(91px,calc(env(safe-area-inset-bottom) + 79px))!important}
+body.story-immersive .story-overlay{overflow:auto}
+@media (pointer:fine){.game-tools{display:none}}
+@media(pointer:coarse) and (orientation:portrait){body.story-immersive #gameCanvas{height:auto;max-height:75dvh;position:absolute;top:45%;transform:translateY(-50%)} }

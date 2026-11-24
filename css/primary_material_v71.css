@@ -1,0 +1,15 @@
+/* 출제에 사용한 개별 지도/사료/사진만 퀴즈에 표시 */
+.v71-source-card{margin:18px 0 24px;padding:0;background:#f5ecda;border:2px solid #ad8857;border-radius:13px;overflow:hidden;color:#342c29;max-width:860px}
+.v71-source-card figcaption{display:flex;gap:10px;justify-content:space-between;align-items:center;flex-wrap:wrap;background:#e8d9bd;padding:12px 16px;font-size:13px}
+.v71-source-card figcaption span{font-size:12px;color:#695138}
+.v71-source-card small{display:block;font-size:12px;line-height:1.5;margin:0;padding:10px 14px;color:#624e38}
+.v71-source-preview{position:relative;display:flex;justify-content:center;align-items:center;padding:14px;min-height:120px;width:100%;background:#faf6ec;border:0;border-bottom:1px solid #c6a982;cursor:zoom-in}
+.v71-source-preview img{width:auto;height:auto;max-width:100%;max-height:350px;object-fit:contain;image-rendering:auto;border:1px solid #d7c7a7;box-shadow:0 3px 18px #30292322}
+.v71-source-preview span{position:absolute;right:15px;bottom:15px;border-radius:9px;padding:8px 10px;background:#302820ef;color:#fff5e6;font-size:12px;font-weight:bold}
+.v71-source-preview:hover img{filter:brightness(.98)}
+.v71-source-overlay{position:fixed;inset:0;z-index:11000;background:#0d111bee;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:14px;overflow:auto}
+.v71-source-overlay-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;width:min(98vw,1100px);color:#fff1d4}
+.v71-source-overlay-bar button{background:#dfb77c;color:#26201a;border:0;border-radius:8px;padding:10px 16px;font-weight:bold;cursor:pointer}
+.v71-source-overlay>img{display:block;max-width:98vw;max-height:calc(100dvh - 110px);width:auto;height:auto;object-fit:contain;background:#f6f0e4;box-shadow:0 10px 36px #0009}
+.v71-source-overlay>small{color:#eee0ca;font-size:12px;text-align:center}
+@media(max-width:700px){.v71-source-preview img{max-height:300px}.v71-source-card figcaption{padding:10px 11px}.v71-source-preview{padding:8px}.v71-source-card small{padding:9px 11px}}

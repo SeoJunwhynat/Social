@@ -1,0 +1,32 @@
+/* 대민다위 9.7 — top-right music library, persistent player */
+.v9-hero-sub{display:none!important}
+.v97-music-button{font-size:22px!important;min-width:43px!important;min-height:38px!important;padding:2px!important;line-height:1!important}
+.v97-music-button.is-playing{color:#ffe0ac!important;box-shadow:inset 0 0 0 1px #f1bd80,0 0 10px #f1bd8038!important}
+.v97-music-dialog{position:fixed;inset:0;max-width:min(610px,calc(100vw - 28px));max-height:min(87dvh,860px);width:100%;margin:auto;padding:0;border:3px solid #cd9f76;color:#3c2030;background:#ffecd0;box-shadow:0 12px 0 #1c1019,0 30px 75px #100a1599;border-radius:5px;overflow:auto;z-index:10000;font-family:inherit}
+.v97-music-dialog::backdrop{background:#160b1abb;backdrop-filter:blur(3px)}
+.v97-music-header{background:#54273e;color:#fff2d9;padding:14px 17px;display:flex;align-items:center;justify-content:space-between;border-bottom:3px solid #bb806d}
+.v97-music-header small{font-size:10px;color:#eac296;font-weight:900;letter-spacing:1px}
+.v97-music-header h2{font-size:22px;margin:3px 0 0;line-height:1.3;color:#fff4dd}
+.v97-music-dialog button{cursor:pointer;font-family:inherit}
+.v97-music-header button{background:#71384f;border:2px solid #dca981;color:#fff3df;font-weight:900;font-size:18px;width:38px;height:36px}
+.v97-music-now{display:grid;gap:4px;padding:14px 17px 3px}.v97-music-now strong{font-size:20px;color:#421d34;overflow-wrap:anywhere}
+.v97-music-now span{font-size:12px;color:#735164;min-height:18px}
+.v97-music-progress{display:flex;align-items:center;gap:9px;padding:5px 17px 10px;color:#583649;font-size:12px;white-space:nowrap}
+.v97-music-progress input{flex:1;min-width:0;accent-color:#792d49}
+.v97-music-controls{display:grid;grid-template-columns:1fr 1.35fr 1fr;gap:9px;padding:4px 17px 13px}
+.v97-music-controls button{font-size:13px;padding:11px 4px;background:#653247;color:#ffecd3;border:2px solid #a36b67;font-weight:850;min-height:44px}
+.v97-music-controls #v97PlayPause{background:#f3c28b;color:#44243c;border-color:#7e4654}
+.v97-music-pref{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:13px 17px;background:#f0d6b5;border-block:2px solid #cdab94;color:#4b2a3a}
+.v97-music-pref label{font-size:13px;font-weight:800;display:flex;align-items:center;gap:8px;min-width:0}
+.v97-music-pref input[type=range]{width:100%;min-width:45px;accent-color:#6d304c}
+.v97-music-pref input[type=checkbox]{accent-color:#6d304c;width:16px;height:16px}
+.v97-sfx-toggle{background:#69354b;color:#fff3d9;border:2px solid #ac7b69;padding:2px 15px;font-size:16px;min-height:29px}
+.v97-music-groups{display:flex;gap:6px;overflow-x:auto;scrollbar-width:thin;padding:13px 17px 8px}
+.v97-music-groups button{flex:0 0 auto;border:2px solid #b98e83;background:#fff6e6;color:#5f3a4e;font-size:12px;font-weight:850;padding:8px 11px;border-radius:3px}
+.v97-music-groups button.active{background:#603149;border-color:#603149;color:#fff5df}
+.v97-music-list{display:grid;gap:5px;margin:0 17px 12px;padding:3px 1px;max-height:225px;overflow-y:auto;overscroll-behavior:contain}
+.v97-music-item{border:2px solid #d6b49f;background:#fff8e9;color:#3a2634;display:flex;align-items:center;justify-content:space-between;min-height:41px;gap:9px;padding:8px 11px;text-align:left;font-weight:800;font-size:13px}
+.v97-music-item small{font-size:11px;color:#805d66;flex:0 0 auto}.v97-music-item.active{background:#f8dfb4;border-color:#8e4a5a;color:#51283c}
+.v97-music-footer{padding:10px 17px 16px;border-top:2px solid #d6b49f}.v97-music-footer button{background:#623147;color:#fff1dc;border:2px solid #ad7b6c;padding:8px 12px;font-weight:850;font-size:12px}
+.v97-music-footer p{margin:8px 0 0;color:#745562;font-size:11px;line-height:1.55}
+@media(max-width:520px){.v97-music-dialog{max-width:calc(100vw - 16px);max-height:92dvh}.v97-music-header{padding:10px 12px}.v97-music-header h2{font-size:19px}.v97-music-now,.v97-music-progress{padding-inline:12px}.v97-music-controls{padding-inline:12px}.v97-music-pref{padding:10px 12px;gap:9px}.v97-music-pref label{font-size:11px}.v97-music-groups{padding:10px 12px 6px}.v97-music-list{margin-inline:12px;max-height:32dvh}.v97-music-footer{padding:9px 12px 13px}}

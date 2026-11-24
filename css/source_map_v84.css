@@ -1,0 +1,17 @@
+/* 대민다위 8.4 · 실제 자료 출제, 반응형 지도 가리기 */
+.v84-material{max-width:min(100%,950px);overflow:visible;border:3px solid #96765d!important;background:#fff0d9!important;border-radius:7px!important;color:#422b28!important}
+.v84-material figcaption{background:#ead2b5!important;color:#382128!important;gap:7px}
+.v84-source-canvas{display:flex;align-items:center;justify-content:center;background:#fff7eb;padding:12px;border-block:1px solid #c1a88c;overflow:hidden}
+.v84-source-canvas>.v74-source-inline{display:block;width:min(100%,720px)!important;max-width:100%!important;height:auto!important;max-height:620px!important;margin:0 auto!important;border:1px solid #c2ad96!important;object-fit:contain!important;image-rendering:auto;box-shadow:0 3px 14px #28202025}
+.v84-map-source .v84-source-canvas>.v74-source-inline{width:min(100%,640px)!important;max-height:780px!important}
+.v84-map-callout{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:10px 14px;background:#422a36;color:#f4e2c5;font-size:13px;line-height:1.5}
+.v84-map-callout strong{padding:3px 8px;background:#f0cea1;color:#4b2b32;border:2px solid #a87d55;border-radius:3px}
+.v84-source-excerpt{background:#fff0d9;border:1px solid #ba906c;margin:12px 14px;padding:13px 15px;line-height:1.65;color:#49332b}
+.v84-source-excerpt strong{display:block;font-size:13px;margin-bottom:6px}
+.v84-source-excerpt p{font-size:16px;font-weight:700;margin:0 0 6px}
+.v84-source-excerpt u{text-decoration-color:#a64d43;text-decoration-thickness:3px;text-underline-offset:4px}
+.v84-source-excerpt small{padding:0;margin:0;color:#735a4f;font-weight:400}
+.v84-reading-guide{margin:0!important;padding:12px 15px;color:#5a392d;background:#f4dcb8;line-height:1.6;font-size:13px}
+.v84-material .v74-source-toolbar{flex-wrap:wrap}
+.v84-material .v74-material-zoom{background:#482b38!important;border:2px solid #eac28d!important;color:#fff1dc!important;border-radius:4px!important}
+@media(max-width:620px){.v84-material{width:100%;margin-inline:0}.v84-source-canvas{padding:5px}.v84-map-callout{padding:8px 10px}.v84-source-excerpt{margin:9px;padding:10px}.v84-material .v74-source-toolbar{margin:8px}.v84-material .v74-material-zoom{width:100%}}

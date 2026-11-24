@@ -1,0 +1,54 @@
+/* History Run 6.0: original auto-runner interface */
+.runner-mode-note{display:flex;gap:9px;flex-wrap:wrap;margin:0 0 20px}
+.runner-mode-note span{background:#24364c;border:1px solid #917950;border-radius:8px;padding:9px 14px;color:#f4dcb0;font-weight:800;font-size:12px}
+.runner-chapter{min-height:243px;background:linear-gradient(150deg,#30455c,#1a283a 70%);border:1px solid #766141;display:flex;flex-direction:column;box-shadow:inset 0 1px #e0cc9640;transition:transform .2s,border-color .2s}
+.runner-chapter:hover{transform:translateY(-4px);border-color:#f0c883}
+.runner-chapter-mark{display:flex;justify-content:flex-end;font-size:38px;margin-top:8px;line-height:1}
+.runner-chapter h3{margin:0 0 7px!important}
+.runner-chapter-bottom{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-top:auto;padding-top:17px;color:#f1ce92;font-weight:800;font-size:12px}
+.runner-chapter-bottom small{font-size:11px;color:#b5c0c8}
+.runner-frame{isolation:isolate;aspect-ratio:2/1}
+.runner-frame canvas{width:100%;height:100%;object-fit:fill}
+.runner-top-hud{position:absolute;top:8px;left:10px;right:10px;z-index:13;pointer-events:none;display:grid;gap:8px}
+.runner-meters{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.runner-meters>span{font-size:12px;font-weight:900;color:#ffe8bd;background:#182638dc;border:1px solid #9b896d9c;padding:6px 10px;border-radius:9px;text-shadow:0 1px 3px #0006;box-shadow:0 1px 6px #0004}
+.runner-meters #runnerLives{color:#ffad9e;letter-spacing:1px}
+.runner-meters #runnerScore{color:#fff0ac}
+.runner-progress-track{height:7px;border-radius:9px;overflow:hidden;background:#101d2dbf;border:1px solid #baa07188}
+.runner-progress-fill{height:100%;width:0%;background:linear-gradient(90deg,#e9ae64,#f5e5af);box-shadow:0 0 10px #ffe1a0}
+.runner-prompt{bottom:17px;max-width:90%;text-wrap:balance;white-space:normal;text-align:center;padding:7px 12px;font-size:12px}
+.runner-controls{display:none;justify-content:space-between;align-items:flex-end;bottom:12px;left:12px;right:12px;z-index:18}
+.runner-control-info{font-size:10px;color:#ffffffd9;background:#17243ac4;border-radius:8px;padding:6px 10px;letter-spacing:.3px;line-height:1.5}
+.runner-control-info strong{color:#ffe2a6}
+.runner-actions{display:flex;gap:10px;pointer-events:auto}
+.runner-controls .game-control{width:96px;height:72px;border:2px solid #eed3a0;border-radius:20px;background:#24536de6;color:#fff1c6;box-shadow:0 5px 17px #0008;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:24px;touch-action:none;user-select:none;-webkit-user-select:none;font-weight:950}
+.runner-controls .game-control span{font-size:12px;white-space:nowrap}
+.runner-controls .runner-slide{background:#77523ee6}
+.runner-controls .game-control:active{transform:scale(.92);filter:brightness(1.2)}
+.runner-frame .game-tools{top:55px;right:10px;z-index:17;display:flex}
+.runner-frame .game-tool{min-height:31px;padding:6px 9px;font-size:11px;background:#16243be8}
+.runner-frame .story-overlay{z-index:22;position:absolute;inset:0}
+.runner-frame .story-dialogue{z-index:23;bottom:11px;left:12px;right:12px;background:#15233bea;border-color:#e3bb7c;max-height:75%;overflow:auto}
+.runner-frame #gameInteraction{position:static;z-index:auto}
+.runner-frame .runner-paper{max-width:560px;border-color:#c39f62;background:linear-gradient(135deg,#fff0d4,#e8d4af);border-radius:11px;box-shadow:0 15px 60px #000c}
+.runner-paper-kicker{color:#8a5536;font-size:12px;font-weight:950;letter-spacing:2px;margin-bottom:8px}
+.runner-paper h3{color:#332c27;font-weight:900;line-height:1.25}
+.runner-howto{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:14px 0}
+.runner-howto span{background:#d9c29c;border:1px solid #b28a5f;padding:8px 6px;border-radius:7px;text-align:center;color:#332d24;font-weight:900;font-size:12px}
+.runner-paper .runner-cta{display:block;width:100%;padding:12px 8px;margin:14px 0 9px;font-size:17px;background:#7e4d34!important;color:#fff5df!important}
+.runner-result-line{padding:10px 12px;border-radius:8px;background:#ddc6a7;color:#533d30;font-weight:800;font-size:13px;margin:12px 0}
+.runner-result-line strong{color:#763f25;font-size:17px}
+.runner-frame .story-paper button.story-choice{min-height:44px}
+.runner-frame:has(.story-overlay) .runner-controls,.runner-frame:has(.story-dialogue) .runner-controls{opacity:.18;pointer-events:none}
+.runner-frame:has(.story-overlay) .runner-controls button,.runner-frame:has(.story-dialogue) .runner-controls button{pointer-events:none}
+@media (max-width:1100px),(pointer:coarse){.runner-controls{display:flex}.runner-prompt{bottom:91px}.runner-frame .game-tools{top:51px}.runner-frame .runner-meters>span{font-size:10px;padding:4px 7px}}
+@media(max-width:700px){.runner-frame{aspect-ratio:1.18/1;min-height:335px}.runner-top-hud{top:7px;left:7px;right:7px}.runner-meters{gap:4px}.runner-meters>span{font-size:10px!important;padding:3px 5px!important}.runner-meters .runner-stage-label{width:100%;max-width:100%;}.runner-frame .game-tools{top:59px;right:6px;gap:5px}.runner-frame .game-tool{font-size:10px;padding:4px 6px;min-height:29px}.runner-controls{bottom:6px;left:7px;right:7px}.runner-control-info{font-size:9px;padding:5px}.runner-actions{gap:7px}.runner-controls .game-control{width:77px;height:64px;font-size:21px;border-radius:14px}.runner-controls .game-control span{font-size:10px}.runner-prompt{bottom:82px!important;font-size:10px;padding:5px 8px;max-width:94%}.runner-frame .story-dialogue{bottom:81px!important;max-height:62%;padding:9px!important}.runner-frame .story-overlay{padding:6px}.runner-frame .runner-paper{padding:12px;max-height:94%;overflow:auto}.runner-frame .runner-paper h3{font-size:19px}.runner-howto{grid-template-columns:repeat(2,1fr);gap:4px}.runner-howto span{font-size:10px;padding:5px}.runner-paper-kicker{font-size:10px}.runner-frame .story-paper button.story-choice{min-height:36px;font-size:12px}.runner-chapter{min-height:218px}.runner-mode-note span{font-size:11px;padding:6px 8px}}
+@media(max-width:380px){.runner-controls .game-control{width:66px;height:59px}.runner-control-info{font-size:8px}.runner-meters>span{font-size:9px!important}}
+body.story-immersive .runner-frame{aspect-ratio:auto;height:100dvh;min-height:0;width:100vw;position:fixed;inset:0;z-index:1000;border:0;border-radius:0}
+body.story-immersive .runner-frame canvas{position:absolute;inset:0;width:100%;height:100%;max-height:none;object-fit:fill;transform:none;top:0}
+body.story-immersive .runner-top-hud{top:max(5px,env(safe-area-inset-top));left:max(7px,env(safe-area-inset-left));right:max(7px,env(safe-area-inset-right))}
+body.story-immersive .runner-controls{bottom:max(9px,env(safe-area-inset-bottom));left:max(10px,env(safe-area-inset-left));right:max(10px,env(safe-area-inset-right))}
+body.story-immersive .runner-frame .game-tools{top:max(60px,calc(env(safe-area-inset-top) + 52px));right:max(8px,env(safe-area-inset-right))}
+body.story-immersive .runner-prompt{bottom:max(83px,calc(env(safe-area-inset-bottom) + 76px))!important}
+body.story-immersive .runner-frame .story-overlay{position:absolute;inset:0}
+@media (pointer:coarse) and (orientation:portrait){body.story-immersive .runner-frame canvas{height:100%;max-height:none;position:absolute;top:0;transform:none}}
