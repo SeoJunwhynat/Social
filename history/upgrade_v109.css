@@ -1,0 +1,36 @@
+
+/* Daemindawi v10.9 · responsive worksheet and museum additions */
+.v109-worksheet-side{display:flex!important;align-items:center!important;justify-content:flex-start!important;gap:10px!important;padding:8px 13px!important;min-height:44px!important;background:#f5dfc2!important;color:#4a2939!important;border:2px solid #b3856e!important;border-radius:4px!important;font-family:inherit!important;font-size:14px!important;font-weight:850!important;cursor:pointer}
+.v109-worksheet-side:hover,.v109-worksheet-side.active{background:#fff0d9!important;filter:brightness(1.07)}
+.v109-sheet-icon{font-size:23px;line-height:1}
+.v109-read{max-width:1150px;margin:auto;color:#392535}.v109-read .page-title{color:#fff0d4}
+.v109-read-top{display:flex;align-items:center;flex-wrap:wrap;gap:10px;padding:16px;background:#45283b;border:2px solid #c18d73;margin:18px 0;color:#fff0db}
+.v109-read-top label{font-size:12px;font-weight:800;display:flex;flex-direction:column;gap:4px;min-width:175px;flex:1}
+.v109-read-top select,.v109-read-top button{min-height:40px;border:2px solid #b18b7a;background:#fff0d4;color:#4b2b39;padding:8px 11px;font-weight:750;border-radius:3px}
+.v109-reader-head{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;background:#43283a;color:#ffeed3;padding:12px 16px;border:2px solid #bd967a;border-bottom:0}
+.v109-reader-head span{font-size:12px;color:#e2b9a8}
+.v109-reader-paper{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.9;font:500 14px/1.9 "Malgun Gothic","Apple SD Gothic Neo",sans-serif;min-height:310px;padding:clamp(16px,3vw,32px);color:#322533;background:#fff4e0;border:2px solid #b18b7a;box-shadow:6px 6px 0 #1d1520}
+.v109-reader-foot{font-size:12px;color:#e4baa6;line-height:1.8}
+.v109-museum-tabs{display:flex;gap:6px;padding:7px;margin:16px 0;background:#412638;border:2px solid #b38a70;flex-wrap:wrap}
+.v109-museum-tabs button{border:1px solid #916477;padding:10px 15px;min-height:42px;background:#563444;color:#ffdfc7;cursor:pointer;font-weight:800}
+.v109-museum-tabs button[aria-selected="true"]{background:#f7ddbe;color:#3f2634;border-color:#f5bb89}
+.v109-museum-panel{background:#f7e4cd;color:#3a2630;border:2px solid #bf9376;padding:clamp(14px,2vw,25px);margin-bottom:20px}
+.v109-museum-panel[hidden]{display:none!important}
+.v109-museum-panel h2{margin:0 0 8px;color:#402637}.v109-museum-panel p{line-height:1.6}
+.v109-person-grid,.v109-event-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;max-height:65vh;overflow:auto;padding:3px}
+.v109-person-grid article,.v109-event-grid article{background:#fffaef;border:2px solid #c6a18a;padding:14px;box-shadow:2px 3px 0 #7c4e523b}
+.v109-person-grid strong,.v109-event-grid strong{display:block;font-size:16px;color:#4d283a}
+.v109-person-grid span,.v109-event-grid time{display:block;color:#8c5261;font-size:12px;margin:3px 0 7px;font-weight:800}
+.v109-person-grid p,.v109-event-grid p{font-size:13px;margin:0}
+#view[data-v109-museum="people"]>.filterbar,#view[data-v109-museum="events"]>.filterbar,
+#view[data-v109-museum="people"]>.data-banner,#view[data-v109-museum="events"]>.data-banner,
+#view[data-v109-museum="people"]>#museumGrid,#view[data-v109-museum="events"]>#museumGrid,
+#view[data-v109-museum="people"]>#museumPages,#view[data-v109-museum="events"]>#museumPages{display:none!important}
+.v109-source-fallback{background:#fff8ea;border:2px solid #ba927f;padding:15px;margin:15px 0;color:#3d2934}
+.v109-source-fallback strong{font-size:15px;color:#713c52}.v109-source-fallback p{font-size:12px;color:#745461}
+.v109-source-fallback blockquote{white-space:normal;line-height:1.85;margin:12px 0 0;border-left:4px solid #b07c75;padding:12px;background:#f0ddc9;font-size:14px}
+@media(max-width:680px){
+.v109-read-top{padding:10px;gap:7px}.v109-read-top label{min-width:130px}.v109-read-top button{flex:1}
+.v109-person-grid,.v109-event-grid{grid-template-columns:1fr}.v109-reader-paper{font-size:13px;line-height:1.8}
+.v109-museum-tabs button{flex:1;min-width:110px;padding:9px 8px;font-size:12px}
+}

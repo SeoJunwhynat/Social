@@ -28,7 +28,7 @@ function patch(realm){
    if(isBGM(this)){
     const src=this.currentSrc||this.src||this.getAttribute("src")||"";
     const gesture=!!realm.navigator?.userActivation?.isActive;
-    const quiet=subject==="history"&&/story/.test(location.hash)&&!gesture;
+    const quiet=false; // Ordinary programmatic pauses must not interrupt the shared BGM.
     if(gesture||quiet)send("pause",src,gesture,quiet);
    }
    return nativePause.apply(this,args);
@@ -52,6 +52,9 @@ function patch(realm){
 }
 patch(window);
 window.addEventListener("message",e=>{
+ if(subject==="history"&&e.origin===origin&&e.data?.type==="dmd-story-scene-music-v104"&&typeof e.data.quiet==="boolean"){
+   send(e.data.quiet?"story-quiet":"story-resume","",false,e.data.quiet);return;
+ }
  if(e.origin!==origin||!e.data||e.data.source!=="studyhub.v1")return;
  suspended=e.data.action==="suspend";
  if(e.data.action==="activate")suspended=false;

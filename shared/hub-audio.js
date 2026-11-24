@@ -128,11 +128,13 @@ window.addEventListener("message",e=>{
  const msg=e.data;if(e.origin!==location.origin||!msg||msg.type!=="studyhub.audio.v3")return;
  if(!["history","social"].includes(msg.subject)||active()!==msg.subject)return;
  const src=url(msg.src||"");
+ if(msg.action==="story-quiet"){if(!state.paused){storyAutoPaused=true;native.pause();report("스토리 긴장 장면 · 음악 잠시 중단");sync()}return}
+ if(msg.action==="story-resume"){if(storyAutoPaused){storyAutoPaused=false;if(!state.paused)start(false)}return}
  if(msg.action==="play"){
   if(!src)return;
   let known=catalogue.find(t=>url(t.src)===src);
   if(!known){known={id:"external_"+msg.subject,title:"선택한 음악",src:src,category:"other"}}
-  if(storyAutoPaused){storyAutoPaused=false;state.paused=false;start(false);return}
+  if(storyAutoPaused){storyAutoPaused=false;if(!state.paused)start(false);return}
   if(state.paused && !msg.gesture)return;
   if(!current||!native.src){setTrack(known,true);return}
   if(msg.gesture && src!==native.src){state.paused=false;setTrack(known,true);return}
